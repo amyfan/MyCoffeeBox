@@ -475,7 +475,7 @@ a {
       text-align: center; }
 
 #what > div {
-  background-image: url(../images/fb_cover.jpg);
+  /* background-image: url(../images/fb_cover.jpg); */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
