@@ -57,7 +57,9 @@ em {
   color: #c00000; }
 
 input, textarea, select, option, button {
-  font-family: "Open Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
   font-size: 1em;
   padding: 0.3em; }
 
@@ -172,7 +174,9 @@ p.note.invalid {
     background-color: #fae4e4; }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
   font-weight: 300; }
 
 h1, h2, h3 {
