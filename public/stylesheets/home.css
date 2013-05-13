@@ -500,12 +500,11 @@ a {
   #what #teaser .actions {
     margin-left: 0; }
 
-#how div {
+#how > div {
   background-image: url(../images/fb_cover.jpg);
-  color: white;
 }
-/*#what h3 {
-  color: white; }*/
+#how p, h3 {
+  color: white; }
 #how ul {
   zoom: 1; }
   #how ul:before, #how ul:after {
