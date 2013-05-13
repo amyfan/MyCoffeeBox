@@ -501,7 +501,7 @@ a {
     margin-left: 0; }
 
 #how > div {
-  background-image: url(../images/fb_cover.jpg);
+  background-image: url(../images/fb_cover.jpg) !important;
 }
 #how p, h3 {
   color: white; }
