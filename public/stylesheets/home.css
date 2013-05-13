@@ -501,6 +501,7 @@ a {
     margin-left: 0; }
 
 #how ul {
+  background-image: url(../images/fb_cover.jpg);
   zoom: 1; }
   #how ul:before, #how ul:after {
     content: "\0020";
