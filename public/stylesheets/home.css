@@ -481,6 +481,7 @@ a {
   box-sizing: border-box;
   float: left; }
 #what h2 {
+color: white;
   font-size: 2.2em; }
 #what p {
   font-size: 1.5em;
@@ -500,11 +501,8 @@ a {
   #what #teaser .actions {
     margin-left: 0; }
 
-#how > div {
-  background-image: url(../images/fb_cover.jpg) !important;
-}
-#how p, h3 {
-  color: white; }
+#how p, #how h2, #how h3 {
+  color: black; }
 #how ul {
   zoom: 1; }
   #how ul:before, #how ul:after {
