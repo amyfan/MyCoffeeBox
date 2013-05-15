@@ -1,4 +1,16 @@
 MyCoffeeBox::Application.routes.draw do
+  get "static_pages/home"
+
+  get "static_pages/products"
+
+  get "static_pages/faq"
+
+  get "static_pages/usa"
+
+  get "static_pages/euro"
+
+  get "static_pages/how"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -55,4 +67,7 @@ MyCoffeeBox::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  
+  #root :controller => "static_pages_controller"
+  root :to => "static_pages#home"
 end

@@ -1,0 +1,84 @@
+@import "global"
+
+
+#content
+  border: none
+  padding: 0
+  > div
+    padding: 3em
+    border: 1px solid $light_gray
+    @include clearfix
+    &:nth-child(even)
+      background: $light_gray
+    h2
+      text-align: center
+#what
+  background-image: url(../images/roasted_coffee_beans.jpg)
+  > div
+    @include box
+    float: left
+  h2
+    color: white
+    font-size: 2.2em
+  p
+    font-size: 1.5em
+    line-height: 1.5em
+  .actions
+    a
+      margin-left: auto
+      margin-right: auto
+  #box
+    width: 35%
+    img
+      width: 100%
+  #teaser
+    padding-left: 3em
+    width: 64%
+    h2
+      text-align: left
+    .actions
+      margin-left: 0    
+#how 
+  ul 
+    @include clearfix
+    li
+      @include box
+      width: 33%
+      float: left
+      padding-left: 1em
+      padding-right: 1em
+      img
+        width: 140px
+        margin-bottom: 1em
+#why
+  text-align: center
+  iframe
+    margin-top: 2em
+
+#who
+  ul  
+    @include clearfix
+    li
+      @include box
+      float: left
+      width: 20%
+      text-align: center
+      margin-top: 1em
+      margin-bottom: 1em
+      img
+        width: 90%
+      &:hover
+        opacity: 0.5
+        cursor: pointer  
+
+.actions
+  @include centered(564px)
+  margin-top: 2em
+  @include clearfix
+  a
+    @include button(#333, #FFF)
+    width: 200px
+    float: left
+    margin-right: 2em
+    &.main
+      @include button($brand)

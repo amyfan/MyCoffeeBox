@@ -1,0 +1,31 @@
+- content_for :head do
+  %link{:rel => 'stylesheet', :href => '/assets/home.css', :type => 'text/css'}
+-# %head
+-#  = stylesheet_link_tag 'home'
+
+#content
+  #what
+    #box
+      %img{:src => "/images/logo.jpg"}
+    #teaser
+      %h2 Cada mes un nuevo café.
+      .actions
+        %a{:href => "http://www.mycoffeebox.com/catalogo/productos/2757603", :onClick => "_gaq.push(['_trackEvent', 'Home', 'Button', 'Suscríbete']);"} ¡Suscríbete!
+
+  #how
+    %h2 ¿Cómo funciona?
+    %ul
+      %li
+        %img{:src => "/images/unete.png"}
+        %h3 Únete
+        %p El primer paso para ser parte de este gran proyecto es que te unas a la causa!
+        %p Dale click al boton de suscríbete y conoce el café que te enviaremos, después ingresa tus datos y adquiere tu membresía con tarjeta de débito o crédito. Si gustas también puedes depositarnos a nuestra cuenta de banco o pagar con transferencia electrónica. Próximamente códigos para regalar a tus amigos o familiares!
+      %li
+        %img{:src => "/images/apoya.png"}
+        %h3 Apoya
+        %p Con tan solo un pago mensual estarías apoyando directamente a los productores de uno de los mejores cafés del mundo! Con tu compra tu cooperas con ellos y en reciprocidad recibirás una caja con las más deliciosas variedades de café Chiapaneco! Un café diferente en cada envío para probar muchos y decidir después cual es el que gustarías mantener o seguir en modalidad de "cada mes sorpréndeme".
+      %li
+        %img{:src => "/images/disfruta.png"}
+        %h3 Disfruta
+        %p Después de ayudar y aportar al desarrollo de los productores de café chiapaneco, ahora solo te resta... Disfrutar las riquísimas variedades de café que próximamente estaremos enviándote!
+        %p Cada mes con tu suscripción probarás nuevos sabores y diferentes toques de sabor que harán que vivas muchas sensaciones que solo el gran café chiapaneco te puede dar.

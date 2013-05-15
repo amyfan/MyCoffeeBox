@@ -1,0 +1,90 @@
+@import "fonts", "palette", "mixins"
+
+fieldset
+  padding: 0.5em 1em
+
+.field
+  @include clearfix
+  padding: 0.5em 0
+  padding-left: 0.2em
+
+label
+  display: block
+  
+textarea
+  height: 5em
+  width: 35em
+  padding: 0.5em
+
+em
+  color: $invalid_dark
+
+input, textarea, select, option, button
+  font-family: $base_sans
+  font-size: 1em
+  padding: 0.3em
+
+input[type="text"], input[type="file"], input[type="password"] textarea 
+  line-height: 1.3em
+
+input[type="submit"]
+  @include button
+  
+form
+  // background-color: lighten($light_gray,3)
+  // border: 1px solid $light_gray
+  // padding: 2em
+  // width: 40em
+    
+  > div
+    margin-bottom: 1em
+  
+  #type
+    ul
+      margin-top: 1em
+      margin-bottom: 1em
+  
+  #url, #email_address
+    input
+      width: 20em
+  
+//Form feedback
+
+.notice
+  margin: 1em auto
+  border-top: 1px solid $warning_light
+  border-bottom: 1px solid $warning_light
+  padding: 1em
+  background: $warning_dark
+  @include box
+  
+.valid
+  input
+    background-color: $valid_light
+
+.invalid  
+  background-color: $invalid_light !important
+  border-color: $invalid_dark !important
+  p.message
+    margin-top: 0.5em
+    margin-bottom: 0
+    font-size: 0.85em
+    color: $invalid_dark
+    
+p.note.invalid
+  color: $invalid_dark
+  background-color: transparent
+
+#response
+  display: none
+  padding: 0.5em
+  margin-top: 0.5em
+  font-size: 0.9em
+  &.valid
+    display: block
+    border: 1px solid $valid_dark
+    background-color: $valid_light
+  &.invalid
+    display: block
+    border: 1px solid $invalid_dark
+    background-color: $invalid_light

@@ -7352,7 +7352,7 @@ Order Model, Collections and Views for the cart
   });
 
   _.extend(Subscription.prototype, {
-    urlRoot: 'http://secure.conekta.mx/subscriptions',
+    urlRoot: 'https://secure.conekta.mx/subscriptions',
     update_items: function() {
       var shipping_cost, shipping_cost_sanitized, shipping_required, subtotal, tax_rate, tax_total, total;
       tax_rate = $('#tax_rate').html() || 0.16;
@@ -7509,56 +7509,29 @@ Order Model, Collections and Views for the cart
             return item.change_product_option_id(item.get('product_option_id'));
           });
           subscription.update_items();
-          if (navigator.appVersion.match(/MSIE [89]+/)){
-              return subscription.save({}, {
-                remote: false,
-                local_override: true,
-                success: _.bind(function() {
-                  subscription = pagalo.store.get('subscription').get('subscription_items').each(function(item) {
-                    var product, product_id;
-                    product_id = item.get('product_id');
-                    product = pagalo.store.get('products').find(function(product) {
-                      if (product.id === product_id) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    });
-                    if (product) {
-                      return item.set('product', product);
-                    }
-                  });
-                  pagalo.store.persist();
-                  if (callback) {
-                    return callback.call(this);
+          return subscription.save({}, {
+            dataType: 'json',
+            success: _.bind(function() {
+              subscription = pagalo.store.get('subscription').get('subscription_items').each(function(item) {
+                var product, product_id;
+                product_id = item.get('product_id');
+                product = pagalo.store.get('products').find(function(product) {
+                  if (product.id === product_id) {
+                    return true;
+                  } else {
+                    return false;
                   }
-                }, this)
+                });
+                if (product) {
+                  return item.set('product', product);
+                }
               });
-          }else{
-              return subscription.save({}, {
-                dataType: 'json',
-                success: _.bind(function() {
-                  subscription = pagalo.store.get('subscription').get('subscription_items').each(function(item) {
-                    var product, product_id;
-                    product_id = item.get('product_id');
-                    product = pagalo.store.get('products').find(function(product) {
-                      if (product.id === product_id) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    });
-                    if (product) {
-                      return item.set('product', product);
-                    }
-                  });
-                  pagalo.store.persist();
-                  if (callback) {
-                    return callback.call(this);
-                  }
-                }, this)
-              });
-          }
+              pagalo.store.persist();
+              if (callback) {
+                return callback.call(this);
+              }
+            }, this)
+          });
         },
         paypal_checkout: function(credentials) {
           return this._model.submitPayment('paypal', credentials);
@@ -7865,59 +7838,3 @@ Order Model, Collections and Views for the cart
   CheckoutApp.start();
 
 }).call(this);
-
-// Based on https://github.com/jaubourg/ajaxHooks/blob/master/src/ajax/xdr.js
-
-(function( jQuery ) {
-
-if ( window.XDomainRequest && !jQuery.support.cors ) {
-  jQuery.ajaxTransport(function( s ) {
-    if ( s.crossDomain && s.async ) {
-      if ( s.timeout ) {
-        s.xdrTimeout = s.timeout;
-        delete s.timeout;
-      }
-      var xdr;
-      return {
-        send: function( _, complete ) {
-          function callback( status, statusText, responses, responseHeaders ) {
-            xdr.onload = xdr.onerror = xdr.ontimeout = xdr.onprogress = jQuery.noop;
-            xdr = undefined;
-            jQuery.event.trigger( "ajaxStop" );
-            complete( status, statusText, responses, responseHeaders );
-          }
-          xdr = new XDomainRequest();
-          xdr.open( s.type, s.url );
-          xdr.onload = function() {
-            var status = 200;
-            var message = xdr.responseText;
-            var r = JSON.parse(xdr.responseText);
-            if (r.StatusCode && r.Message) {
-              status = r.StatusCode;
-              message = r.Message;
-            }
-            callback( status , message, { text: message }, "Content-Type: " + xdr.contentType );
-          };
-          xdr.onerror = function() {
-            callback( 500, "Unable to Process Data" );
-          };
-          xdr.onprogress = function() {};
-          if ( s.xdrTimeout ) {
-            xdr.ontimeout = function() {
-              callback( 0, "timeout" );
-            };
-            xdr.timeout = s.xdrTimeout;
-          }
-          xdr.send( ( s.hasContent && s.data ) || null );
-        },
-        abort: function() {
-          if ( xdr ) {
-            xdr.onerror = jQuery.noop();
-            xdr.abort();
-          }
-        }
-      };
-    }
-  });
-}
-})( jQuery );

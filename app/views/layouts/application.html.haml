@@ -1,0 +1,49 @@
+!!! 5
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %title
+      = @title || 'MyCoffeeBox'
+    %meta{ :charset => 'utf-8' }
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %link{ :href => 'http://fonts.googleapis.com/css?family=Open+Sans:300,400,600', :rel => 'stylesheet', :type => 'text/css' }
+    %link{ :href => '/favicon.ico', :rel => 'icon', :type => 'image/x-icon' }
+    = yield :head
+  %body
+    #header-container
+      #header
+        %ul
+          %li 
+            %a{:href => "http://www.mycoffeebox.com/pagina/united-states-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers Header']);"} U.S. Customers
+          %li 
+            %a{:href => "http://www.mycoffeebox.com/pagina/european-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers Header']);"} European Customers
+    = yield
+    #footer
+      #info
+        %h2 Más información
+        %ul
+          %li 
+            %a{:href => "http://www.mycoffeebox.com/pagina/preguntas-frecuentes", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Preguntas Frecuentes Footer']);"} Preguntas frecuentes
+          %li 
+            %a{:href => "http://www.mycoffeebox.com/pagina/productos", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Productos Footer']);"} Productos
+          %li 
+            %a{:href => "http://www.mycoffeebox.com/pagina/united-states-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers Footer']);"} U.S. Customers
+          %li 
+            %a{:href => "http://www.mycoffeebox.com/pagina/european-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers Footer']);"} European Customers
+      #social
+        %h2 Redes sociales
+        %ul
+          %li 
+            %a{:href => "https://twitter.com/MyCoffeeBoxmx", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Twitter footer']);"}Twitter
+          %li 
+            %a{:href => "https://www.facebook.com/mycoffeeboxmx", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Facebook Footer']);"}Facebook
+  :javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39128984-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
