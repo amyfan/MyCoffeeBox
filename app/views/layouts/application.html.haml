@@ -4,6 +4,7 @@
     %title
       = @title || 'MyCoffeeBox'
     %meta{ :charset => 'utf-8' }
+    = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
     %link{ :href => 'http://fonts.googleapis.com/css?family=Open+Sans:300,400,600', :rel => 'stylesheet', :type => 'text/css' }
