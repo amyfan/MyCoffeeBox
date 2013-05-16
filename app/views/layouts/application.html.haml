@@ -13,24 +13,30 @@
   %body
     #header-container
       #header
+        %a{:href => "/", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Logo']);"}
+          %img{:src => "/images/logo1.jpeg"}
         %ul
           %li 
-            %a{:href => "http://www.mycoffeebox.com/pagina/united-states-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers Header']);"} U.S. Customers
-          %li 
-            %a{:href => "http://www.mycoffeebox.com/pagina/european-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers Header']);"} European Customers
+            %a{:href => "/static_pages/faq", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Preguntas Frecuentes Header']);"} Preguntas frecuentes
+          %li
+            %a{:href => "/static_pages/usa", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers Header']);"} U.S. Customers
+          %li
+            %a{:href => "/static_pages/euro", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers Header']);"} European Customers
     = yield
     #footer
       #info
         %h2 Más información
         %ul
           %li 
-            %a{:href => "http://www.mycoffeebox.com/pagina/preguntas-frecuentes", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Preguntas Frecuentes Footer']);"} Preguntas frecuentes
+            %a{:href => "/static_pages/faq", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Preguntas Frecuentes Footer']);"} Preguntas frecuentes
           %li 
             %a{:href => "http://www.mycoffeebox.com/pagina/productos", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Productos Footer']);"} Productos
           %li 
-            %a{:href => "http://www.mycoffeebox.com/pagina/united-states-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers Footer']);"} U.S. Customers
+            %a{:href => "/static_pages/usa", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers Footer']);"} U.S. customers
           %li 
-            %a{:href => "http://www.mycoffeebox.com/pagina/european-customers", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers Footer']);"} European Customers
+            %a{:href => "/static_pages/euro", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers Footer']);"} European customers
+          %li 
+            %a{:href => "/static_pages/contact", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Contacto Footer']);"} Contacto
       #social
         %h2 Redes sociales
         %ul
