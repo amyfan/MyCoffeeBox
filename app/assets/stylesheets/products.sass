@@ -1,0 +1,43 @@
+@import "global"
+
+#content
+  &.products
+    //padding: 2em 4em 4em
+    border: none
+    padding: 0
+    > div
+      padding: 3em
+      border: 1px solid $light_gray
+      @include clearfix
+      h2
+        text-align: center
+
+#item
+  > div
+    @include box
+    float: left
+  h2
+    font-size: 1.6em
+  img
+    max-width: 100%
+    margin-bottom: 2em
+  ul 
+    @include clearfix
+    li
+      @include box
+      width: 50%
+      float: left
+      padding-left: 1em
+      padding-right: 1em
+      img
+        height: 500px
+        margin-bottom: 1em
+  #box
+    width: 35%
+    img
+      width: 100%
+  #description
+    padding-left: 3em
+    width: 100%
+    h2
+      text-align: left
