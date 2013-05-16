@@ -18,11 +18,16 @@
     @include box
     float: left
   h2
-    font-size: 2.8em
+    font-size: 3.5em
+    line-height: 0.2em
+    color: white
+  h3
+    font-size: 2.0em
+    line-height: 0.2em
     color: white
   p
-    font-size: 1.5em
-    line-height: 1.5em
+    font-size: 0.8em
+    color: white
   .actions
     a
       margin-left: auto
@@ -77,8 +82,10 @@
   @include clearfix
   a
     @include button(#333, #FFF)
-    width: 180px
+    width: 160px
     float: center
     margin-right: 2em
+    font-size: 1.5em
+    line-height: 0.7em
     &.main
       @include button($brand)
