@@ -8,10 +8,10 @@ class StaticPagesController < ApplicationController
   def faq
   end
 
-  def usa
+  def usa_en
   end
 
-  def euro
+  def euro_en
   end
 
   def how

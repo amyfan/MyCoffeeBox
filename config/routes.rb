@@ -5,9 +5,9 @@ MyCoffeeBox::Application.routes.draw do
 
   get "static_pages/faq"
 
-  get "static_pages/usa"
+  get "static_pages/usa_en"
 
-  get "static_pages/euro"
+  get "static_pages/euro_en"
 
   get "static_pages/how"
 
