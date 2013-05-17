@@ -1,0 +1,21 @@
+@import "global"
+
+#content
+  &.customers
+    padding: 2em 4em 4em
+    //color: white
+    background-image: url(../images/roasted_coffee_beans.jpg)
+    h1
+      margin-top: 0.5em
+      margin-bottom: 1em
+    
+    border: none
+    > div
+      padding: 3em
+      border: 1px solid $light_gray
+      @include clearfix
+      h2
+        text-align: center
+
+#text
+  @include transparent($light_green, 0.7)
