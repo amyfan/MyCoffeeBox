@@ -10,6 +10,10 @@
     @include clearfix
     h2
       text-align: center
+  &.what
+    border: none
+  &.how
+    border: none
 #what
   background-image: url(../images/coffeebeans1.jpg)
   > div
@@ -42,9 +46,9 @@
     .actions
       margin-left: 0
 #how
-  margin-top: 3em
-  background: $light_green
-  ul 
+  //margin-top: 3em
+  @include transparent($light_green, 0.7)
+  ul
     @include clearfix
     li
       @include box

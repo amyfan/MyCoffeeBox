@@ -13,11 +13,14 @@
         text-align: center
 
 #item
+  @include transparent($light_green, 0.6)
   > div
     @include box
     float: left
   h2
     font-size: 1.6em
+  p
+    font-size: 1.1em
   img
     max-width: 100%
     margin-bottom: 2em
@@ -30,14 +33,14 @@
       padding-left: 1em
       padding-right: 1em
       img
-        height: 500px
+        height: 400px
         margin-bottom: 1em
   #box
     width: 35%
     img
       width: 100%
   #description
-    padding-left: 3em
+    //padding-left: 3em
     width: 100%
     h2
       text-align: left
