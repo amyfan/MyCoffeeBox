@@ -22,6 +22,21 @@ a
     h3:first-of-type
       margin-top: -1em
       text-align: center
+  &.contact
+    padding: 2em 4em 4em
+    //color: white
+    background-image: url(../images/labor.jpg)
+    h1
+      //color: white
+      margin-top: 0.5em
+      margin-bottom: 1em
+    border: none
+    > div
+      padding: 3em
+      border: 1px solid $light_gray
+      @include clearfix
+      h2
+        text-align: center
   &.faq
     @include transparent($light_green, 0.7)
     padding: 2em 4em 4em
@@ -34,3 +49,5 @@ a
     img
       max-width: 100%
       margin-bottom: 2em
+#text
+  @include transparent($light_green, 0.7)

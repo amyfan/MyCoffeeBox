@@ -1,7 +1,7 @@
 @import "global"
 
 #content
-  &.customers
+  &.uscustomers
     padding: 2em 4em 4em
     //color: white
     background-image: url(../images/girl.jpg)
@@ -16,5 +16,20 @@
       @include clearfix
       h2
         text-align: center
+  &.eurocustomers
+    padding: 2em 4em 4em
+    //color: white
+    background-image: url(../images/girl2.jpg)
+    h1
+      //color: white
+      margin-top: 0.5em
+      margin-bottom: 1em
+    border: none
+    > div
+      padding: 3em
+      border: 1px solid $light_gray
+      @include clearfix
+      h2
+        text-align: center
 #text
-  @include transparent($light_green, 0.8)
+  @include transparent($light_green, 0.6)
