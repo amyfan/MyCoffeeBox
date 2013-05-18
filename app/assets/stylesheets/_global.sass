@@ -24,7 +24,7 @@ p
   margin-bottom: 1em
   line-height: 1.4
   &.footer
-    font-size: 0.8em
+    font-size: 0.7em
     color: white
 
 a
@@ -39,6 +39,10 @@ a
   &.footer
     color: white
     font-size: 1.1em
+    &:hover
+      // need this to make footer work for some reason
+      text-decoration: none
+      color: $brand
 
 #header, #content, #footer
   @include centered
