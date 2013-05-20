@@ -1,6 +1,8 @@
 MyCoffeeBox::Application.routes.draw do
   get "static_pages/home"
 
+  get "static_pages/catalog"
+
   get "static_pages/products"
 
   get "static_pages/faq"
@@ -9,9 +11,9 @@ MyCoffeeBox::Application.routes.draw do
 
   get "static_pages/euro_en"
 
-  get "static_pages/how"
-
   get "static_pages/contact"
+
+  get "static_pages/how"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

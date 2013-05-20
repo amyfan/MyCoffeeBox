@@ -1,0 +1,21 @@
+-#- content_for :head do
+-#  %script{:src => '/javascripts/catalog.js'}
+-#  %link{:rel => 'stylesheet', :href => '/stylesheets/catalog.css', :type => 'text/css'}
+
+#content.catalog
+  %h1 Selecciona el producto
+  %ul
+
+%li#template
+  #product
+    %img{:src => "/images/triunfo.jpg"}
+  %h3#name El Triunfo
+  .rollover
+    %h3#brand
+      El Triunfo
+    %p#description
+      Molido or en grano.
+    %p#price 
+      MXN 149
+    %p#quantity
+      500 grs
