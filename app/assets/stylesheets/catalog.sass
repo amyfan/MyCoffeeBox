@@ -5,6 +5,7 @@
 
 #content
   &.catalog
+    position: relative
     @include transparent($light_green, 0.7)
     > ul
       li
@@ -18,6 +19,8 @@
         text-align: center
         &:hover
           cursor: pointer
+        &.selected
+          border: 1px solid $gray !important
         &:nth-child(4n+1)
           margin-left: 0
         &:nth-child(4n)
@@ -63,6 +66,30 @@
       &:hover
         cursor: pointer
 
-
 #template
   display: none
+
+#alert
+  background: $invalid_light
+  @include box
+  color: $gray
+  text-align: center
+  font-size: 2em
+  padding: 1em
+  display: none
+
+.actions
+  &.subscription
+    border: none !important
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    @include box
+    padding: 1em 2em        
+    a.next
+      @include button($brand)
+      width: 150px
+      float: right
+      font-size: 1.5em
+      line-height: 0.7em
