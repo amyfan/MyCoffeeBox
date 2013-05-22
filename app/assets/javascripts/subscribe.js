@@ -130,7 +130,7 @@ function setUpSubscription() {
           recurring : -1,
           lump_sum : 8
         });
-      } else {
+      } else if (periodFrequencyValue == 4) {
         conekta.checkout.setBillingPeriod('week', 4, {
           recurring : -1,
           lump_sum : 4
@@ -138,6 +138,15 @@ function setUpSubscription() {
         conekta.checkout.setShippingPeriod('week', 4, {
           recurring : -1,
           lump_sum : 4
+        });
+      } else {
+        conekta.checkout.setBillingPeriod('week', 6, {
+          recurring : -1,
+          lump_sum : 3
+        });
+        conekta.checkout.setShippingPeriod('week', 6, {
+          recurring : -1,
+          lump_sum : 3
         });
       }
 
