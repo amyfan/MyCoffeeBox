@@ -2515,7 +2515,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
         if (!jQuery.support.cors && jQuery.ajaxTransport && window.XDomainRequest) {
           base = '/api';
         } else {
-          base = '/api/v1';
+          base = '/api/dev';
         }
       }
       return base;
@@ -2552,7 +2552,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
         if (!jQuery.support.cors && jQuery.ajaxTransport && window.XDomainRequest) {
           base = '/api';
         } else {
-          base = '/api/v1';
+          base = '/api/dev';
         }
       }
       return base;
@@ -6706,16 +6706,17 @@ removeItem:function (b) {a.load("localStorage");b=c(b);a.removeAttribute(b);a.sa
     },
     display: {
       getProducts: function(query_options, after_fetch_callback) {
-        var company, product_fetch_parameters, products;
+        var company, params, products;
         company = conekta._accessors.getCompany();
-        product_fetch_parameters = query_options || {};
-        _.extend(product_fetch_parameters, {
+        params = {};
+        params['query'] = _.extend({
+          visible: true,
           company_id: company.get('id')
-        });
+        }, query_options);
         products = conekta._store.get('products');
         if (products) {
           products.fetch({
-            data: product_fetch_parameters,
+            data: params,
             dataType: 'json',
             remote: true,
             local_override: true,
@@ -6827,6 +6828,12 @@ OrderItem Models, Collection and Views and for the cart
           volume_discounted_price = price * (100.0 - discounts[i]['discount']) / 100.0;
           i = i + 1;
         }
+      }
+      if (this.get('preventa_amount_outstanding')) {
+        discounted_price = this.get('preventa_amount_outstanding');
+      }
+      if (this.get('preventa')) {
+        discounted_price = price * (parseFloat(this.get('preventa')) / 100.0);
       }
       if (volume_discounted_price !== null) {
         return Math.round(volume_discounted_price * 100.0) / 100.0;
@@ -8289,7 +8296,7 @@ Order/Subscription/Quote shared methods
         tax_total = shipping_cost_sanitized * company_tax_rate;
         shipping_required = false;
         this.get('items').each(function(order_item) {
-          if (order_item.get('product_type') !== 'digital' && order_item.get('product_type') !== 'event') {
+          if (order_item.get('product_type') !== 'digital' && order_item.get('product_type') !== 'event' && (!order_item.get('preventa') || (order_item.get('preventa') && order_item.get('preventa') >= 100))) {
             return shipping_required = true;
           }
         });
@@ -8344,9 +8351,10 @@ Order/Subscription/Quote shared methods
             return simpleCart.add({
               id: order_item.get('product_id') + (order_item.get('product_option_id') !== null ? '_' + order_item.get('product_option_id') : ''),
               name: order_item.get('name'),
-              price: order_item.get('price'),
+              price: order_item.get('unit_price'),
               weight: (order_item.get('weight') || "").toString(),
               tax_rate: order_item.get('tax_rate'),
+              preventa: order_item.get('preventa'),
               quantity: order_item.get('quantity') || 0,
               inventory: inventory.toString()
             });
@@ -8355,8 +8363,7 @@ Order/Subscription/Quote shared methods
       }
     },
     checkoutPaypal: function() {
-      var target;
-      this.save({}, {
+      return this.save({}, {
         remote: true,
         success: function(model) {
           return $.ajax({
@@ -8374,36 +8381,6 @@ Order/Subscription/Quote shared methods
             },
             type: 'POST'
           });
-        }
-      });
-      target = $('#processing-order-wrapper .modal-icon');
-      target.css('background', 'none');
-      $(".modal-holder#address_modals").show();
-      return $(".modal-holder #processing-order-wrapper").fadeIn({
-        queue: false,
-        duration: 250,
-        complete: function() {
-          var opts, spinner;
-          opts = {
-            lines: 15,
-            length: 17,
-            width: 4,
-            radius: 23,
-            corners: 1,
-            rotate: 0,
-            direction: 1,
-            color: '#56B3CE',
-            speed: 1,
-            trail: 21,
-            shadow: false,
-            hwaccel: true,
-            className: 'spinner',
-            zIndex: 2e9,
-            top: 'auto',
-            left: 'auto'
-          };
-          target = $('#processing-order-wrapper .modal-icon');
-          return spinner = new Spinner(opts).spin(target[0]);
         }
       });
     },
@@ -8450,7 +8427,7 @@ Order/Subscription/Quote shared methods
               response = {
                 total: model.get('total'),
                 bank_name: model.get('bank_name'),
-                bank_service_id: model.get('bank_service_number'),
+                bank_service_number: model.get('bank_service_number'),
                 bank_service_name: model.get('bank_service_name'),
                 bank_deposit_reference: model.get('bank_deposit_reference')
               };
@@ -8459,9 +8436,9 @@ Order/Subscription/Quote shared methods
           },
           error: function(model, resp) {
             var response;
-            if (typeof failure_callback === 'function') {
+            if (typeof error_callback === 'function') {
               response = {};
-              return success_callback(response);
+              return error_callback(response);
             }
           }
         });
@@ -8482,9 +8459,9 @@ Order/Subscription/Quote shared methods
           },
           error: function(model, resp) {
             var response;
-            if (typeof failure_callback === 'function') {
+            if (typeof error_callback === 'function') {
               response = {};
-              return success_callback(response);
+              return error_callback(response);
             }
           }
         });
@@ -8519,7 +8496,13 @@ Order/Subscription/Quote shared methods
               }
             }
           },
-          error: function(model, resp) {}
+          error: function(model, resp) {
+            var response;
+            if (typeof error_callback === 'function') {
+              response = {};
+              return error_callback(response);
+            }
+          }
         });
       } else {
         billing_period_length = this.get('billing_period_length');
