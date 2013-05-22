@@ -1,6 +1,7 @@
 $(function() {
   //pagalo.setToken(2757603);
-  conekta.setToken(2757603);
+  //conekta.setToken(2757603);
+  conekta.setToken('YE138iSl1KAFfZxRS3f');
   
   //var num_products = 0;
 
