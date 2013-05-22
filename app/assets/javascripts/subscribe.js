@@ -2,12 +2,12 @@ $(function() {
   //pagalo.setToken(2757603);
   conekta.setToken(2757603);
   
-  var num_products = 0;
+  //var num_products = 0;
 
   function render_products(products) {
     for (var i = 0; i < products.length; i++) {
       $("#content > ul").append(getTemplateForProduct(products[i], i));
-      num_products++;
+      //num_products++;
     }
   }
 
@@ -24,6 +24,7 @@ function getTemplateForProduct(product, id_num) {
   template.attr('id', 'template'+(id_num));
   template.show();
   // The template is usually hidden
+  
   product_attributes = product.getAttributes();
   
   // MAY HAVE TO COMMENT OUT BEFORE PRODUCTION (crashes older IE's)
@@ -45,14 +46,32 @@ function addInteractionsToProductTemplate(element, product) {
     el.children(".rollover").show()
     el.children("#product").css("opacity", "0.1")
     el.children("h3").hide();
+    
+    product_attributes = product.getAttributes();
+    var slider = $('#modalslider');
+    $("#product", slider).html("<img src='" + product_attributes.image + "'/>")
+    $("#name", slider).html(product_attributes.name);
+    $("#description", slider).html(product_attributes.description);
+  
+    // slider in
+    $('#modalslider').animate({right: '0'}, 300);
+    $('#content').addClass("no-scroll");
+    
     _gaq.push(['_trackEvent', 'Catalog', 'Product Hover', product.getAttributes().name]);
   }, function() {
     var el = $(this);
     el.children(".rollover").hide();
     el.children("#product").css("opacity", "1")
     el.children("h3").show();
+    
+    // slider out
+    $('#content').removeClass("no-scroll");
+    $('#modalslider').animate({right: '-400px'}, 300,"swing",
+      function(){
+    })
   })
 
+  // product selected
   element.click(function() {
     //suscription = pagalo.createSubscription();
     //suscription.addItem(product.createItem());
@@ -91,6 +110,7 @@ function setUpSubscription() {
     _gaq.push(['_trackEvent', 'Subscription', 'Frequency', 'type ' + $(this).data("frequency")]);
   });
 
+  // siguiente button click
   $(".next").click(function(e) {
     e.preventDefault();
     _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'next']);

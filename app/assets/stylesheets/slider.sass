@@ -1,0 +1,26 @@
+@import "global"
+
+#modalslider
+  @include transparent($dark_green, 0.9)
+  color: white
+  width: 400px
+  position: fixed
+  left: auto
+  right: -400px
+  top: 0
+  height: 100%
+  z-index: 999
+  border-left: #333333 solid 1px
+  box-shadow:  -5px 0px 10px rgba(0,0,0, 0.3)
+  overflow-y: auto
+  overflow-x: hidden
+  #product
+    padding: 1em 2em
+    img
+      height: 180px
+  h3
+    margin-left: 1em
+    float: center
+  p
+    margin-left: 1em
+    font-size: 0.9em
