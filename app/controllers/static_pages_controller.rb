@@ -2,10 +2,7 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def catalog
-  end
-
-  def products
+  def subscribe
   end
 
   def subscription
