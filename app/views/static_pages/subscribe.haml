@@ -1,7 +1,7 @@
 
 #content.catalog
   #alert
-    Selecciona cada cuánto quieres tu membresía
+    Selecciona el producto y cada cuánto
   %h1 Selecciona el producto
   %ul
 
@@ -20,7 +20,7 @@
       500 grs
 
 #modalslider
-  #product
+  #product.slider
     %img{:src => "/images/triunfo.jpg"}
   %h3#name El Triunfo
   %p#description
@@ -31,8 +31,8 @@
     %h1 ¿Cada cuánto?
     %ul
       %li{:"data-frequency" => 2}
-        %h2 Cada 2 semanas
+        %h3 Cada 2 semanas
       %li{:"data-frequency" => 4}
-        %h2 Cada 4 semanas
+        %h3 Cada 4 semanas
   .actions.subscription
     %a.next{:href => "#"} Siguiente
