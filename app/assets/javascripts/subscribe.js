@@ -1,8 +1,14 @@
 $(function() {
-  //pagalo.setToken(2757603);
-  //conekta.setToken(2757603);
   conekta.setToken('YE138iSl1KAFfZxRS3f');
   
+  $('#content.catalog')
+    //.css('cursor', 'pointer')
+    .click(
+      function(){
+        dismissSlider();
+      }
+    )
+
   //var num_products = 0;
 
   function render_products(products) {
@@ -12,11 +18,10 @@ $(function() {
     }
   }
 
-  //pagalo.getCatalog(render_products);
   conekta.display.getProducts(
   	{},
   render_products);
-  
+
   setUpSubscription();
 })
 
@@ -36,7 +41,7 @@ function getTemplateForProduct(product, id_num) {
   $("#brand", template).html(product_attributes.name);
   $("#shortdescription", template).html(product_attributes.short_description);
   $("#description", template).html(product_attributes.description);
-  $("#price", template).html(product_attributes.price + " MXN");
+  $("#price", template).html("$" + product_attributes.price + " MXN");
   addInteractionsToProductTemplate(template, product);
   return template;
 }
@@ -50,13 +55,13 @@ function addInteractionsToProductTemplate(element, product) {
     
     product_attributes = product.getAttributes();
     var slider = $('#modalslider');
-    $("#product", slider).html("<img src='" + product_attributes.image + "'/>")
+    $("#image", slider).html("<img src='" + product_attributes.image + "'/>")
+    $("#price", slider).html("$" + product_attributes.price + " MXN");
     $("#name", slider).html(product_attributes.name);
     $("#description", slider).html(product_attributes.description);
   
     // slider in
-    $('#modalslider').animate({right: '0'}, 300);
-    $('#content').addClass("no-scroll");
+    invokeSlider();
     
     _gaq.push(['_trackEvent', 'Catalog', 'Product Hover', product.getAttributes().name]);
   }, function() {
@@ -64,12 +69,6 @@ function addInteractionsToProductTemplate(element, product) {
     el.children(".rollover").hide();
     el.children("#product").css("opacity", "1")
     el.children("h3").show();
-    
-    // slider out
-    $('#content').removeClass("no-scroll");
-    $('#modalslider').animate({right: '-400px'}, 300,"swing",
-      function(){
-    })
   })
 
   // product selected
@@ -101,6 +100,19 @@ function unselectProductTemplates() {
   	i++;
     template = $("#template"+i);
   }
+}
+
+function invokeSlider() {
+  $('#modalslider').animate({right: '0'}, 300);
+  $('#content').addClass("no-scroll");
+}
+
+function dismissSlider() {
+  // slider out
+  $('#content').removeClass("no-scroll");
+  $('#modalslider').animate({right: '-400px'}, 300,"swing",
+    function(){
+  })
 }
 
 function setUpSubscription() {

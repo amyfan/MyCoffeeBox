@@ -11,14 +11,24 @@
   height: 100%
   z-index: 999
   border-left: #333333 solid 1px
-  box-shadow:  -5px 0px 10px rgba(0,0,0, 0.3)
+  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.3)
   overflow-y: auto
   overflow-x: hidden
   #product
     padding: 1em 2em
     margin-bottom: 0.5em
-    img
-      height: 180px
+    ul
+      @include clearfix
+      li
+        @include box
+        width: 50%
+        float: left
+        #image
+          img
+            max-width: 95%
+            max-height: 180px
+        #price
+          padding-top: 2em
   h3
     margin-left: 1em
     float: center

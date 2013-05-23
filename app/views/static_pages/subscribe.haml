@@ -2,26 +2,32 @@
 #content.catalog
   #alert
     Selecciona el producto y cada cuánto
-  %h1 Selecciona el producto
+  %h1 Selecciona tu café
   %ul
 
 %li#template
   #product
-    %img{:src => "/images/triunfo.jpg"}
+    %img{:src => "/images/triunfo_sm.jpg"}
   %h3#name El Triunfo
   .rollover
     %h3#brand
       El Triunfo
     %p#shortdescription
       Molido o en grano.
-    %p#price 
-      149 MXN
+    %p#price
+      $149 MXN
     %p#quantity
       500 grs
 
 #modalslider
-  #product.slider
-    %img{:src => "/images/triunfo.jpg"}
+  #product
+    %ul
+      %li
+        #image
+          %img{:src => "/images/triunfo_sm.jpg"}
+      %li
+        %h2#price
+          $149 MXN
   %h3#name El Triunfo
   %p#description
     Molido o en grano.
