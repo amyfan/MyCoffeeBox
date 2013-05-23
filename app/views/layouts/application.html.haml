@@ -4,6 +4,8 @@
     %title
       = @title || 'MyCoffeeBox'
     %meta{ :charset => 'utf-8' }
+    %meta{ :description => 'MyCoffeeBox es una suscripción mensual para recibir una caja con café Chiapaneco que ayuda directamente a los pequeños productores aumentando sus ingresos. Consumidores responsables y amantes del café recibirán cada mes un café diferente... Del cafetal a tu casa.' }
+    %meta{ :keywords => 'mycoffeebox, coffee box, chiapas coffee, chiapas cafe, cafe de chiapas, mexico coffee, mexican coffee, cafe de mexico, organic coffee, cafe organico, high quality, quality coffee, roasted coffee, fair trade, Coffee Beans, Whole Bean, dark roast, medium roast, Drip Coffee, Brewed Coffee, Coffee at home, cafe casa, coffee subscription, cafe suscripcion, el triunfo, metik, maya vinic, bio cafe, biocafe, majomut' }
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -27,20 +29,20 @@
       #info
         %h2 Más información
         %ul
-          %li 
+          %li
             %a.footer{:href => "/static_pages/products", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Productos Footer']);"} Nuestros cafés
-          %li 
+          %li
             %a.footer{:href => "/static_pages/faq", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Preguntas Frecuentes Footer']);"} Preguntas frecuentes
-          %li 
+          %li
             %a.footer{:href => "/static_pages/usa_en", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'U.S. Customers EN Footer']);"} U.S. customers
-          %li 
+          %li
             %a.footer{:href => "/static_pages/euro_en", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'European Customers EN Footer']);"} European customers
-          %li 
+          %li
             %a.footer{:href => "/static_pages/contact", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Contacto Footer']);"} Contacto
       #social
         %h2 Redes sociales
         %ul
-          %li 
+          %li
             %a.footer{:href => "https://twitter.com/MyCoffeeBoxmx", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Twitter footer']);", :target => "_blank"}Twitter
           %li
             %a.footer{:href => "https://www.facebook.com/mycoffeeboxmx", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Facebook Footer']);", :target => "_blank"}Facebook
@@ -49,12 +51,10 @@
           %li
             %p.footer Fotografía propiedad de BANCHIAPAS. Fotógrafo: Alfredo Lara Espino
   :javascript
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-39128984-1']);
-    _gaq.push(['_trackPageview']);
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+    ga('create', 'UA-39128984-2', 'herokuapp.com');
+    ga('send', 'pageview');
