@@ -1,10 +1,5 @@
 @import "global"
 
-#content
-  &.subscription
-    @include transparent($light_green, 0.7)
-    position: relative
-
 #frequency
   @include box
   @include clearfix
@@ -50,6 +45,7 @@
 
 .actions
   &.subscription
+    display: none
     border: none !important
     position: absolute
     left: 0
