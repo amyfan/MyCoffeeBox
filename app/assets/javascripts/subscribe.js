@@ -45,7 +45,7 @@ function getTemplateForProduct(product, id_num) {
   // MAY HAVE TO COMMENT OUT BEFORE PRODUCTION (crashes older IE's)
   //console.log(product_attributes);
 
-  $("#product", template).html("<img src='" + product_attributes.image + "'/>")
+  $("#product", template).html("<img src='" + product_attributes.image + "'/>");
   $("#name", template).html(product_attributes.name);
   $("#brand", template).html(product_attributes.name);
   $("#shortdescription", template).html(product_attributes.short_description);
@@ -64,7 +64,7 @@ function addInteractionsToProductTemplate(element, product) {
     
     product_attributes = product.getAttributes();
     var slider = $('#modalslider');
-    $("#image", slider).html("<img src='" + product_attributes.image + "'/>")
+    $("#image", slider).html("<img src='" + product_attributes.image + "'/>");
     $("#price", slider).html("$" + product_attributes.price + " MXN");
     $("#name", slider).html(product_attributes.name);
     $("#description", slider).html(product_attributes.description);
