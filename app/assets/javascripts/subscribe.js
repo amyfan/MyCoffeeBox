@@ -42,7 +42,7 @@ function getTemplateForProduct(product, id_num) {
   
   product_attributes = product.getAttributes();
   
-  // MAY HAVE TO COMMENT OUT BEFORE PRODUCTION (crashes older IE's)
+  // comment out logs before production (crashes older IE's)
   //console.log(product_attributes);
 
   $("#product", template).html("<img src='" + product_attributes.image + "'/>");
@@ -111,7 +111,7 @@ function addInteractionsToProductTemplate(element, product) {
     }
 
     //console.log(conekta.checkout.getItems());
-    console.log(cart_products_map);
+    //console.log(cart_products_map);
     
     //window.location = "/static_pages/subscription"
     _gaq.push(['_trackEvent', 'Catalog', 'Product Selected', product.getAttributes().name]);
