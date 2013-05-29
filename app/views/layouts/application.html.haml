@@ -16,7 +16,7 @@
     #header-container
       #header
         %a{:href => "/", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Logo']);"}
-          %img{:src => "/images/logo1.jpeg"}
+          %img{:src => "/images/web_logo.png"}
         %ul
           %li
             %a.header{:href => "/static_pages/subscribe", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Productos Header']);"} Nuestros Cafés
@@ -60,3 +60,8 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+  :javascript
+    setTimeout(function(){var a=document.createElement("script");
+    var b=document.getElementsByTagName("script")[0];
+    a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0017/4075.js?"+Math.floor(new Date().getTime()/3600000);
+    a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
