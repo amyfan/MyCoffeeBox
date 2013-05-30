@@ -19,32 +19,43 @@
   > div
     @include box
     float: left
-  h2
+  h1
+    font-weight: bold
+    float: left
     font-size: 3.5em
     line-height: 0.2em
     color: white
-  h3
+  h2
     font-size: 2.0em
     line-height: 0.2em
     color: white
-  p
-    font-size: 0.8em
+  h3
+    font-size: 1.5em
+    line-height: 0.2em
     color: white
-  .actions
-    a
-      margin-left: auto
-      margin-right: auto
+  p
+    font-size: 0.4em
+    color: white
   #box
     width: 35%
     img
       width: 100%
   #teaser
-    padding-left: 3em
+    padding-left: 2em
     width: 100%
     h2
       text-align: left
     .actions
-      margin-left: 0
+      &.home
+        a
+          width: 160px
+          float: center
+          font-size: 1.5em
+          line-height: 0.7em
+          &.main
+            margin-left: 4em
+            //margin-right: auto
+            @include button($brand)
 #how
   //margin-top: 3em
   @include transparent($light_green, 0.7)
