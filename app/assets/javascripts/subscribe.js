@@ -134,9 +134,10 @@ function addInteractionsToProductTemplate(element, product) {
     $("#content.cuanto").show();
     dismissSlider();
     suspendSlider = true;
-    $('html, body').animate({
-      scrollTop: $(document).height()-$(window).height()
-    }, 250);
+    //$('html, body').animate({
+    //  scrollTop: $(document).height()-$(window).height()
+    //}, 250);
+    $('#content.cuanto').goTo();
     setTimeout(function(){suspendSlider=false}, 500);
 
     _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
@@ -169,6 +170,15 @@ function dismissSlider() {
     function(){
   })
 }
+
+(function($) {
+    $.fn.goTo = function() {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top + 'px'
+        }, 250);
+        return this; // for chaining...
+    }
+})(jQuery);
 
 function setUpSubscription() {
   $("#frequency ul li").click(function(i) {

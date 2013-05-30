@@ -11,10 +11,7 @@ class StaticPagesController < ApplicationController
   def faq
   end
 
-  def usa_en
-  end
-
-  def euro_en
+  def international_en
   end
 
   def how
