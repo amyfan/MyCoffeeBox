@@ -138,7 +138,7 @@ function addInteractionsToProductTemplate(element, product) {
     //  scrollTop: $(document).height()-$(window).height()
     //}, 250);
     $('#content.cuanto').goTo();
-    setTimeout(function(){suspendSlider=false}, 500);
+    setTimeout(function(){suspendSlider=false}, 300);
 
     _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
   })
