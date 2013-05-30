@@ -63,16 +63,19 @@
     @include clearfix
     li
       @include box
-      width: 100%
       float: left
       padding-left: 1em
       padding-right: 1em
       img
         width: 140px
         margin-bottom: 1em
+      &.home
+        width: 33%
   h3
     font-weight: bold      
   p
+    //@include css-hyphens(auto)
+    text-align: justify
     font-size: 1em
 #why
   text-align: center
