@@ -1,6 +1,9 @@
 
 #content.catalog
   %h1 Nuestros cafés
+  %h2 Éstos son algunos de los cafés con los que te sorprenderemos en cada envío. 
+  .actions.subscribe
+    %a.subscribe{:href => "#"} ¡Únete al club!
   %ul
 
 %li#template
@@ -30,7 +33,7 @@
   %p#description
     Molido o en grano.
 
-#content.subscription
+#content.cuanto
   #frequency
     %h1 ¿Cada cuánto?
     %ul
@@ -40,5 +43,5 @@
         %h3 Cada 4 semanas
       %li{:"data-frequency" => 6}
         %h3 Cada 6 semanas
-  .actions.subscription
+  .actions.siguiente
     %a.next{:href => "#"} Siguiente

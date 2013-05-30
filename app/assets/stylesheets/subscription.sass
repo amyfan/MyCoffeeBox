@@ -44,7 +44,19 @@
   display: none
 
 .actions
-  &.subscription
+  &.subscribe
+    border: none !important
+    margin-top: 0
+    margin-bottom: 0
+    left: 0
+    bottom: 0
+    width: 100%
+    a.subscribe
+      @include button($brand)
+      width: 150px
+      font-size: 1.5em
+      line-height: 0.7em
+  &.siguiente
     display: none
     border: none !important
     position: absolute
@@ -52,9 +64,9 @@
     bottom: 0
     width: 100%
     @include box
-    padding: 1em 2em        
+    padding: 1em 2em
     a.next
-      @include button($red)
+      @include button($yellow)
       width: 150px
       float: right
       font-size: 1.5em

@@ -1,18 +1,28 @@
 var num_products = 0;
 var cart_products_map = {};
+var sorprendeme_product;
+var suspendSlider = false;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
   
-  $('#content.catalog')
-    //.css('cursor', 'pointer')
-    .click(
-      function(){
-        dismissSlider();
-      }
-    )
+  // $('#content.catalog')
+    // //.css('cursor', 'pointer')
+    // .click(
+      // function(){
+        // dismissSlider();
+      // }
+    // )
 
-  $('#content.subscription')
+  // $('#content.subscribe')
+    // //.css('cursor', 'pointer')
+    // .click(
+      // function(){
+        // dismissSlider();
+      // }
+    // )
+
+  $('#content.cuanto')
     //.css('cursor', 'pointer')
     .click(
       function(){
@@ -22,8 +32,13 @@ $(function() {
 
   function render_products(products) {
     for (var i = 0; i < products.length; i++) {
-      $("#content > ul").append(getTemplateForProduct(products[i], i));
-      num_products++;
+      product_attributes = products[i].getAttributes();
+    	if (product_attributes.name.indexOf("Suscripción") > -1) {
+  	    sorprendeme_product = products[i];
+  	  } else {
+        $("#content > ul").append(getTemplateForProduct(products[i], i));
+        num_products++;
+      }
     }
   }
 
@@ -81,40 +96,50 @@ function addInteractionsToProductTemplate(element, product) {
   })
 
   // product selected
-  element.click(function() {
-    //unselectProductTemplates();
-    
-    if ($(this).hasClass("selected")) {
-      $(this).removeClass("selected");
-      // remove product from shopping cart map
-      delete cart_products_map[product_attributes.name];
-      
-      // is this really the only way to count elements in js map?
-      var count = 0;
-      for(var prop in cart_products_map) {
-        if(cart_products_map.hasOwnProperty(prop)) {
-          ++count;
-        }
-      }
-      
-      if (count == 0) {
-        $("#content.subscription").hide();
-      }
-    } else {
-      $(this).addClass("selected");
-      $("#content.subscription").show();
-      $('html, body').animate({
-        scrollTop: $(document).height()-$(window).height()
-      }, 500);
-      // add product to shopping cart map
-      cart_products_map[product_attributes.name] = product;
-    }
+  // element.click(function() {
+    // //unselectProductTemplates();
+//     
+    // if ($(this).hasClass("selected")) {
+      // $(this).removeClass("selected");
+      // // remove product from shopping cart map
+      // delete cart_products_map[product_attributes.name];
+//       
+      // // is this really the only way to count elements in js map?
+      // var count = 0;
+      // for(var prop in cart_products_map) {
+        // if(cart_products_map.hasOwnProperty(prop)) {
+          // ++count;
+        // }
+      // }
+//       
+      // if (count == 0) {
+        // $("#content.subscription").hide();
+      // }
+    // } else {
+      // $(this).addClass("selected");
+      // $("#content.subscription").show();
+      // $('html, body').animate({
+        // scrollTop: $(document).height()-$(window).height()
+      // }, 500);
+      // // add product to shopping cart map
+      // cart_products_map[product_attributes.name] = product;
+    // }
+//     
+    // _gaq.push(['_trackEvent', 'Catalog', 'Product Selected', product.getAttributes().name]);
+  // })
 
-    //console.log(conekta.checkout.getItems());
-    //console.log(cart_products_map);
-    
-    //window.location = "/static_pages/subscription"
-    _gaq.push(['_trackEvent', 'Catalog', 'Product Selected', product.getAttributes().name]);
+  // subscribe/join button click
+  $("a.subscribe").click(function(e) {
+    e.preventDefault();
+    $("#content.cuanto").show();
+    dismissSlider();
+    suspendSlider = true;
+    $('html, body').animate({
+      scrollTop: $(document).height()-$(window).height()
+    }, 250);
+    setTimeout(function(){suspendSlider=false}, 500);
+
+    _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
   })
 }
 
@@ -131,8 +156,10 @@ function unselectProductTemplates() {
 }
 
 function invokeSlider() {
+	if (!suspendSlider) {
   $('#modalslider').animate({right: '0'}, 300);
   $('#content').addClass("no-scroll");
+ }
 }
 
 function dismissSlider() {
@@ -147,21 +174,22 @@ function setUpSubscription() {
   $("#frequency ul li").click(function(i) {
     $("#frequency ul li").removeClass("selected");
     $(this).addClass("selected");
-    $(".actions.subscription").show();
+    $(".actions.siguiente").show();
     _gaq.push(['_trackEvent', 'Subscription', 'Frequency', 'type ' + $(this).data("frequency")]);
   });
 
   // siguiente button click
-  $(".next").click(function(e) {
+  $("a.next").click(function(e) {
     e.preventDefault();
     _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'next']);
     
     conekta.checkout.new('subscription', {company_id: 2757603});
+    conekta.checkout.addItem(sorprendeme_product.createItem());
     
-    for (var key in cart_products_map) {
-    	var product = cart_products_map[key];
-      conekta.checkout.addItem(product.createItem());
-    }
+    // for (var key in cart_products_map) {
+    	// var product = cart_products_map[key];
+      // conekta.checkout.addItem(product.createItem());
+    // }
     
     // We get the frequency
     var periodFrequencyValue = parseInt($("#frequency .selected").data("frequency"));

@@ -4,9 +4,12 @@
   @include centered(960px)
 
 #content
-  &.catalog, &.subscription
+  &.catalog, &.subscribe, &.cuanto
     position: relative
     @include transparent($light_green, 0.7)
+    h2
+      margin-left: 2em
+      font-size: 1.2em
     > ul
       li
         position: relative
@@ -35,8 +38,9 @@
           font-size: 0.9em
           font-weight: 300
           //text-transform: uppercase
-  &.subscription
+  &.cuanto
     display: none
+    margin-top: 0
 
 .rollover
   @include box
