@@ -1,6 +1,7 @@
 var num_products = 0;
 var cart_products_map = {};
-var sorprendeme_product;
+var sorprendememex_product;
+var surprisemeusa_product;
 var suspendSlider = false;
 
 $(function() {
@@ -34,7 +35,9 @@ $(function() {
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
     	if (product_attributes.name.indexOf("Suscripción") > -1) {
-  	    sorprendeme_product = products[i];
+  	    sorprendememex_product = products[i];
+  	  } else if (product_attributes.name.indexOf("America") > -1) {
+  	    surprisemeusa_product = products[i];
   	  } else {
         $("#content > ul").append(getTemplateForProduct(products[i], i));
         num_products++;
@@ -194,7 +197,7 @@ function setUpSubscription() {
     _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'next']);
     
     conekta.checkout.new('subscription', {company_id: 2757603});
-    conekta.checkout.addItem(sorprendeme_product.createItem());
+    conekta.checkout.addItem(sorprendememex_product.createItem());
     
     // for (var key in cart_products_map) {
     	// var product = cart_products_map[key];
