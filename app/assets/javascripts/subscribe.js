@@ -2,6 +2,7 @@ var num_products = 0;
 var cart_products_map = {};
 var sorprendememex_product;
 var surprisemeusa_product;
+var surprisemeeuro_product;
 var suspendSlider = false;
 
 $(function() {
@@ -34,10 +35,12 @@ $(function() {
   function render_products(products) {
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
-    	if (product_attributes.name.indexOf("Suscripción") > -1) {
+    	if (product_attributes.name.indexOf("México") > -1) {
   	    sorprendememex_product = products[i];
   	  } else if (product_attributes.name.indexOf("America") > -1) {
   	    surprisemeusa_product = products[i];
+  	  } else if (product_attributes.name.indexOf("Europe") > -1) {
+  	    surprisemeeuro_product = products[i];
   	  } else {
         $("#content > ul").append(getTemplateForProduct(products[i], i));
         num_products++;
