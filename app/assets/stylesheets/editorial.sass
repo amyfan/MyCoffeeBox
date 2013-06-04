@@ -46,11 +46,32 @@ a
       font-size: 1.2em
       font-weight: bold      
   &.team
-    padding: 2em 4em 4em
+    @include transparent($light_green, 0.7)
+    padding: 2em 1em 2em
     h1
-      margin-bottom: 1em
+      margin-bottom: 1.5em
+    h2
+      font-size: 1.3em
+      font-weight: bold
+      text-align: center
+    h3
+      font-size: 1.2em
+      text-align: center
     img
       max-width: 100%
       margin-bottom: 2em
+    p
+      text-align: justify
+    ul
+      @include clearfix
+      li
+        @include box
+        float: left
+        padding-left: 0.8em
+        padding-right: 0.8em
+        &.desc
+          width: 30%
+        &.photo
+          width: 40%
 #text
   @include transparent($light_green, 0.7)
