@@ -99,7 +99,7 @@ function addInteractionsToProductTemplate(element, product) {
     $("#description", slider).html(product_attributes.description);
   
     // slider in
-    invokeSlider();
+    //invokeSlider();
     
     _gaq.push(['_trackEvent', 'Catalog', 'Product Hover', product.getAttributes().name]);
   }, function() {

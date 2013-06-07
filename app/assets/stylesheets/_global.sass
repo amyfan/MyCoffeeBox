@@ -34,7 +34,7 @@ a
   color: $black
   &:hover
     text-decoration: none
-    color: $brand
+    color: $hover_brand
   &.header
     text-shadow: 0.1em 0.1em 0.5em black
     color: white
@@ -46,7 +46,7 @@ a
     &:hover
       // need this to make footer work for some reason
       text-decoration: none
-      color: $brand
+      color: $hover_brand
 
 #header, #content, #footer
   @include centered
@@ -83,7 +83,7 @@ a
         a
           cursor: pointer
           &:hover
-            color: $brand
+            color: $hover_brand
 
 #progress
   margin-top: 1em
@@ -133,7 +133,7 @@ a
         color: darken($light_gray,30)
 
 #content
-  border: 1px solid $light_gray
+  box-shadow: 0.1em 0.1em 0.4em black
   @include clearfix
   @include box
   h1

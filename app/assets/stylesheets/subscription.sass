@@ -4,7 +4,6 @@
   @include box
   @include clearfix
   border: none !important
-  margin-bottom: 5em
   li
     width: 32%
     height: 90px
@@ -36,7 +35,6 @@
   @include box
   @include clearfix
   border: none !important
-  margin-bottom: 5em
   ul
     width: 100%
     li
@@ -77,6 +75,7 @@
   display: none
 
 .actions
+  clear: both
   &.join
     border: none !important
     width: 25%
@@ -88,10 +87,8 @@
       float: right
   &.subscribe
     border: none !important
-    margin-top: 0
+    margin-left: 560px
     margin-bottom: 0
-    left: 0
-    bottom: 0
     width: 100%
     a.subscribe
       @include button($brand)
@@ -101,12 +98,10 @@
   &.siguiente
     display: none
     border: none !important
-    position: absolute
-    left: 0
-    bottom: 0
-    width: 100%
     @include box
-    padding: 1em 2em
+    padding: 0 !important
+    float: right
+    margin: 0 4em 2em 1em
     a.next
       @include button($darker_yellow)
       width: 150px
