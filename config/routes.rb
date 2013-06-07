@@ -1,19 +1,17 @@
 MyCoffeeBox::Application.routes.draw do
-  get "static_pages/home"
+  match 'subscribe' => 'static_pages#subscribe'
 
-  get "static_pages/subscribe"
+  match 'products' => 'static_pages#products'
 
-  get "static_pages/products"
+  match 'faq' => 'static_pages#faq'
 
-  get "static_pages/faq"
+  match 'international_en' => 'static_pages#international_en'
 
-  get "static_pages/international_en"
+  match 'contact' => 'static_pages#contact'
 
-  get "static_pages/contact"
+  match 'team' => 'static_pages#team'
 
-  get "static_pages/team"
-
-  get "static_pages/how"
+  match 'how' => 'static_pages#how'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
