@@ -6,13 +6,11 @@
   padding: 0
   > div
     padding: 3em
-    box-shadow: 0.1em 0.1em 0.4em black
     @include clearfix
     h2
       text-align: center
-  &.what
-    border: none
-  &.how
+  &.what, &.how
+    box-shadow: 0.1em 0.1em 0.4em black
     border: none
 #what
   background-image: url(../images/coffeebeans1.jpg)
