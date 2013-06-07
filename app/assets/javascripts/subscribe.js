@@ -16,13 +16,13 @@ $(function() {
       // }
     // )
 
-  // $('#content.subscribe')
-    // //.css('cursor', 'pointer')
-    // .click(
-      // function(){
-        // dismissSlider();
-      // }
-    // )
+  $('#content.donde')
+    //.css('cursor', 'pointer')
+    .click(
+      function(){
+        dismissSlider();
+      }
+    )
 
   $('#content.cuanto')
     //.css('cursor', 'pointer')
@@ -31,6 +31,11 @@ $(function() {
         dismissSlider();
       }
     )
+
+  $("#close img").click(function(i) {
+    dismissSlider();
+    _gaq.push(['_trackEvent', 'Catalog', 'Slider', 'Close']);
+  });
 
   function render_products(products) {
     for (var i = 0; i < products.length; i++) {
@@ -47,6 +52,9 @@ $(function() {
       }
     }
   }
+  
+  // add another subscribe button
+  $("#content > ul").append(addSubscribeButton());
 
   conekta.display.getProducts(
   	{},
@@ -84,7 +92,7 @@ function addInteractionsToProductTemplate(element, product) {
     el.children("h3").hide();
     
     product_attributes = product.getAttributes();
-    var slider = $('#modalslider');
+    var slider = $('#slider');
     $("#image", slider).html("<img src='" + product_attributes.image + "'/>");
     $("#price", slider).html("$" + product_attributes.price + " MXN");
     $("#name", slider).html(product_attributes.name);
@@ -133,17 +141,22 @@ function addInteractionsToProductTemplate(element, product) {
 //     
     // _gaq.push(['_trackEvent', 'Catalog', 'Product Selected', product.getAttributes().name]);
   // })
+}
 
+function addSubscribeButton() {
+  var subscribe = $("#subscribe").clone();
+  subscribe.show();
+  
   // subscribe/join button click
-  $("a.subscribe").click(function(e) {
+  $("a.subscribetwo").click(function(e) {
     e.preventDefault();
-    $("#content.cuanto").show();
+    $("#content.donde").show();
     dismissSlider();
     suspendSlider = true;
     //$('html, body').animate({
     //  scrollTop: $(document).height()-$(window).height()
     //}, 250);
-    $('#content.cuanto').goTo();
+    $('#content.donde').goTo();
     setTimeout(function(){suspendSlider=false}, 300);
 
     _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
@@ -164,7 +177,7 @@ function unselectProductTemplates() {
 
 function invokeSlider() {
 	if (!suspendSlider) {
-  $('#modalslider').animate({right: '0'}, 300);
+  $('#slider').animate({right: '0'}, 300);
   $('#content').addClass("no-scroll");
  }
 }
@@ -172,7 +185,7 @@ function invokeSlider() {
 function dismissSlider() {
   // slider out
   $('#content').removeClass("no-scroll");
-  $('#modalslider').animate({right: '-400px'}, 300,"swing",
+  $('#slider').animate({right: '-400px'}, 300,"swing",
     function(){
   })
 }
@@ -187,6 +200,27 @@ function dismissSlider() {
 })(jQuery);
 
 function setUpSubscription() {
+  // subscribe/join button click
+  $("a.subscribe").click(function(e) {
+    e.preventDefault();
+    $("#content.donde").show();
+    dismissSlider();
+    suspendSlider = true;
+    $('#content.donde').goTo();
+    setTimeout(function(){suspendSlider=false}, 300);
+
+    _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
+  })
+
+  $("#where ul li").click(function(i) {
+    $("#where ul li").removeClass("selected");
+    $(this).addClass("selected");
+    $("#content.cuanto").show();
+    $('#content.cuanto').goTo();
+
+    _gaq.push(['_trackEvent', 'Subscription', 'Where',  'type ' + $(this).data("where")]);
+  });
+
   $("#frequency ul li").click(function(i) {
     $("#frequency ul li").removeClass("selected");
     $(this).addClass("selected");
@@ -200,12 +234,22 @@ function setUpSubscription() {
     _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'next']);
     
     conekta.checkout.new('subscription', {company_id: 2757603});
-    conekta.checkout.addItem(sorprendememex_product.createItem());
     
     // for (var key in cart_products_map) {
     	// var product = cart_products_map[key];
       // conekta.checkout.addItem(product.createItem());
     // }
+    
+    // We get the subscription type
+    var subscriptionValue = parseInt($("#where .selected").data("where"));
+
+    if (subscriptionValue == 1) {
+      conekta.checkout.addItem(sorprendememex_product.createItem());
+    } else if (subscriptionValue == 2) {
+      conekta.checkout.addItem(surprisemeusa_product.createItem());
+    } else if (subscriptionValue == 3) {
+      conekta.checkout.addItem(surprisemeeuro_product.createItem());
+    }
     
     // We get the frequency
     var periodFrequencyValue = parseInt($("#frequency .selected").data("frequency"));

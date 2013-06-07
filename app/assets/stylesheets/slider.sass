@@ -1,6 +1,6 @@
 @import "global"
 
-#modalslider
+#slider
   @include transparent($dark_green, 0.9)
   color: white
   width: 400px
@@ -14,8 +14,13 @@
   box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.3)
   overflow-y: auto
   overflow-x: hidden
+  #close
+    img
+      max-height: 40px
+      &:hover
+        cursor: pointer
   #product
-    padding: 1em 2em
+    padding: 0.5em 2em
     margin-bottom: 0.5em
     ul
       @include clearfix

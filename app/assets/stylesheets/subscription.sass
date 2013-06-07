@@ -24,15 +24,48 @@
       margin-bottom: 0
     &:hover
       background: $brand
-      //border: 1px solid $brand
-      //h2
-      //  color: $brand
+      cursor: pointer
     &.selected
       background: $light_yellow
       &:hover
         border: 1px solid $gray
         h2
           color: $gray
+
+#where
+  @include box
+  @include clearfix
+  border: none !important
+  margin-bottom: 5em
+  ul
+    width: 100%
+    li
+      margin-left: 10em
+      width: 60%
+      height: 90px
+      background: $light_green
+      float: left
+      display: block
+      border: 1px solid $light_gray
+      margin-right: 0.5em
+      padding: 1em 0.5em
+      text-align: center
+      h3
+        margin-top: 0.5em
+        margin-bottom: 0.5em
+        font-size: 1.6em
+      @include box
+      &:last-child
+        margin-bottom: 0
+      &:hover
+        background: $brand
+        cursor: pointer
+      &.selected
+        background: $light_yellow
+        &:hover
+          border: 1px solid $gray
+          h2
+            color: $gray
 
 #alert
   background: $invalid_light

@@ -1,7 +1,7 @@
 
 #content.catalog
-  %h1 Nuestros cafés
-  %h2 Cada mes te sorprenderemos con un café diferente directo del cafetal a tu casa. Conoce algunas marcas que conocerás y disfrutarás si te suscribes.
+  %h1 Conoce a nuestros cafés
+  %h2 Cada mes te sorprenderemos con un café diferente directo del cafetal a tu casa. Conoce algunas marcas que disfrutarás si te suscribes. Sólo $149 pesos por cada envío: 500 grs de café y envío incluido a toda la República Mexicana.
   .actions.subscribe
     %a.subscribe{:href => "#"} ¡Suscríbete!
   %ul
@@ -17,8 +17,14 @@
       Molido o en grano.
     %p#quantity
       500 grs
+      
+%li#subscribe
+  .actions.subscribe
+    %a.subscribetwo{:href => "#"} ¡Suscríbete!
 
-#modalslider
+#slider
+  #close
+    %img{:src => "/images/cancel.png"}
   #product
     %ul
       %li
@@ -29,6 +35,13 @@
           El Triunfo
   %p#description
     Molido o en grano.
+
+#content.donde
+  #where
+    %h1 ¿A dónde?
+    %ul
+      %li{:"data-where" => 1}
+        %h3 México ($149 MXN)
 
 #content.cuanto
   #frequency
