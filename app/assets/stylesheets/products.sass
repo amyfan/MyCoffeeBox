@@ -2,45 +2,71 @@
 
 #content
   &.products
-    //padding: 2em 4em 4em
+    @include transparent($light_green, 0.9)
     border: none
-    padding: 0
-    > div
-      padding: 3em
-      border: 1px solid $light_gray
-      @include clearfix
-      h2
-        text-align: center
+    padding: 2em
+    h3
+      margin-left: 2em
+      margin-right: 2em
+      font-size: 1.3em
+      text-align: center
 
 #item
-  @include transparent($light_green, 0.6)
+  padding: 3em
+  border: 1px solid $light_gray
+  @include clearfix
   > div
     @include box
     float: left
   h2
+    font-weight: 600
     font-size: 1.6em
+    text-align: center
   p
-    font-size: 1.1em
-  img
-    max-width: 100%
-    margin-bottom: 2em
+    @include css-hyphens(auto)
+    text-align: justify
+    font-size: 1em
   ul 
     @include clearfix
     li
-      @include box
-      width: 50%
+      @include box      
       float: left
       padding-left: 1em
       padding-right: 1em
+      &.image
+        width: 30%
+      &.description
+        width: 70%
+        padding-left: 3em
       img
-        height: 400px
+        height: 350px
         margin-bottom: 1em
   #box
     width: 35%
     img
       width: 100%
   #description
-    //padding-left: 3em
     width: 100%
     h2
       text-align: left
+
+.actions
+  clear: both
+  line-height: 0.5
+  &.products
+    border: none !important
+    padding: 0
+    margin-bottom: 0
+    width: 100%
+    a.main
+      @include button($brand)
+      width: 160px
+      font-size: 1.5em
+      line-height: 0.7em
+      margin-left: 290px
+    a.bottom
+      @include button($brand)
+      width: 160px
+      font-size: 1.5em
+      line-height: 0.7em
+      margin-left: 550px
