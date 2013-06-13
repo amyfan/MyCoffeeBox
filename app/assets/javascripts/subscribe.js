@@ -46,6 +46,8 @@ $(function() {
   	    surprisemeusa_product = products[i];
   	  } else if (product_attributes.name.indexOf("Europe") > -1) {
   	    surprisemeeuro_product = products[i];
+  	  } else if (product_attributes.name.indexOf("Especial") > -1) {
+  	    // filter out special promos (father's day for now)
   	  } else {
         $("#content > ul").append(getTemplateForProduct(products[i], i));
         num_products++;
