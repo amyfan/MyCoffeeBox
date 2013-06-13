@@ -13,6 +13,8 @@ MyCoffeeBox::Application.routes.draw do
 
   match 'how' => 'static_pages#how'
 
+  match 'padre' => 'static_pages#padre'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

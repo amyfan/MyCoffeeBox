@@ -55,9 +55,6 @@ $(function() {
     }
   }
   
-  // add another subscribe button
-  $("#content > ul").append(addSubscribeButton());
-
   conekta.display.getProducts(
   	{},
   render_products);
@@ -143,26 +140,6 @@ function addInteractionsToProductTemplate(element, product) {
 //     
     // _gaq.push(['_trackEvent', 'Catalog', 'Product Selected', product.getAttributes().name]);
   // })
-}
-
-function addSubscribeButton() {
-  var subscribe = $("#subscribe").clone();
-  subscribe.show();
-  
-  // subscribe/join button click
-  $("a.subscribetwo").click(function(e) {
-    e.preventDefault();
-    $("#content.donde").show();
-    dismissSlider();
-    suspendSlider = true;
-    //$('html, body').animate({
-    //  scrollTop: $(document).height()-$(window).height()
-    //}, 250);
-    $('#content.donde').goTo();
-    setTimeout(function(){suspendSlider=false}, 300);
-
-    _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
-  })
 }
 
 function unselectProductTemplates() {
