@@ -13,7 +13,9 @@
     box-shadow: 0.1em 0.1em 0.4em black
     border: none
 #what
-  background-image: url(../images/coffeebeans1.jpg)
+  background-image: url(../images/cover.jpg)
+  background-position: center
+  background-size: 100% auto
   > div
     @include box
     float: left
@@ -31,26 +33,27 @@
       text-shadow: 0.1em 0.1em 0.5em black
       margin-top: 0.2em
       font-weight: bold
-      text-align: left
-      font-size: 3.5em
+      text-align: right
+      font-size: 3em
       line-height: 0.2em
       color: white
     h3
       text-shadow: 0.1em 0.1em 0.5em black
-      text-align: left
-      font-size: 2.0em
+      text-align: right
+      font-size: 1.7em
       line-height: 0.2em
       color: white
     .actions
       &.home
         a
-          width: 160px
-          float: center
+          width: 150px
+          float: right
           font-size: 1.5em
           line-height: 0.7em
           &.main
-            margin-left: 4em
-            //margin-right: auto
+            //margin-left: 4em
+            margin-top: 1em
+            margin-right: -8em
             @include button($brand)
 #how
   @include transparent($light_green, 0.9)
