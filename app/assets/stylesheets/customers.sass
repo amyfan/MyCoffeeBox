@@ -1,9 +1,11 @@
 @import "global"
 
 #content
+  @include blur
+  @include transparent($light_brown, 0.9)
   &.uscustomers
     padding: 2em 4em 4em
-    background-image: url(../images/girl.jpg)
+    //background-image: url(../images/girl.jpg)
     h1
       margin-top: 0.5em
       margin-bottom: 1em
@@ -16,7 +18,7 @@
         text-align: center
   &.eurocustomers
     padding: 2em 4em 4em
-    background-image: url(../images/girl2.jpg)
+    //background-image: url(../images/girl2.jpg)
     h1
       margin-top: 0.5em
       margin-bottom: 1em
@@ -27,5 +29,3 @@
       @include clearfix
       h2
         text-align: center
-#text
-  @include transparent($light_green, 0.7)

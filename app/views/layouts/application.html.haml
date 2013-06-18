@@ -16,7 +16,7 @@
   %body
     #header-container
       #header
-        %a{:href => "/", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Logo']);"}
+        %a.header{:href => "/", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Logo']);"}
           %img{:src => "/images/web_logo.png"}
         %ul
           %li
@@ -28,7 +28,7 @@
     = yield
     #footer
       #info
-        %h2 Más información
+        %h2.footer Más información
         %ul
           %li
             %a.footer{:href => "/how", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'How Footer']);"} ¿Cómo funciona?
@@ -43,7 +43,7 @@
           %li
             %a.footer{:href => "/contact", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Contact Footer']);"} Contacto
       #social
-        %h2 Redes sociales
+        %h2.footer Redes sociales
         %ul
           %li
             %a.footer{:href => "https://twitter.com/MyCoffeeBoxmx", :onClick => "_gaq.push(['_trackEvent', 'Layout', 'Link', 'Twitter footer']);", :target => "_blank"}Twitter
@@ -52,7 +52,7 @@
           %li
             %p &nbsp;
           %li
-            %p.footer Fotografía propiedad de BANCHIAPAS. Fotógrafo: Alfredo Lara Espino
+            %p &nbsp;
   :javascript
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-39128984-2']);

@@ -38,7 +38,8 @@ a
       h2
         text-align: center
   &.faq
-    @include transparent($light_green, 0.9)
+    @include blur
+    @include transparent($light_brown, 0.9)
     padding: 2em 4em 4em
     h1
       margin-bottom: 1em
@@ -46,7 +47,8 @@ a
       font-size: 1.2em
       font-weight: bold      
   &.promo
-    @include transparent($light_green, 0.9)
+    @include blur
+    @include transparent($light_brown, 0.9)
     padding: 2em 4em 4em
     @include clearfix
     > div
@@ -87,7 +89,8 @@ a
         img
           width: 100%
   &.team
-    @include transparent($light_green, 0.9)
+    @include blur
+    @include transparent($light_brown, 0.9)
     padding: 2em 1em 2em
     h1
       margin-bottom: 1.5em
@@ -115,4 +118,5 @@ a
         &.photo
           width: 40%
 #text
-  @include transparent($light_green, 0.9)
+  @include blur
+  @include transparent($light_brown, 0.9)

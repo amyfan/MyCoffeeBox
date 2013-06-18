@@ -3,11 +3,13 @@
 body
   font-family: $base_sans
   font-weight: 300
-  background: url(../images/forest.jpg) no-repeat center center fixed
-  -webkit-background-size: cover
-  -moz-background-size: cover
-  -o-background-size: cover
-  background-size: cover
+  background: url(../images/wood7.jpg) center center fixed
+  background-repeat: repeat-x repeat-y
+  // background: url(../images/wood7.jpg) no-repeat center center fixed
+  // -webkit-background-size: cover
+  // -moz-background-size: cover
+  // -o-background-size: cover
+  // background-size: cover
 
 h1, h2, h3
   font-weight: 300
@@ -19,6 +21,8 @@ h1
 h2
   margin-bottom: 1em
   font-size: 2em
+  &.footer
+    text-shadow: 0.1em 0.1em 0.5em black
 h3
   margin-bottom: 1em
 
@@ -39,6 +43,11 @@ a
     text-shadow: 0.1em 0.1em 0.5em black
     color: white
     font-size: 1.3em
+    img
+      -webkit-filter: drop-shadow(0.1em 0.1em 0.5em black)
+      filter: drop-shadow(0.1em 0.1em 0.5em black)
+      //-webkit-filter: drop-shadow(5px 5px 5px #222)
+      //filter: drop-shadow(5px 5px 5px #222)
   &.footer
     text-shadow: 0.1em 0.1em 0.5em black
     color: white
