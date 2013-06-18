@@ -26,4 +26,10 @@ class StaticPagesController < ApplicationController
   def padre
   end
 
+  def gift
+  end
+
+  def shipping
+  end
+
 end

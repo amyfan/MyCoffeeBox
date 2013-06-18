@@ -6,7 +6,7 @@ $(function() {
   function get_special_product(products) {
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
-    	if (product_attributes.name.indexOf("Especial") > -1) {
+    	if (product_attributes.name.indexOf("Padre") > -1) {
   	    especial_product = products[i];
   	    break;
       }

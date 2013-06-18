@@ -64,6 +64,44 @@
           h2
             color: $gray
 
+#giftlength
+  @include box
+  @include clearfix
+  border: none !important
+  li
+    width: 32%
+    height: 120px
+    background: $light_yellow_two
+    float: left
+    display: block
+    border: 1px solid $light_gray
+    margin-right: 0.5em
+    padding: 1em 0.5em
+    text-align: center
+    h2.gift
+      margin-top: 0.5em
+      margin-bottom: 0.2em
+      font-size: 1.6em
+      font-weight: 600
+    h3.gift
+      margin-bottom: 0.2em
+      font-size: 1.2em
+    p.gift
+      color: red
+      font-weight: 600
+    @include box
+    &:last-child
+      margin-bottom: 0
+    &:hover
+      background: $brand
+      cursor: pointer
+    &.selected
+      background: $light_yellow
+      &:hover
+        border: 1px solid $gray
+        h2
+          color: $gray
+
 #alert
   background: $invalid_light
   @include box
@@ -89,18 +127,18 @@
     margin-left: 560px
     margin-bottom: 0
     width: 100%
-    a.subscribe, a.buy
+    a.subscribe, a.surpriseme, a.buy
       @include button($brand)
       width: 160px
       font-size: 1.5em
       line-height: 0.7em
-    a.surpriseme
-      @include button($brand)
+    a.gift
+      @include button($special_pink)
       width: 160px
-      font-size: 1.5em
-      line-height: 0.7em
-      //margin-top: -5em
-  &.siguiente
+      font-size: 1.3em
+      line-height: 1em
+      margin-top: 2em
+  &.siguiente, &.siguientegift
     display: none
     border: none !important
     @include box
@@ -109,6 +147,12 @@
     margin: 0 4em 2em 1em
     a.next
       @include button($darker_yellow)
+      width: 150px
+      float: right
+      font-size: 1.5em
+      line-height: 0.7em
+    a.nextgift
+      @include button($special_pink)
       width: 150px
       float: right
       font-size: 1.5em

@@ -4,7 +4,7 @@
   @include centered(960px)
 
 #content
-  &.catalog, &.subscribe, &.donde, &.cuanto
+  &.catalog, &.subscribe, &.donde, &.cuanto, &.length
     position: relative
     @include blur
     @include transparent($light_brown, 0.9)
@@ -15,13 +15,13 @@
       li
         position: relative
         display: block
-        width: 1%
+        width: 4%
         @include box
         margin: 1em
         height: 260px
         float: left
         text-align: center
-        margin-top: -10em
+        margin-top: -17em
         &:hover
           //cursor: pointer
         &.selected

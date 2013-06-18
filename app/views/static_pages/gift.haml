@@ -1,0 +1,27 @@
+
+#content.gift
+  %h1 Especial del Regalo
+  %ul
+    %li.image
+      #giftimage
+        %img{:src => "/images/surpriseme_sm.jpg"}
+    %li.description
+      %p Regala a tu amigo una membresía para conocer los mejores cafés de Chiapas con un super precio.
+      %p Con este gran regalo tu amigo recibirá a su domicilio cada mes 500 gramos de café orgánico de altura hecho por pequeños productores de Chiapas. Con tu compra, enviarás un regalo a tu amigo y ayudará a los pequeños productores que sembraron, cosecharon y tostaron tu café.
+#content.length
+  #giftlength
+    %ul
+      %li{:"data-giftlength" => 3}
+        %h2.gift 3 meses
+        %h3.gift Sólo $142 MXN por mes
+        %p.gift ¡Ahorra $21 (4.7%)!
+      %li{:"data-giftlength" => 6}
+        %h2.gift 6 meses
+        %h3.gift Sólo $132 MXN por mes
+        %p.gift ¡Ahorra $102 (11.4%)!
+      %li{:"data-giftlength" => 12}
+        %h2.gift 12 meses
+        %h3.gift Sólo $122 MXN por mes
+        %p.gift !Ahorra $324 (18.1%)!
+  .actions.siguientegift
+    %a.nextgift{:href => "#"} ¡Regala!
