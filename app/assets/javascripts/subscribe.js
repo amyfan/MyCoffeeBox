@@ -42,6 +42,8 @@ $(function() {
       product_attributes = products[i].getAttributes();
     	if (product_attributes.name.indexOf("México") > -1) {
   	    sorprendememex_product = products[i];
+  	    // TODO: temporarily break after loading mex product to save time
+  	    break;
   	  } else if (product_attributes.name.indexOf("America") > -1) {
   	    surprisemeusa_product = products[i];
   	  } else if (product_attributes.name.indexOf("Europe") > -1) {
@@ -49,10 +51,18 @@ $(function() {
   	  } else if (product_attributes.name.indexOf("Especial") > -1) {
   	    // filter out special promos (father's day for now)
   	  } else {
-        $("#content > ul").append(getTemplateForProduct(products[i], i));
+  	  	// TODO going to statically display coffee bags for now
+        //$("#content > ul").append(getTemplateForProduct(products[i], i));
         num_products++;
       }
     }
+		// TODO statically displaying bags
+    $("#content > ul").append(getStaticPhotoForProduct("/images/triunfo.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/vinic.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/metik.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/biocafe.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/majomut.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/biomaya.png", 0));
   }
   
   conekta.display.getProducts(
@@ -61,6 +71,16 @@ $(function() {
 
   setUpSubscription();
 })
+
+function getStaticPhotoForProduct(image_name, id_num) {
+  var template = $("#template").clone();
+  template.attr('id', 'template'+(id_num));
+  template.show();
+
+  $("#product", template).html("<img src='" + image_name + "'/>");
+  //addInteractionsToProductTemplate(template, product);
+  return template;
+}
 
 function getTemplateForProduct(product, id_num) {
   var template = $("#template").clone();
@@ -180,7 +200,7 @@ function dismissSlider() {
 
 function setUpSubscription() {
   // subscribe/join button click
-  $("a.subscribe").click(function(e) {
+  $("a.surpriseme").click(function(e) {
     e.preventDefault();
     $("#content.donde").show();
     dismissSlider();
@@ -219,14 +239,16 @@ function setUpSubscription() {
       // conekta.checkout.addItem(product.createItem());
     // }
     
-    // We get the subscription type
-    var subscriptionValue = parseInt($("#where .selected").data("where"));
+    // We get the subscription location
+    var whereValue = parseInt($("#where .selected").data("where"));
 
-    if (subscriptionValue == 1) {
+    if (whereValue == 1) {
       conekta.checkout.addItem(sorprendememex_product.createItem());
-    } else if (subscriptionValue == 2) {
+    } else if (whereValue == 2) {
+    	// TODO TEMP!
+    	surprisemeusa_product = sorprendememex_product;
       conekta.checkout.addItem(surprisemeusa_product.createItem());
-    } else if (subscriptionValue == 3) {
+    } else if (whereValue == 3) {
       conekta.checkout.addItem(surprisemeeuro_product.createItem());
     }
     
@@ -264,9 +286,6 @@ function setUpSubscription() {
         });
       }
 
-      // var suscription = pagalo.getSubscription()
-      // suscription.setShippingOption({
-
       // free shipping
       conekta.checkout.setShippingOption({
         id : 891,
@@ -275,7 +294,11 @@ function setUpSubscription() {
         service_name : 'Entrega Gratis'
       });
 
-      conekta.checkout.proceedToCheckout();
+      if (whereValue == 1) {
+        conekta.checkout.proceedToCheckout();
+      } else {
+      	window.location = "/shipping";
+      }
     } else {
     	// this case should no longer happen based on flow of page
       _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'failed']);
