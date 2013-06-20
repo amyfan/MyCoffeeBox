@@ -6,12 +6,18 @@ $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
   
   function render_products(products) {
+		// TODO statically displaying bags
+    $("#content > ul").append(getStaticPhotoForProduct("/images/triunfo.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/vinic.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/metik.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/biocafe.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/majomut.png", 0));
+    $("#content > ul").append(getStaticPhotoForProduct("/images/biomaya.png", 0));
+
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
     	if (product_attributes.name.indexOf("México") > -1) {
   	    sorprendememex_product = products[i];
-  	    // TODO: temporarily break after loading mex product to save time
-  	    break;
   	  } else if (product_attributes.name.indexOf("America") > -1) {
   	    surprisemeusa_product = products[i];
   	  } else if (product_attributes.name.indexOf("Europe") > -1) {
@@ -25,13 +31,6 @@ $(function() {
         //$("#content > ul").append(getTemplateForProduct(products[i], i));
       }
     }
-		// TODO statically displaying bags
-    $("#content > ul").append(getStaticPhotoForProduct("/images/triunfo.png", 0));
-    $("#content > ul").append(getStaticPhotoForProduct("/images/vinic.png", 0));
-    $("#content > ul").append(getStaticPhotoForProduct("/images/metik.png", 0));
-    $("#content > ul").append(getStaticPhotoForProduct("/images/biocafe.png", 0));
-    $("#content > ul").append(getStaticPhotoForProduct("/images/majomut.png", 0));
-    $("#content > ul").append(getStaticPhotoForProduct("/images/biomaya.png", 0));
   }
   
   conekta.display.getProducts(
