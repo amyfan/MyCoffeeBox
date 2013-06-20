@@ -80,14 +80,15 @@
   text-align: center
   iframe
     margin-top: 2em
-
 #who
+  @include transparent($light_brown, 0.9)
+  @include blur
   ul  
     @include clearfix
     li
       @include box
       float: left
-      width: 20%
+      width: 25%
       text-align: center
       margin-top: 1em
       margin-bottom: 1em
