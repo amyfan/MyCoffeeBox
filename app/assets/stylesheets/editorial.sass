@@ -46,9 +46,36 @@ a
     h3
       font-size: 1.2em
       font-weight: bold      
+  &.howpage
+    @include clearfix
+    h2  
+      margin-bottom: 2em
+    > div
+      @include box
+      float: left
+    #box
+      width: 35%
+      img
+        width: 100%
+    #description
+      width: 100%
+      h3
+        text-align: left
+    ul
+      @include clearfix
+      li
+        @include box
+        float: left
+        padding-left: 1.5em
+        padding-right: 1.5em
+        margin-bottom: 2em
+        &.image
+          width: 40%
+        &.description
+          width: 60%
+        img
+          width: 100%
   &.promo, &.gift
-    @include blur
-    @include transparent($light_brown, 0.9)
     padding: 2em 4em 4em
     @include clearfix
     > div
@@ -89,8 +116,6 @@ a
         img
           width: 100%
   &.team
-    @include blur
-    @include transparent($light_brown, 0.9)
     padding: 2em 1em 2em
     h1
       margin-bottom: 1.5em
