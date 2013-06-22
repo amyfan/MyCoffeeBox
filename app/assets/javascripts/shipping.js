@@ -74,7 +74,7 @@ function setUpShipping(){
     }
 
     conekta.checkout.processPayment({
-      payment_method: 'oxxo',
+      payment_method: 'paypal',
       success_callback: credit_card_callback
     });
 
