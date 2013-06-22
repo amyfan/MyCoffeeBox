@@ -21,7 +21,7 @@ $(function() {
   }
 
   $("#giftimage img").click(function(i) {
-    _gaq.push(['_trackEvent', 'Especial', 'Clicked Image', 'next']);
+    _gaq.push(['_trackEvent', 'Gift', 'Clicked Image', 'next']);
     $("#content.length").show();
     $('#content.length').goToGift();
   });
@@ -40,7 +40,7 @@ function setUpGiftPurchase() {
     $("#content.length").show();
     $('#content.length').goToGift();
 
-    _gaq.push(['_trackEvent', 'Gift', 'Clicked Regala', 'next']);    
+    _gaq.push(['_trackEvent', 'Gift', 'Clicked Regala', 'regala']);    
   })
 
   $("#giftlength ul li").click(function(i) {

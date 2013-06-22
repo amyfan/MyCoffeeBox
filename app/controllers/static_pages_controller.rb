@@ -32,4 +32,7 @@ class StaticPagesController < ApplicationController
   def shipping
   end
 
+  def subscribetest
+  end
+
 end

@@ -1,0 +1,34 @@
+
+#content.catalog
+  %h1 ¡Suscríbete!
+  %h2 Sólo $149 pesos por cada envío: 500 grs de café y envío incluido a toda la República Mexicana.
+  .actions.subscribe
+    %a.surpriseme{:href => "#"} ¡Suscríbete!
+    %a.gift{:href => "/gift"} ¡Regala una membresía!
+  %ul
+
+%li#template
+  #product
+    %img{:src => "/images/triunfo.png"}
+
+#content.donde
+  #where
+    %h1 ¿A dónde?
+    %ul
+      %li{:"data-where" => 1}
+        %h3 México ($149 MXN)
+      %li{:"data-where" => 2}
+        %h3 América del Norte ($18.99 USD)
+
+#content.cuanto
+  #frequency
+    %h1 ¿Cada cuánto?
+    %ul
+      %li{:"data-frequency" => 2}
+        %h3 Cada 2 semanas
+      %li{:"data-frequency" => 4}
+        %h3 Cada 4 semanas
+      %li{:"data-frequency" => 6}
+        %h3 Cada 6 semanas
+  .actions.siguiente
+    %a.next{:href => "#"} Siguiente

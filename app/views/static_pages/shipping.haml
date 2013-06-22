@@ -1,0 +1,32 @@
+#content.shipping
+  %h1 Dirección de envío - América del Norte
+  #directions
+    %p
+      %span.numrequired 1
+      %input#email{:type => "text", :placeholder => "Tu correo electrónico"}
+    %p
+      %span.numrequired 2
+      %input#coffeetype{:type => "text", :placeholder => "¿Lo quiere en Grano o Molido Tradicional?"}
+    %p
+      %span.number 3
+      %input#referral{:type => "text", :placeholder => "Si un amigo te recomendó, pon su correo electrónico"}
+    %p
+      %span.number 4
+      %input#promocode{:type => "text", :placeholder => "Código de promoción"}
+  #envelope
+    %p
+      %span.numrequired 5
+      %span Indica la dirección a la que quieres que entreguemos tu MyCoffeeBox.
+    #destinatario
+      %h2 Destinatario
+      %input#nombre{:type => "text", :placeholder => "Nombre (Name of Addressee)"}
+      %input#calle{:type => "text", :placeholder => "Calle y número (Address Line 1)"}
+      %input#colonia{:type => "text", :placeholder => "Número interior (Address Line 2)"}
+      %input#ciudad{:type => "text", :placeholder => "Ciudad (City)"}
+      %input#estado{:type => "text", :placeholder => "Estado (State)"}
+      %input#pais{:type => "text", :placeholder => "País (Country)"}
+      %input#cp{:type => "text", :placeholder => "Código Postal (Zip)"}
+      %input#telefono{:type => "text", :placeholder => "Teléfono (Phone Number)"}
+
+  .actions.siguienteusa
+    %a.nextusa{:href => "#"} Siguiente

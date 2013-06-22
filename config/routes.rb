@@ -19,6 +19,8 @@ MyCoffeeBox::Application.routes.draw do
 
   match 'shipping' => 'static_pages#shipping'
 
+  match 'subscribetest' => 'static_pages#subscribetest'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

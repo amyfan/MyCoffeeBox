@@ -117,7 +117,7 @@ function setUpSubscription() {
     $("#content.donde").show();
     $('#content.donde').goTo();
 
-    _gaq.push(['_trackEvent', 'Catalog', 'Clicked Join', 'join']);
+    _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Subscribe', 'subscribe']);
   })
 
   $("#where ul li").click(function(i) {
@@ -126,20 +126,20 @@ function setUpSubscription() {
     $("#content.cuanto").show();
     $('#content.cuanto').goTo();
 
-    _gaq.push(['_trackEvent', 'Subscription', 'Where',  'type ' + $(this).data("where")]);
+    _gaq.push(['_trackEvent', 'Subscribe', 'Where',  'type ' + $(this).data("where")]);
   });
 
   $("#frequency ul li").click(function(i) {
     $("#frequency ul li").removeClass("selected");
     $(this).addClass("selected");
     $(".actions.siguiente").show();
-    _gaq.push(['_trackEvent', 'Subscription', 'Frequency', 'type ' + $(this).data("frequency")]);
+    _gaq.push(['_trackEvent', 'Subscribe', 'Frequency', 'type ' + $(this).data("frequency")]);
   });
 
   // siguiente button click
   $("a.next").click(function(e) {
     e.preventDefault();
-    _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'next']);
+    _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Next', 'next']);
     
     conekta.checkout.new('subscription', {company_id: 2757603});
     
@@ -149,8 +149,6 @@ function setUpSubscription() {
     if (whereValue == 1) {
       conekta.checkout.addItem(sorprendememex_product.createItem());
     } else if (whereValue == 2) {
-    	// TODO TEMP!
-    	surprisemeusa_product = sorprendememex_product;
       conekta.checkout.addItem(surprisemeusa_product.createItem());
     } else if (whereValue == 3) {
       conekta.checkout.addItem(surprisemeeuro_product.createItem());
@@ -201,6 +199,7 @@ function setUpSubscription() {
       if (whereValue == 1) {
         conekta.checkout.proceedToCheckout();
       } else {
+      	conekta.checkout.save();
       	window.location = "/shipping";
       }
     } else {

@@ -1,0 +1,87 @@
+@import "global", "forms"
+
+#content
+  &.shipping
+    @include clearfix
+    position: relative
+    padding: 2em
+    #directions, #envelope
+      @include blur
+      @include transparent($light_brown, 0.9)
+      @include centered(90%)
+      p
+        line-height: 1.8
+      span.number, span.numrequired
+        @include round-corners(30px)
+        @include box
+        display: block
+        float: left
+        background: $gray
+        width: 30px
+        height: 30px
+        color: $white
+        text-align: center
+        margin-right: 1em
+      span.numrequired
+        background: black
+    #envelope
+      height: 280px
+      position: relative
+      margin-top: 0em
+      margin-bottom: 3em
+      #destinatario
+        position: absolute
+        top: 100px
+        left: 400px
+        width: 450px
+        h2
+          font-size: 1.5em
+          margin-bottom: 0.2em
+        input
+          border: 1px solid transparent
+          background: white
+          width: 100%
+          font-weight: 300
+          font-size: 1em
+          &.empty
+            border: 1px dashed $white
+            border-color: $gray
+          &#nombre
+            width: 75%
+            float: left
+          &#correo
+            width: 159px
+            float: right
+          &#calle
+            width: 440px
+          &#colonia
+            width: 440px
+          &#ciudad
+            width: 60%
+          &#estado
+            width: 32%
+          &#pais
+            width: 60%
+          &#cp
+            width: 32%
+          &#telefono
+            width: 75%
+            float: left
+    .actions
+      &.siguienteusa
+        position: absolute
+        left: 0
+        bottom: 0
+        width: 100%
+        @include box
+        padding: 1em 2em
+        a.nextusa
+          @include button($darker_yellow)
+          font-size: 1.2em
+          width: 150px
+          float: right
+
+#email, #referral, #coffeetype, #promocode
+  font-size: 0.9em
+  width: 350px
+  font-weight: 300
