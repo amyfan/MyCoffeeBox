@@ -5329,11 +5329,11 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 //                        data.srt = 12;
                         data.src = 1;
                         data.sra = 1;
-                        /*if (pagalo.checkout._model.get('company_id') == 2757105){
+                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return custom_field.get('name') == 'Código de Promoción'}).get('value').match(/PROMOTAURUS/i)){
                             data.a1 = 0;
                             data.t1 = "M";
                             data.p1= 1;
-                        }*/
+                        }
                     }else{
                         if (simpleCart.items().length < 10){
                             // add all the items to the form data
@@ -7042,7 +7042,7 @@ OrderItem Models, Collection and Views and for the cart
         msg: "El Estado de entrega no es valido."
       },
       country: {
-        minLength: 3,
+        minLength: 2,
         msg: "El país de entrega no es valido."
       },
       postal_code: {
@@ -8343,7 +8343,7 @@ Order/Subscription/Quote shared methods
       });
     },
     processPayment: function(parameter_hash) {
-      var billing_cycles, billing_period_length, billing_period_unit, company, error_callback, installment_types, payment_method, provider, simpleCart_items, success_callback, tax;
+      var billing_cycles, billing_period_length, billing_period_unit, company, error_callback, installment_types, payment, payment_method, provider, simpleCart_items, success_callback, tax;
       provider = parameter_hash;
       success_callback = null;
       error_callback = null;
@@ -8351,11 +8351,13 @@ Order/Subscription/Quote shared methods
         provider = parameter_hash['payment_method'];
         success_callback = parameter_hash['success_callback'];
         error_callback = parameter_hash['error_callback'];
+        payment = this.get('payment');
         this.set('payment_method', provider);
+        payment.set('type', provider);
         if (parameter_hash['credit_card']) {
-          this.set('credit_card', parameter_hash['credit_card']);
-          this.set('success_url', parameter_hash['success_url']);
-          this.set('failure_url', parameter_hash['failure_url']);
+          payment.set('credit_card', parameter_hash['credit_card']);
+          payment.set('success_url', parameter_hash['success_url']);
+          payment.set('failure_url', parameter_hash['failure_url']);
         }
       }
       company = this.getCompany();
@@ -8381,7 +8383,7 @@ Order/Subscription/Quote shared methods
         this.save({}, {
           remote: true,
           success: function(model) {
-            var payment, response;
+            var response;
             simpleCart.empty();
             if (typeof success_callback === 'function') {
               payment = model.get('payment');
@@ -8408,7 +8410,7 @@ Order/Subscription/Quote shared methods
         this.save({}, {
           remote: true,
           success: function(model) {
-            var payment, response;
+            var response;
             simpleCart.empty();
             if (typeof success_callback === 'function') {
               payment = model.get('payment');
@@ -8535,7 +8537,9 @@ Order/Subscription/Quote shared methods
               success: success_location,
               cancel: return_location
             };
-            if (model instanceof conekta._models.Subscription && billing_period_length && provider === 'paypal') {
+            if (model instanceof conekta._models.Subscription && provider === 'paypal') {
+              billing_period_length = model.get('billing_period_length') || model.get('payment').get('period').get('length');
+              billing_period_unit = model.get('billing_period_unit') || model.get('payment').get('period').get('unit');
               parameters['recurring_monthly_payment'] = true;
               parameters['cmd'] = '_xclick-subscriptions';
               parameters['billing_period_unit'] = billing_period_unit;
@@ -8594,6 +8598,8 @@ Order/Subscription/Quote shared methods
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_length').val(checkout_hash['payment']['period']['length']));
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_unit').val(checkout_hash['payment']['period']['unit']));
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_cycles').val(checkout_hash['payment']['period']['total_number']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_recurring_total_number').val(checkout_hash['payment']['period']['recurring_total_number']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_one_time_total_number').val(checkout_hash['payment']['period']['one_time_total_number']));
         }
         if (checkout_hash['payment_succeeded_url']) {
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_succeeded_url').val(checkout_hash['payment_succeeded_url']));
@@ -8606,6 +8612,8 @@ Order/Subscription/Quote shared methods
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_period_length').val(checkout_hash['shipment']['period']['length']));
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_period_unit').val(checkout_hash['shipment']['period']['unit']));
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_cycles').val(checkout_hash['shipment']['period']['total_number']));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_period_recurring_total_number').val(checkout_hash['shipment']['period']['recurring_total_number']));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_period_one_time_total_number').val(checkout_hash['shipment']['period']['one_time_total_number']));
           }
           if (checkout_hash['shipment']['id']) {
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_id').val(checkout_hash['shipment']['id']));
@@ -9006,8 +9014,12 @@ Order Model, Collections and Views for the cart
       });
     }
     if (type === 'subscription') {
-      data['payment']['period'] = {};
-      data['shipment']['period'] = {};
+      if (!data['payment']['period']) {
+        data['payment']['period'] = {};
+      }
+      if (!data['shipment']['period']) {
+        data['shipment']['period'] = {};
+      }
       checkout_model = new conekta._models.Subscription(data);
       conekta._store.set('checkout_subscription', checkout_model);
     } else if (type === 'order') {
