@@ -158,34 +158,44 @@ function setUpSubscription() {
     var periodFrequencyValue = parseInt($("#frequency .selected").data("frequency"));
 
     if (conekta.checkout.getItems().length > 0 && periodFrequencyValue > 0) {
-      //configure a 4 month subscription default
+      //configure a 3 month subscription default
       if (periodFrequencyValue == 2) {
-        conekta.checkout.setBillingPeriod('week', 2, {
-          recurring : -1,
-          lump_sum : 8
-        });
-        conekta.checkout.setShippingPeriod('week', 2, {
-          recurring : -1,
-          lump_sum : 8
-        });
+        // conekta.checkout.setBillingPeriod('week', 2, {
+          // recurring : -1,
+          // lump_sum : 8
+        // });
+        // conekta.checkout.setShippingPeriod('week', 2, {
+          // recurring : -1,
+          // lump_sum : 8
+        // });
+
+        // new syntax, and also changing from 4->3 months
+        conekta.checkout.setBillingPeriod('week',2,-1,6);
+        conekta.checkout.setShippingPeriod('week',2,-1,6);
       } else if (periodFrequencyValue == 4) {
-        conekta.checkout.setBillingPeriod('week', 4, {
-          recurring : -1,
-          lump_sum : 4
-        });
-        conekta.checkout.setShippingPeriod('week', 4, {
-          recurring : -1,
-          lump_sum : 4
-        });
+        // conekta.checkout.setBillingPeriod('week', 4, {
+          // recurring : -1,
+          // lump_sum : 4
+        // });
+        // conekta.checkout.setShippingPeriod('week', 4, {
+          // recurring : -1,
+          // lump_sum : 4
+        // });
+
+        conekta.checkout.setBillingPeriod('week',4,-1,3);
+        conekta.checkout.setShippingPeriod('week',4,-1,3);
       } else {
-        conekta.checkout.setBillingPeriod('week', 6, {
-          recurring : -1,
-          lump_sum : 3
-        });
-        conekta.checkout.setShippingPeriod('week', 6, {
-          recurring : -1,
-          lump_sum : 3
-        });
+        // conekta.checkout.setBillingPeriod('week', 6, {
+          // recurring : -1,
+          // lump_sum : 3
+        // });
+        // conekta.checkout.setShippingPeriod('week', 6, {
+          // recurring : -1,
+          // lump_sum : 3
+        // });
+
+        conekta.checkout.setBillingPeriod('week',6,-1,2);
+        conekta.checkout.setShippingPeriod('week',6,-1,2);
       }
 
       // free shipping
