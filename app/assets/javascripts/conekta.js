@@ -1935,7 +1935,7 @@ if (typeof JSON !== 'object') {
 
   Backbone.Collection.prototype.syncDirty = function() {
     var id, ids, model, store, _i, _len, _results;
-    this.namespace = this.namespace || $('#company_id').val() || 'conekta';
+    this.namespace = this.namespace || jQuery('#company_id').val() || 'conekta';
     store = localStorage.getItem("" + this.namespace + ":" + this.url + "_dirty");
     ids = (store && store.split(',')) || [];
     _results = [];
@@ -1951,7 +1951,7 @@ if (typeof JSON !== 'object') {
 
   Backbone.Collection.prototype.syncDestroyed = function() {
     var id, ids, model, store, _i, _len, _results;
-    this.namespace = this.namespace || $('#company_id').val() || 'conekta';
+    this.namespace = this.namespace || jQuery('#company_id').val() || 'conekta';
     store = localStorage.getItem("" + this.namespace + ":" + this.url + "_destroyed");
     ids = (store && store.split(',')) || [];
     _results = [];
@@ -1980,7 +1980,7 @@ if (typeof JSON !== 'object') {
     Store.prototype.sep = '';
 
     function Store(name) {
-      this.namespace = $('#company_id').val() || 'conekta';
+      this.namespace = jQuery('#company_id').val() || 'conekta';
       this.name = this.namespace + ':' + name;
       this.records = this.recordsOn(this.name);
     }
@@ -2294,80 +2294,8 @@ if (typeof JSON !== 'object') {
 // http://thedersen.com/projects/backbone-validation
 Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"name",labelFormatter:"sentenceCase",valid:Function.prototype,invalid:Function.prototype},c=function(){var c=function(b){return a.reduce(a.keys(b.validation||{}),function(a,b){return a[b]=void 0,a},{})},e=function(b,c){var d=b.validation?b.validation[c]||{}:{};if(a.isFunction(d)||a.isString(d))d={fn:d};return a.isArray(d)||(d=[d]),a.reduce(d,function(b,c){return a.each(a.without(a.keys(c),"msg"),function(a){b.push({fn:h[a],val:c[a],msg:c.msg})}),b},[])},f=function(b,c,d,f){return a.reduce(e(b,c),function(a,e){var g=e.fn.call(h,d,c,e.val,b,f);return g===!1||a===!1?!1:g&&!a?e.msg||g:a},"")},g=function(b,c){var d,e,g={},h=!0,i=a.clone(c);for(e in c)d=f(b,e,c[e],i),d&&(g[e]=d,h=!1);return{invalidAttrs:g,isValid:h}},i=function(b,d){return{preValidate:function(b,c){return f(this,b,c,a.extend({},this.attributes))},isValid:function(b){if(a.isString(b))return!f(this,b,this.get(b),a.extend({},this.attributes));if(a.isArray(b)){for(var c=0;c<b.length;c++)if(f(this,b[c],this.get(b[c]),a.extend({},this.attributes)))return!1;return!0}return b===!0&&this.validate(),this.validation?this._isValid:!0},validate:function(e,f){var h=this,i=!e,j=a.extend({},d,f),k=a.extend(c(h),h.attributes,e),l=e||k,m=g(h,k);h._isValid=m.isValid;for(var n in k){var o=m.invalidAttrs.hasOwnProperty(n),p=l.hasOwnProperty(n);o&&(p||i)&&j.invalid(b,n,m.invalidAttrs[n],j.selector),o||j.valid(b,n,j.selector)}a.defer(function(){h.trigger("validated",h._isValid,h,m.invalidAttrs),h.trigger("validated:"+(h._isValid?"valid":"invalid"),h,m.invalidAttrs)});if(!j.forceUpdate&&a.intersection(a.keys(m.invalidAttrs),a.keys(l)).length>0)return m.invalidAttrs}}},j=function(b,c,d){a.extend(c,i(b,d))},k=function(a){delete a.validate,delete a.preValidate,delete a.isValid},l=function(a){j(this.view,a,this.options)},m=function(a){k(a)};return{version:"0.6.2",configure:function(c){a.extend(b,c)},bind:function(c,e){var f=c.model,g=c.collection;e=a.extend({},b,d,e);if(typeof f=="undefined"&&typeof g=="undefined")throw"Before you execute the binding your view must have a model or a collection.\nSee http://thedersen.com/projects/backbone-validation/#using-form-model-validation for more information.";f&&j(c,f,e),g&&(g.each(function(a){j(c,a,e)}),g.bind("add",l,{view:c,options:e}),g.bind("remove",m))},unbind:function(a){var b=a.model,c=a.collection;b&&k(a.model),c&&(c.each(function(a){k(a)}),c.unbind("add",l),c.unbind("remove",m))},mixin:i(null,b)}}(),d=c.callbacks={valid:function(a,b,c){a.$("["+c+"~="+b+"]").removeClass("invalid").removeAttr("data-error")},invalid:function(a,b,c,d){a.$("["+d+"~="+b+"]").addClass("invalid").attr("data-error",c)}},e=c.patterns={digits:/^\d+$/,number:/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/,email:/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i,url:/^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i},f=c.messages={required:"{0} is required",acceptance:"{0} must be accepted",min:"{0} must be greater than or equal to {1}",max:"{0} must be less than or equal to {1}",range:"{0} must be between {1} and {2}",length:"{0} must be {1} characters",minLength:"{0} must be at least {1} characters",maxLength:"{0} must be at most {1} characters",rangeLength:"{0} must be between {1} and {2} characters",oneOf:"{0} must be one of: {1}",equalTo:"{0} must be the same as {1}",pattern:"{0} must be a valid {1}"},g=c.labelFormatters={none:function(a){return a},sentenceCase:function(a){return a.replace(/(?:^\w|[A-Z]|\b\w)/g,function(a,b){return b===0?a.toUpperCase():" "+a.toLowerCase()}).replace("_"," ")},label:function(a,b){return b.labels[a]||g.sentenceCase(a,b)}},h=c.validators=function(){var c=String.prototype.trim?function(a){return a===null?"":String.prototype.trim.call(a)}:function(a){var b=/^\s+/,c=/\s+$/;return a===null?"":a.toString().replace(b,"").replace(c,"")},d=function(a,c){return g[b.labelFormatter](a,c)},h=function(){var a=Array.prototype.slice.call(arguments),b=a.shift();return b.replace(/\{(\d+)\}/g,function(b,c){return typeof a[c]!="undefined"?a[c]:b})},i=function(b){return a.isNumber(b)||a.isString(b)&&b.match(e.number)},j=function(b){return!(a.isNull(b)||a.isUndefined(b)||a.isString(b)&&c(b)==="")};return{fn:function(b,c,d,e,f){return a.isString(d)&&(d=e[d]),d.call(e,b,c,f)},required:function(b,c,e,g,i){var k=a.isFunction(e)?e.call(g,b,c,i):e;if(!k&&!j(b))return!1;if(k&&!j(b))return h(f.required,d(c,g))},acceptance:function(b,c,e,g){if(b!=="true"&&(!a.isBoolean(b)||b===!1))return h(f.acceptance,d(c,g))},min:function(a,b,c,e){if(!i(a)||a<c)return h(f.min,d(b,e),c)},max:function(a,b,c,e){if(!i(a)||a>c)return h(f.max,d(b,e),c)},range:function(a,b,c,e){if(!i(a)||a<c[0]||a>c[1])return h(f.range,d(b,e),c[0],c[1])},length:function(a,b,e,g){if(!j(a)||c(a).length!==e)return h(f.length,d(b,g),e)},minLength:function(a,b,e,g){if(!j(a)||c(a).length<e)return h(f.minLength,d(b,g),e)},maxLength:function(a,b,e,g){if(!j(a)||c(a).length>e)return h(f.maxLength,d(b,g),e)},rangeLength:function(a,b,e,g){if(!j(a)||c(a).length<e[0]||c(a).length>e[1])return h(f.rangeLength,d(b,g),e[0],e[1])},oneOf:function(b,c,e,g){if(!a.include(e,b))return h(f.oneOf,d(c,g),e.join(", "))},equalTo:function(a,b,c,e,g){if(a!==g[c])return h(f.equalTo,d(b,e),d(c,e))},pattern:function(a,b,c,g){if(!j(a)||!a.toString().match(e[c]||c))return h(f.pattern,d(b,g),c)}}}();return c}(_);
 
-
-/*
-#set X-CRSF for all requests to preserve the session, include locale
-*/
-
-
-/*
-# JQuery clone patch
-*/
-
-
 (function() {
   var getOrPostRegEx, httpRegEx, jsonRegEx, sameSchemeRegEx, xmlRegEx;
-
-  (function(original) {
-    return jQuery.fn.clone = function() {
-      var i, l, my_selects, my_textareas, result, result_selects, result_textareas, selected_option_value;
-      result = original.apply(this, arguments);
-      my_textareas = this.find("textarea");
-      result_textareas = result.find("textarea");
-      my_selects = this.find("select");
-      result_selects = result.find("select");
-      i = 0;
-      l = my_textareas.length;
-      while (i < l) {
-        $(result_textareas[i]).val($(my_textareas[i]).val());
-        ++i;
-        i = 0;
-        l = my_selects.length;
-      }
-      while (i < l) {
-        selected_option_value = $(my_selects[i]).find(":selected").eq(0).val();
-        $(result_selects[i]).find("option:selected").removeAttr("selected");
-        $(result_selects[i]).find('option[value="' + selected_option_value + ']"').eq(0).attr("selected", "selected");
-        ++i;
-      }
-      return result;
-    };
-  })(jQuery.fn.clone);
-
-  /*
-  #IE placeholder patch
-  */
-
-
-  (function($) {
-    return $.fn.placeholder = function(options) {
-      return this.each(function() {
-        var $this, placeholder;
-        if (!("placeholder" in document.createElement(this.tagName.toLowerCase()))) {
-          $this = $(this);
-          placeholder = $this.attr("placeholder");
-          if (placeholder !== " ") {
-            if ($this.data("color") == null) {
-              !$this.val() && $this.val(placeholder).data("color", $this.css("color")).css("color", "#aaa");
-            } else {
-              if ($this.val() !== placeholder) {
-                $this.css("color", $this.data("color"));
-              }
-            }
-            return $this.focus(function() {
-              if ($.trim($this.val()) === placeholder) {
-                return $this.val("").css("color", $this.data("color"));
-              }
-            }).blur(function() {
-              if (!$.trim($this.val())) {
-                return $this.val(placeholder).data("color", $this.css("color")).css("color", "#aaa");
-              }
-            });
-          }
-        }
-      });
-    };
-  })(jQuery);
 
   window.parseUri = function(str) {
     var i, m, o, uri;
@@ -2398,68 +2326,6 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
       strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
       loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
     }
-  };
-
-  /*
-  #Custom Form to hash serialization
-  */
-
-
-  window.serialize_array_form = function($target_form_original) {
-    var $child_forms, $clean_form, $target_form, child_forms, parent_form_name, return_hash;
-    $target_form = $target_form_original.clone();
-    return_hash = {};
-    $target_form.find(".template").remove();
-    parent_form_name = $target_form.attr("name");
-    child_forms = null;
-    if ($target_form.length === 1) {
-      $clean_form = $target_form.clone();
-      $clean_form.find(".sh-form").remove();
-      if ($clean_form.get(0).tagName !== "FORM") {
-        $clean_form = $("<form></form>").append($clean_form);
-      }
-      $.each($clean_form.serializeArray(), function(i, val) {
-        return return_hash[val["name"]] = val["value"];
-      });
-      $.each($clean_form.find("input[type=checkbox]:not(:checked)[name]"), function(i, elem) {
-        var $elem;
-        $elem = $(elem);
-        return return_hash[$elem.attr("name")] = "0";
-      });
-      $.each($clean_form.find("select"), function(i, elem) {
-        var $elem, $selected_elem, temp_row_id;
-        $elem = $(elem);
-        $selected_elem = $elem.find(":selected");
-        if ($elem.attr("name").match(/\[(\d+)\]/) != null) {
-          temp_row_id = $elem.attr("name").match(/\[(\d+)\]/)[1];
-          if ($selected_elem.data() != null) {
-            $.each($selected_elem.data(), function(k, v) {
-              return return_hash[k + "[" + temp_row_id + "]"] = v;
-            });
-          }
-        }
-        if ($selected_elem.length > 0) {
-          return return_hash[$elem.attr("name")] = $selected_elem.val();
-        } else {
-          return return_hash[$elem.attr("name")] = "";
-        }
-      });
-      $child_forms = $target_form.find(".sh-form");
-      $.each($child_forms, function(i, child_form) {
-        var $child_form;
-        $child_form = $(child_form);
-        if ($child_form.parents(".sh-form").length === 0 || $child_form.parents(".sh-form").eq(0)[0] === $target_form[0]) {
-          return return_hash[$child_form.attr("name")] = serialize_array_form($child_form);
-        }
-      });
-    } else {
-      $.each($target_form, function(i, child_form) {
-        var $child_form;
-        $child_form = $(child_form);
-        return return_hash[$child_form.attr("name")] = serialize_array_form($child_form);
-      });
-    }
-    return return_hash;
   };
 
   /*
@@ -2506,7 +2372,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 
   Backbone.Model = Backbone.Model.extend({
     localStorageNamespace: function() {
-      return $('#company_id').val() || 'conekta';
+      return jQuery('#company_id').val() || 'conekta';
     },
     urlBase: function() {
       var base;
@@ -2515,7 +2381,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
         if (!jQuery.support.cors && jQuery.ajaxTransport && window.XDomainRequest) {
           base = '/api';
         } else {
-          base = '/api/dev';
+          base = '/api/v1';
         }
       }
       return base;
@@ -2543,7 +2409,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 
   Backbone.Collection = Backbone.Collection.extend({
     localStorageNamespace: function() {
-      return $('#company_id').val() || 'conekta';
+      return jQuery('#company_id').val() || 'conekta';
     },
     urlBase: function() {
       var base;
@@ -2552,7 +2418,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
         if (!jQuery.support.cors && jQuery.ajaxTransport && window.XDomainRequest) {
           base = '/api';
         } else {
-          base = '/api/dev';
+          base = '/api/v1';
         }
       }
       return base;
@@ -2615,7 +2481,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
               try {
                 if ((userType === "json") || ((userType !== "text") && jsonRegEx.test(xdr.contentType))) {
                   try {
-                    return responses.json = $.parseJSON(xdr.responseText);
+                    return responses.json = jQuery.parseJSON(xdr.responseText);
                   } catch (e) {
                     status.code = 500;
                     return status.message = "parseerror";
@@ -2677,7 +2543,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
             if (typeof userOptions.data === 'string') {
               data_hash = JSON.parse(userOptions.data);
             }
-            postData = (userOptions.data && $.param(data_hash)) || "";
+            postData = (userOptions.data && jQuery.param(data_hash)) || "";
             xdr.open(options.type, options.url);
             return xdr.send(postData);
           },
@@ -2690,6 +2556,68 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
       }
     });
   }
+
+  /*
+  #Custom Form to hash serialization
+  */
+
+
+  window.serialize_array_form = function($target_form_original) {
+    var $child_forms, $clean_form, $target_form, child_forms, parent_form_name, return_hash;
+    $target_form = $target_form_original.clone();
+    return_hash = {};
+    $target_form.find(".template").remove();
+    parent_form_name = $target_form.attr("name");
+    child_forms = null;
+    if ($target_form.length === 1) {
+      $clean_form = $target_form.clone();
+      $clean_form.find(".sh-form").remove();
+      if ($clean_form.get(0).tagName !== "FORM") {
+        $clean_form = jQuery("<form></form>").append($clean_form);
+      }
+      jQuery.each($clean_form.serializeArray(), function(i, val) {
+        return return_hash[val["name"]] = val["value"];
+      });
+      jQuery.each($clean_form.find("input[type=checkbox]:not(:checked)[name]"), function(i, elem) {
+        var $elem;
+        $elem = jQuery(elem);
+        return return_hash[$elem.attr("name")] = "0";
+      });
+      jQuery.each($clean_form.find("select"), function(i, elem) {
+        var $elem, $selected_elem, temp_row_id;
+        $elem = jQuery(elem);
+        $selected_elem = $elem.find(":selected");
+        if ($elem.attr("name").match(/\[(\d+)\]/) != null) {
+          temp_row_id = $elem.attr("name").match(/\[(\d+)\]/)[1];
+          if ($selected_elem.data() != null) {
+            jQuery.each($selected_elem.data(), function(k, v) {
+              return return_hash[k + "[" + temp_row_id + "]"] = v;
+            });
+          }
+        }
+        if ($selected_elem.length > 0) {
+          return return_hash[$elem.attr("name")] = $selected_elem.val();
+        } else {
+          return return_hash[$elem.attr("name")] = "";
+        }
+      });
+      $child_forms = $target_form.find(".sh-form");
+      jQuery.each($child_forms, function(i, child_form) {
+        var $child_form;
+        $child_form = jQuery(child_form);
+        if ($child_form.parents(".sh-form").length === 0 || $child_form.parents(".sh-form").eq(0)[0] === $target_form[0]) {
+          return return_hash[$child_form.attr("name")] = serialize_array_form($child_form);
+        }
+      });
+    } else {
+      jQuery.each($target_form, function(i, child_form) {
+        var $child_form;
+        $child_form = jQuery(child_form);
+        return return_hash[$child_form.attr("name")] = serialize_array_form($child_form);
+      });
+    }
+    return return_hash;
+  };
 
 }).call(this);
 
@@ -4419,8 +4347,6 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 
 			// stealing this from selectivizr
 			var selectorEngines = {
-				"MooTools"							: "$$",
-				"Prototype"							: "$$",
 				"jQuery"							: "*"
 			},
 
@@ -5723,7 +5649,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 							, taxRate	: simpleCart.taxRate().toFixed(2)
 							, itemCount : simpleCart.find({}).length
 						},
-						action = opts.url + "?order_id=" + $("#order_id").attr("value") + "&company_id=" + $("#company_id").attr("value"),
+						action = opts.url + "?order_id=" + $("#order_id").attr("value") + "&company_id=" + company_config.company_id,
 						method = opts.method === "GET" ? "GET" : "POST";
 
 
@@ -6012,212 +5938,6 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 			};
 
 			simpleCart.extend(selectorFunctions, {
-
-				"MooTools"		: {
-					text: function (text) {
-						return this.attr(_TEXT_, text);
-					},
-					html: function (html) {
-						return this.attr(_HTML_, html);
-					},
-					val: function (val) {
-						return this.attr(_VALUE_, val);
-					},
-					attr: function (attr, val) {
-						if (isUndefined(val)) {
-							return this.el.get(attr);
-						}
-						
-						this.el.set(attr, val);
-						return this;
-					},
-					remove: function () {
-						this.el.dispose();
-						return null;
-					},
-					addClass: function (klass) {
-						this.el.addClass(klass);
-						return this;
-					},
-					removeClass: function (klass) {
-						this.el.removeClass(klass);
-						return this;
-					},
-					append: function (item) {
-						this.el.adopt(item.el);
-						return this;
-					},
-					each: function (callback) {
-						if (isFunction(callback)) {
-							simpleCart.each(this.el, callback);
-						}
-						return this;
-					},
-					click: function (callback) {
-						if (isFunction(callback)) {
-							this.each(function (e) {
-								e.addEvent(_CLICK_, function (ev) {
-									callback.call(e,ev);
-								});
-							});
-						} else if (isUndefined(callback)) {
-							this.el.fireEvent(_CLICK_);
-						}
-
-						return this;
-					},
-					live: function (	event,callback) {
-						var selector = this.selector;
-						if (isFunction(callback)) {
-							simpleCart.$(document).el.addEvent(event, function (e) {
-								var target = simpleCart.$(e.target);
-								if (target.match(selector)) {
-									callback.call(target, e);
-								}
-							});
-						}
-					},
-					match: function (selector) {
-						return this.el.match(selector);
-					},
-					parent: function () {
-						return simpleCart.$(this.el.getParent());
-					},
-					find: function (selector) {
-						return simpleCart.$(this.el.getElements(selector));
-					},
-					closest: function (selector) {
-						return simpleCart.$(this.el.getParent(selector));
-					},
-					descendants: function () {
-						return this.find("*");
-					},
-					tag: function () {
-						return this.el[0].tagName;
-					},
-
-
-					create: function (selector) {
-						this.el = $engine(selector);
-					}
-
-
-				},
-
-				"Prototype"		: {
-					text: function (text) {
-						if (isUndefined(text)) {
-							return this.el[0].innerHTML;
-						}
-						this.each(function (e) {
-							$(e).update(text);
-						});
-						return this;
-					},
-					html: function (html) {
-						return this.text(html);
-					},
-					val: function (val) {
-						return this.attr(_VALUE_, val);
-					},
-					attr: function (attr, val) {
-						if (isUndefined(val)) {
-							return this.el[0].readAttribute(attr);
-						}
-						this.each(function (e) {
-							$(e).writeAttribute(attr, val);
-						});
-						return this;
-					},
-					append: function (item) {
-						this.each(function (e) {
-							if (item.el) {
-								item.each(function (e2) {
-									$(e).appendChild(e2);
-								});
-							} else if (isElement(item)) {
-								$(e).appendChild(item);
-							}
-						});
-						return this;
-					},
-					remove: function () {
-						this.each(function (e) {
-							$(e).remove();
-						});
-						return this;
-					},
-					addClass: function (klass) {
-						this.each(function (e) {
-							$(e).addClassName(klass);
-						});
-						return this;
-					},
-					removeClass: function (klass) {
-						this.each(function (e) {
-							$(e).removeClassName(klass);
-						});
-						return this;
-					},
-					each: function (callback) {
-						if (isFunction(callback)) {
-							simpleCart.each(this.el, callback);
-						}
-						return this;
-					},
-					click: function (callback) {
-						if (isFunction(callback)) {
-							this.each(function (e) {
-								$(e).observe(_CLICK_, function (ev) {
-									callback.call(e,ev);
-								});
-							});
-						} else if (isUndefined(callback)) {
-							this.each(function (e) {
-								$(e).fire(_CLICK_);
-							});
-						}
-						return this;
-					},
-					live: function (event,callback) {
-						if (isFunction(callback)) {
-							var selector = this.selector;
-							document.observe(event, function (e, el) {
-								if (el === $engine(e).findElement(selector)) {
-									callback.call(el, e);
-								}
-							});
-						}
-					},
-					parent: function () {
-						return simpleCart.$(this.el.up());
-					},
-					find: function (selector) {
-						return simpleCart.$(this.el.getElementsBySelector(selector));
-					},
-					closest: function (selector) {
-						return simpleCart.$(this.el.up(selector));
-					},
-					descendants: function () {
-						return simpleCart.$(this.el.descendants());
-					},
-					tag: function () {
-						return this.el.tagName;
-					},
-
-
-					create: function (selector) {
-						if (isString(selector)) {
-							this.el = $engine(selector);
-						} else if (isElement(selector)) {
-							this.el = [selector];
-						}
-					}
-
-
-
-				},
-
 				"jQuery"		: {
 					passthrough: function (action, val) {
 						if (isUndefined(val)) {
@@ -6531,8 +6251,8 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 			return simpleCart;
 		};
 
-    if ($('#company_id').length > 0){
-        space = 'simpleCart_' + $('#company_id').val();
+    if (typeof company_config != 'undefined' && typeof company_config.company_id != 'undefined'){
+        space = 'simpleCart_' + company_config.company_id;
     }else{
         space = 'simpleCart';
     }
@@ -6741,15 +6461,18 @@ removeItem:function (b) {a.load("localStorage");b=c(b);a.removeAttribute(b);a.sa
       }
     },
     setToken: function(token) {
-      var company;
+      var company_collection;
       if (this._store) {
         this._store.set('token', token);
-        company = conekta._accessors.getCompany();
-        company = company.fetch({
-          token: token
-        }, function(model) {
-          conekta._store.set('company', model);
-          return conekta.checkout._model.set('company_id', model.id);
+        company_collection = new conekta._models.CompanyCollection();
+        company_collection.fetch({
+          token: token,
+          success: function(collection) {
+            var model;
+            model = collection.at(0);
+            conekta._store.set('company', model);
+            return conekta.checkout._model.set('company_id', model.id);
+          }
         });
       }
     },
@@ -6916,6 +6639,7 @@ OrderItem Models, Collection and Views and for the cart
             'discount': product.get('discount'),
             'volume_discounts': product.get('volume_discounts') || [],
             'weight': product.get('weight') + (product_option.get('weight') || 0),
+            'image': product.get('image'),
             'length': product.get('length') + (product_option.get('length') || 0),
             'width': product.get('width') + (product_option.get('width') || 0),
             'height': product.get('height') + (product_option.get('height') || 0),
@@ -6958,6 +6682,7 @@ OrderItem Models, Collection and Views and for the cart
             'discount': product.get('discount'),
             'volume_discounts': product.get('volume_discounts') || [],
             'weight': product.get('weight'),
+            'image': product.get('image'),
             'length': product.get('length'),
             'width': product.get('width'),
             'height': product.get('height'),
@@ -7177,6 +6902,74 @@ Order Model, Collections and Views for the cart
 
 
 /*
+Shipment Models and Collections
+*/
+
+
+(function() {
+
+  conekta._models.Shipment = Backbone.RelationalModel.extend({
+    modelName: 'shipment'
+  });
+
+  conekta._models.ShipmentCollection = Backbone.Collection.extend({
+    model: conekta._models.Shipment
+  });
+
+  conekta._models.OrderShipment = conekta._models.Shipment.extend({
+    modelName: 'order_shipment',
+    urlRoot: 'order_shipments',
+    relations: [
+      {
+        type: Backbone.HasOne,
+        key: 'address',
+        relatedModel: 'conekta._models.OrderShipmentAddress',
+        collectionType: 'conekta._models.OrderShipmentAddressCollection',
+        reverseRelation: {
+          type: Backbone.HasOne,
+          key: 'parent'
+        }
+      }
+    ]
+  });
+
+  conekta._models.OrderShipmentCollection = conekta._models.ShipmentCollection.extend({
+    model: conekta._models.OrderShipment
+  });
+
+  conekta._models.SubscriptionShipment = conekta._models.Shipment.extend({
+    modelName: 'subscription_shipment',
+    relations: [
+      {
+        type: Backbone.HasOne,
+        key: 'address',
+        relatedModel: 'conekta._models.SubscriptionShipmentAddress',
+        collectionType: 'conekta._models.SubscriptionShipmentAddressCollection',
+        reverseRelation: {
+          type: Backbone.HasOne,
+          key: 'parent'
+        }
+      }, {
+        type: Backbone.HasOne,
+        key: 'period',
+        relatedModel: 'conekta._models.ShipmentPeriod',
+        collectionType: 'conekta._models.ShipmentPeriodCollection',
+        reverseRelation: {
+          type: Backbone.HasOne,
+          key: 'parent'
+        }
+      }
+    ]
+  });
+
+  conekta._models.SubscriptionShipmentCollection = conekta._models.ShipmentCollection.extend({
+    model: conekta._models.SubscriptionShipment
+  });
+
+}).call(this);
+
+
+/*
 OrderItem Models, Collection and Views and for the cart
 */
 
@@ -7186,11 +6979,11 @@ OrderItem Models, Collection and Views and for the cart
   conekta._models.ShippingAddress = Backbone.RelationalModel.extend({
     modelName: 'shipping_address',
     passwordRequired: function(value, attr, computedState) {
-      var login_attributes, parent, required, signed_in, user_session;
-      parent = this.get('parent');
-      if (parent) {
-        required = parent.getCompany().get('prompt_for_signup');
-        signed_in = parent.get('purchaser_user_id');
+      var login_attributes, order, required, signed_in, user_session;
+      order = this.get('parent').get('parent');
+      if (order) {
+        required = order.getCompany().get('prompt_for_signup');
+        signed_in = order.get('purchaser_user_id');
         if (required && !signed_in) {
           if (!value) {
             return "Una contraseña está requierida.";
@@ -7198,7 +6991,7 @@ OrderItem Models, Collection and Views and for the cart
             if (user && !user.id) {
               user_session = user.get('session');
               login_attributes = {
-                name: computedState['contact_name'],
+                name: computedState['name'],
                 email: computedState['email'],
                 password: value
               };
@@ -7222,7 +7015,7 @@ OrderItem Models, Collection and Views and for the cart
       password: {
         fn: 'passwordRequired'
       },
-      contact_name: [
+      name: [
         {
           minLength: 2,
           msg: "El destinario no es valido."
@@ -7278,7 +7071,7 @@ OrderItem Models, Collection and Views and for the cart
   });
 
   conekta._models.ShippingAddressCollection = Backbone.Collection.extend({
-    model: conekta._models.ShippingAddress
+    model: conekta._models.ShipmentAddress
   });
 
   conekta._models.UserShippingAddress = conekta._models.ShippingAddress.extend({
@@ -7290,21 +7083,124 @@ OrderItem Models, Collection and Views and for the cart
     model: conekta._models.UserShippingAddress
   });
 
-  conekta._models.OrderShippingAddress = conekta._models.ShippingAddress.extend({
-    modelName: 'order_shipping_address',
-    urlRoot: 'user_shipping_addresses'
+  conekta._models.OrderShipmentAddress = conekta._models.ShippingAddress.extend({
+    modelName: 'order_shipment_address'
   });
 
-  conekta._models.OrderShippingAddressCollection = conekta._models.ShippingAddressCollection.extend({
-    model: conekta._models.OrderShippingAddress
+  conekta._models.OrderShipmentAddressCollection = conekta._models.ShippingAddressCollection.extend({
+    model: conekta._models.OrderShipmentAddress
   });
 
-  conekta._models.SubscriptionShippingAddress = conekta._models.ShippingAddress.extend({
-    modelName: 'subscription_shipping_address'
+  conekta._models.SubscriptionShipmentAddress = conekta._models.ShippingAddress.extend({
+    modelName: 'subscription_shipment_address'
   });
 
-  conekta._models.SubscriptionShippingAddressCollection = conekta._models.ShippingAddressCollection.extend({
-    model: conekta._models.SubscriptionShippingAddress
+  conekta._models.SubscriptionShipmentAddressCollection = conekta._models.ShippingAddressCollection.extend({
+    model: conekta._models.SubscriptionShipmentAddress
+  });
+
+}).call(this);
+
+
+/*
+Payment Models and Collections
+*/
+
+
+(function() {
+
+  conekta._models.Payment = Backbone.RelationalModel.extend({
+    modelName: 'payment'
+  });
+
+  conekta._models.PaymentCollection = Backbone.Collection.extend({
+    model: conekta._models.Payment
+  });
+
+  conekta._models.OrderPayment = conekta._models.Payment.extend({
+    modelName: 'order_payment',
+    relations: [
+      {
+        type: Backbone.HasOne,
+        key: 'billing_info',
+        relatedModel: 'conekta._models.OrderBillingInfo',
+        collectionType: 'conekta._models.OrderBillingInfoCollection',
+        reverseRelation: {
+          type: Backbone.HasOne,
+          key: 'parent',
+          includeInJSON: false
+        }
+      }
+    ]
+  });
+
+  conekta._models.OrderPaymentCollection = conekta._models.PaymentCollection.extend({
+    model: conekta._models.OrderPayment
+  });
+
+  conekta._models.SubscriptionPayment = conekta._models.Payment.extend({
+    modelName: 'subscription_payment',
+    relations: [
+      {
+        type: Backbone.HasOne,
+        key: 'billing_info',
+        relatedModel: 'conekta._models.SubscriptionBillingInfo',
+        collectionType: 'conekta._models.SubscriptionBillingInfoCollection',
+        reverseRelation: {
+          type: Backbone.HasOne,
+          key: 'parent',
+          includeInJSON: false
+        }
+      }, {
+        type: Backbone.HasOne,
+        key: 'period',
+        relatedModel: 'conekta._models.PaymentPeriod',
+        collectionType: 'conekta._models.PaymentPeriodCollection',
+        reverseRelation: {
+          type: Backbone.HasOne,
+          key: 'parent',
+          includeInJSON: false
+        }
+      }
+    ]
+  });
+
+  conekta._models.SubscriptionPaymentCollection = conekta._models.PaymentCollection.extend({
+    model: conekta._models.SubscriptionPayment
+  });
+
+}).call(this);
+
+
+/*
+OrderItem Models, Collection and Views and for the cart
+*/
+
+
+(function() {
+
+  conekta._models.Period = Backbone.RelationalModel.extend({
+    modelName: 'period'
+  });
+
+  conekta._models.PeriodCollection = Backbone.Collection.extend({
+    model: conekta._models.Period
+  });
+
+  conekta._models.ShipmentPeriod = conekta._models.Period.extend({
+    modelName: 'shipment_period'
+  });
+
+  conekta._models.ShipmentPeriodCollection = conekta._models.PeriodCollection.extend({
+    model: conekta._models.OrderPeriod
+  });
+
+  conekta._models.PaymentPeriod = conekta._models.Period.extend({
+    modelName: 'payment_period'
+  });
+
+  conekta._models.PaymentPeriodCollection = conekta._models.PeriodCollection.extend({
+    model: conekta._models.SubscriptionPeriod
   });
 
 }).call(this);
@@ -7707,18 +7603,18 @@ Order Model, Collections and Views for the cart
         }
       }, {
         type: Backbone.HasOne,
-        key: 'shipping_address',
-        relatedModel: 'conekta._models.OrderShippingAddress',
-        collectionType: 'conekta._models.OrderShippingAddressCollection',
+        key: 'shipment',
+        relatedModel: 'conekta._models.OrderShipment',
+        collectionType: 'conekta._models.OrderShipment',
         reverseRelation: {
           type: Backbone.HasOne,
           key: 'parent'
         }
       }, {
         type: Backbone.HasOne,
-        key: 'billing_info',
-        relatedModel: 'conekta._models.OrderBillingInfo',
-        collectionType: 'conekta._models.OrderBillingInfoCollection',
+        key: 'payment',
+        relatedModel: 'conekta._models.OrderPayment',
+        collectionType: 'conekta._models.OrderPayment',
         reverseRelation: {
           type: Backbone.HasOne,
           key: 'parent',
@@ -7793,18 +7689,18 @@ Subscription Model, Collections and Views for the cart
         }
       }, {
         type: Backbone.HasOne,
-        key: 'shipping_address',
-        relatedModel: 'conekta._models.SubscriptionShippingAddress',
-        collectionType: 'conekta._models.SubscriptoinShippingAddressCollection',
+        key: 'shipment',
+        relatedModel: 'conekta._models.SubscriptionShipment',
+        collectionType: 'conekta._models.SubscriptionShipment',
         reverseRelation: {
           type: Backbone.HasOne,
           key: 'parent'
         }
       }, {
         type: Backbone.HasOne,
-        key: 'billing_info',
-        relatedModel: 'conekta._models.SubscriptionBillingInfo',
-        collectionType: 'conekta._models.SubscriptionBillingInfoCollection',
+        key: 'payment',
+        relatedModel: 'conekta._models.SubscriptionPayment',
+        collectionType: 'conekta._models.SubscriptionPayment',
         reverseRelation: {
           type: Backbone.HasOne,
           key: 'parent',
@@ -7863,6 +7759,14 @@ OrderItem cart extensions
         },
         getAttributes: function() {
           return this._model.toJSON();
+        },
+        remove: function() {
+          return this._model.destroy({}, {
+            remote: false
+          });
+        },
+        setQuantity: function(quantity) {
+          return this._model.set('quantity', quantity);
         },
         _model: this
       };
@@ -7932,6 +7836,56 @@ ShippingAddress cart extensions
         },
         _model: this
       };
+    }
+  });
+
+}).call(this);
+
+
+/*
+BillingInfo cart extensions
+*/
+
+
+(function() {
+
+  _.extend(conekta._models.Payment.prototype, {
+    initialize: function() {
+      return this.on('change', function() {
+        if (this.get('parent')) {
+          this.get('parent').change();
+        }
+        if (!this.isNew()) {
+          return this.save({}, {
+            remote: false
+          });
+        }
+      });
+    }
+  });
+
+}).call(this);
+
+
+/*
+BillingInfo cart extensions
+*/
+
+
+(function() {
+
+  _.extend(conekta._models.Period.prototype, {
+    initialize: function() {
+      return this.on('change', function() {
+        if (this.get('parent')) {
+          this.get('parent').change();
+        }
+        if (!this.isNew()) {
+          return this.save({}, {
+            remote: false
+          });
+        }
+      });
     }
   });
 
@@ -8060,13 +8014,14 @@ Order/Subscription/Quote shared methods
       return Math.round(subtotal * 100.0) / 100.0;
     },
     display_subtotal: function() {
-      var company, company_tax_rate, display_subtotal, items_by_tax_rate, pequeno_contribuyente, tax_included_in_price, tax_rates, tax_total;
+      var company, company_tax_rate, display_subtotal, items_by_tax_rate, pequeno_contribuyente, show_tax_in_price, tax_included_in_price, tax_rates, tax_total;
       company = this.getCompany();
       company_tax_rate = company.get('tax_rate') || 0.16;
       pequeno_contribuyente = company.get('pequeno_contribuyente');
       tax_included_in_price = company.get('tax_included_in_price');
+      show_tax_in_price = company.get('show_tax_in_price');
       display_subtotal = 0;
-      if (pequeno_contribuyente) {
+      if (show_tax_in_price) {
         if (tax_included_in_price) {
           display_subtotal = this.get('items').reduce(function(sum, item) {
             return sum = sum + item.total_price_with_tax();
@@ -8092,20 +8047,22 @@ Order/Subscription/Quote shared methods
     },
     shipping_total: function() {
       var shipping_total;
-      shipping_total = this.get('shipping_cost') || 0;
+      shipping_total = this.get('shipment').get('price') || 0;
       if (this.get('billing_cycles') && this.get('billing_cycles') !== -1) {
         shipping_total = shipping_total * this.get('billing_cycles');
       }
-      return shipping_total;
+      return parseFloat(shipping_total);
     },
     display_shipping: function() {
-      var company, company_tax_rate, display_shipping_total, pequeno_contribuyente;
+      var company, company_tax_rate, display_shipping_total, show_tax_in_price;
       company = this.getCompany();
       company_tax_rate = company.get('tax_rate') || 0.16;
-      pequeno_contribuyente = company.get('pequeno_contribuyente');
-      display_shipping_total = this.shipping_total();
-      if (pequeno_contribuyente && this.get('shipping_carrier')) {
+      show_tax_in_price = company.get('show_tax_in_price');
+      display_shipping_total = null;
+      if (show_tax_in_price && this.get('shipment').get('carrier')) {
         display_shipping_total = this.shipping_total() * (1 + company_tax_rate);
+      } else {
+        display_shipping_total = this.shipping_total();
       }
       return display_shipping_total;
     },
@@ -8116,7 +8073,7 @@ Order/Subscription/Quote shared methods
       company_tax_rate = company.get('tax_rate') || 0.16;
       tax_total = 0;
       if (tax_included_in_price) {
-        tax_total = this.total() - this.subtotal();
+        tax_total = this.total() - this.total() / (1 + company_tax_rate);
       } else {
         items_by_tax_rate = this.get('items').groupBy(function(item) {
           return item.tax_rate();
@@ -8126,18 +8083,18 @@ Order/Subscription/Quote shared methods
         _.each(tax_rates, function(key) {
           var subtotal_by_tax_rate, tax_rate;
           tax_rate = company_tax_rate;
-          if (typeof key !== 'undefined' && key !== null && !isNaN(key) && !key === 'undefined') {
+          if (typeof key !== 'undefined' && key !== null && !isNaN(key) && key !== 'undefined') {
             tax_rate = parseFloat(key);
           }
           subtotal_by_tax_rate = _.reduce(items_by_tax_rate[key], function(sum, item) {
             return sum = sum + item.total_price_without_tax();
           }, 0);
-          if (tax_rate === company_tax_rate && this.get('shipping_carrier')) {
+          if (tax_rate === company_tax_rate && this.get('shipment').get('carrier')) {
             subtotal_by_tax_rate = subtotal_by_tax_rate + this.shipping_total();
           }
           return tax_total = subtotal_by_tax_rate * tax_rate;
         }, this);
-        if (_.indexOf(tax_rates, company_tax_rate.toString()) === -1 && this.get('shipping_carrier')) {
+        if (_.indexOf(tax_rates, company_tax_rate.toString()) === -1 && this.get('shipment').get('carrier')) {
           tax_total = tax_total + this.shipping_total() * company_tax_rate;
         }
       }
@@ -8153,10 +8110,10 @@ Order/Subscription/Quote shared methods
         total = this.get('items').reduce(function(sum, item) {
           return sum = sum + item.total_price_with_tax();
         }, 0);
-        if (this.get('billing_cycles') && this.get('billing_cycles') !== -1) {
-          total = total * this.get('billing_cycles');
+        if (this.get('payment').get('period') && this.get('payment').get('period').get('total_number') > 0) {
+          total = total * this.get('payment').get('period').get('total_number');
         }
-        if (this.get('shipping_carrier')) {
+        if (this.get('shipment').get('carrier')) {
           total = total + this.shipping_total() * (1 + company_tax_rate);
         } else {
           total = total + this.shipping_total();
@@ -8166,14 +8123,28 @@ Order/Subscription/Quote shared methods
       }
       return Math.round(total * 100.0) / 100.0;
     },
+    preventa_total: function() {
+      var preventa_total;
+      preventa_total = 0;
+      this.get('items').each(function(item) {
+        if (item.get('preventa') || item.get('preventa_outstanding_amount')) {
+          return preventa_total = preventa_total + item.get('price') * item.get('quantity');
+        }
+      });
+      if (preventa_total > 0) {
+        preventa_total = preventa_total + (this.get('shipping_total') || 0);
+      }
+      return preventa_total;
+    },
     getShippingOptions: function(callback) {
-      var shipping_address;
-      shipping_address = _.clone(this.get('shipping_address').toJSON());
-      delete shipping_address['parent'];
+      var address;
+      address = _.clone(this.get('shipment').get('address').toJSON());
+      delete address['parent'];
       return this.get('shipping_options').fetch({
         data: {
+          reference_id: this.get('reference_id'),
           total: this.get('total'),
-          shipping_address: shipping_address,
+          address: address,
           company_id: this.get('company_id'),
           items: this.get('items').map(function(order_item) {
             return {
@@ -8197,8 +8168,8 @@ Order/Subscription/Quote shared methods
     },
     postalCodeLookup: function(success_callback, error_callback) {
       var _this = this;
-      return $.ajax({
-        url: this.urlBase() + '/shipping_options/postal_code_lookup?country_code=' + this.get('shipping_address').get('country_code') + '&postal_code=' + this.get('shipping_address').get('postal_code') + '&company_id=' + this.get('company_id'),
+      return jQuery.ajax({
+        url: this.urlBase() + '/shipping_options/postal_code_lookup?country_code=' + this.get('shipment').get('address').get('country_code') + '&postal_code=' + this.get('shipment').get('address').get('postal_code') + '&company_id=' + this.get('company_id'),
         type: 'GET',
         dataType: 'JSON',
         success: function(data) {
@@ -8215,7 +8186,7 @@ Order/Subscription/Quote shared methods
       });
     },
     setPaymentMethod: function(payment_option) {
-      var billing_cycle_config, billing_cycles, billing_period_length, payment_method_name, shipping_period_length;
+      var payment_method_name;
       payment_method_name = payment_option;
       if (payment_option instanceof conekta._models.PaymentMethod) {
         payment_method_name = payment_option.get('name');
@@ -8224,100 +8195,87 @@ Order/Subscription/Quote shared methods
           return payment_option.get('name') === payment_method_name;
         })[0];
       }
-      billing_period_length = this.get('billing_period_length');
-      shipping_period_length = this.get('shipping_period_length') || billing_period_length;
       if (this instanceof conekta._models.Subscription) {
-        billing_cycle_config = this.get('billing_cycle_config');
-        if (billing_cycle_config) {
-          billing_cycles = null;
-          if (billing_cycle_config['payment_methods']) {
-            billing_cycles = billing_cycle_config['payment_methods'][payment_method_name];
-          }
-          if (!billing_cycles) {
-            if (billing_cycle_config['recurring'] && payment_option.get('installment_types').indexOf('recurring') !== -1) {
-              billing_cycles = parseInt(billing_cycle_config['recurring']);
-            } else if (billing_cycle_config['lump_sum']) {
-              billing_cycles = parseInt(billing_cycle_config['lump_sum']);
-            }
-          }
-          this.set('billing_cycles', billing_cycles);
+        if (payment_option.get('installment_types').indexOf('recurring') !== -1) {
+          this.get('shipment').get('period').set('total_number', this.get('shipment').get('period').get('recurring_total_number'));
+          this.get('payment').get('period').set('total_number', this.get('payment').get('period').get('recurring_total_number'));
+        } else {
+          this.get('shipment').get('period').set('total_number', this.get('shipment').get('period').get('one_time_total_number'));
+          this.get('payment').get('period').set('total_number', this.get('payment').get('period').get('one_time_total_number'));
         }
-        this.set('shipping_cycles', this.get('billing_cycles'));
       }
       this.set('payment_method', payment_method_name);
       this.update_items();
     },
     setShippingOption: function(shipping_option) {
-      var attributes;
+      var attributes, shipment;
+      shipment = this.get('shipment');
       if (shipping_option instanceof conekta._models.ShippingOption) {
-        this.set({
-          shipping_id: shipping_option.get('id'),
-          shipping_cost_unadjusted: shipping_option.get('price'),
-          shipping_cost: shipping_option.get('price'),
-          shipping_cost_actual: shipping_option.get('actual_price'),
-          shipping_carrier: shipping_option.get('carrier'),
-          shipping_service_name: shipping_option.get('service_name'),
-          shipping_service_code: shipping_option.get('service_code')
+        shipment.set({
+          price: shipping_option.get('price'),
+          carrier: shipping_option.get('carrier'),
+          service_name: shipping_option.get('service_name'),
+          service_code: shipping_option.get('service_code')
         });
         this.update_items();
       } else if (typeof shipping_option.getAttributes === 'function') {
         attributes = shipping_option.getAttributes();
-        this.set({
-          shipping_id: attributes['id'],
-          shipping_cost_unadjusted: attributes['price'],
-          shipping_cost: attributes['price'],
-          shipping_cost_actual: attributes['actual_price'],
-          shipping_carrier: attributes['carrier'],
-          shipping_service_name: attributes['service_name'],
-          shipping_service_code: attributes['service_code']
+        shipment.set({
+          price: attributes['price'],
+          carrier: attributes['carrier'],
+          service_name: attributes['service_name'],
+          service_code: attributes['service_code']
         });
         this.update_items();
       } else {
-        this.set({
-          shipping_id: shipping_option['id'],
-          shipping_cost_unadjusted: shipping_option['cost'],
-          shipping_cost: shipping_option['cost'],
-          shipping_cost_actual: shipping_option['actual_cost'],
-          shipping_carrier: shipping_option['carrier'],
-          shipping_service_name: shipping_option['service_name'],
-          shipping_service_code: shipping_option['service_code']
+        shipment.set({
+          price: shipping_option['price'],
+          carrier: shipping_option['carrier'],
+          service_name: shipping_option['service_name'],
+          service_code: shipping_option['service_code']
         });
       }
     },
     update_items: function() {
-      var company, company_tax_rate, shipping_cost, shipping_cost_sanitized, shipping_required, subtotal, tax_total, total;
-      if (conekta._store && this.get('items')) {
+      var company, company_tax_rate, shipment_price, shipment_price_sanitized, shipment_required, subtotal, tax_total, total;
+      if (conekta._store && this.get('items') && this.get('items') instanceof Backbone.Collection) {
         company = this.getCompany();
         company_tax_rate = company.get('tax_rate') || 0.16;
-        shipping_cost = this.get('shipping_cost_unadjusted');
-        shipping_cost_sanitized = shipping_cost || 0.00;
         total = 0;
         subtotal = 0;
-        tax_total = shipping_cost_sanitized * company_tax_rate;
-        shipping_required = false;
+        tax_total = 0;
+        shipment_price = parseFloat(this.get('shipment').get('price'));
+        shipment_price_sanitized = shipment_price || 0.00;
+        if (!this.get('shipment').get('tax_included')) {
+          tax_total = shipment_price_sanitized * company_tax_rate;
+        } else {
+          tax_total = shipment_price_sanitized - shipment_price_sanitized / (1 + company_tax_rate);
+        }
+        shipment_required = false;
         this.get('items').each(function(order_item) {
           if (order_item.get('product_type') !== 'digital' && order_item.get('product_type') !== 'event' && (!order_item.get('preventa') || (order_item.get('preventa') && order_item.get('preventa') >= 100))) {
-            return shipping_required = true;
+            return shipment_required = true;
           }
         });
         this.set({
+          'preventa_total': this.preventa_total(),
           'total': this.total(),
           'subtotal': this.subtotal(),
           'tax': this.tax(),
           'display_shipping': this.display_shipping(),
           'display_subtotal': this.display_subtotal(),
-          'shipping_required': shipping_required,
-          'shipping_cost': shipping_cost
+          'shipment_required': shipment_required,
+          'shipment_price': shipment_price
         });
-        if (this.get('shipping_address')) {
-          this.get('shipping_address').set({
-            'shipping_required': shipping_required
+        if (this.get('shipment').get('address')) {
+          this.get('shipment').get('address').set({
+            'shipment_required': shipment_required
           });
         }
         simpleCart.empty();
-        if (this.get('shipping_cost')) {
+        if (this.get('shipment').get('price')) {
           if (company.get('show_tax_in_price')) {
-            if (this.get('shipping_carrier')) {
+            if (this.get('shipment').get('carrier')) {
               simpleCart({
                 shippingFlatRate: this.shipping_total() * (1 + (company.get('tax_rate') || 0.16)),
                 tax_shipping: true
@@ -8366,7 +8324,7 @@ Order/Subscription/Quote shared methods
       return this.save({}, {
         remote: true,
         success: function(model) {
-          return $.ajax({
+          return jQuery.ajax({
             data: {
               reference_id: model.get('reference_id')
             },
@@ -8396,6 +8354,8 @@ Order/Subscription/Quote shared methods
         this.set('payment_method', provider);
         if (parameter_hash['credit_card']) {
           this.set('credit_card', parameter_hash['credit_card']);
+          this.set('success_url', parameter_hash['success_url']);
+          this.set('failure_url', parameter_hash['failure_url']);
         }
       }
       company = this.getCompany();
@@ -8421,15 +8381,17 @@ Order/Subscription/Quote shared methods
         this.save({}, {
           remote: true,
           success: function(model) {
-            var response;
+            var payment, response;
             simpleCart.empty();
             if (typeof success_callback === 'function') {
+              payment = model.get('payment');
               response = {
+                conekta_reference_id: model.get('reference_id'),
                 total: model.get('total'),
-                bank_name: model.get('bank_name'),
-                bank_service_number: model.get('bank_service_number'),
-                bank_service_name: model.get('bank_service_name'),
-                bank_deposit_reference: model.get('bank_deposit_reference')
+                bank_name: payment.get('bank_name'),
+                bank_service_number: payment.get('bank_service_number'),
+                bank_service_name: payment.get('bank_service_name'),
+                bank_deposit_reference: payment.get('bank_deposit_reference')
               };
               return success_callback(response);
             }
@@ -8446,13 +8408,15 @@ Order/Subscription/Quote shared methods
         this.save({}, {
           remote: true,
           success: function(model) {
-            var response;
+            var payment, response;
             simpleCart.empty();
             if (typeof success_callback === 'function') {
+              payment = model.get('payment');
               response = {
-                total: model.get('total'),
-                barcode: model.get('barcode'),
-                barcode_url: model.get('barcode_url')
+                conekta_reference_id: payment.get('reference_id'),
+                total: payment.get('total'),
+                barcode: payment.get('barcode'),
+                barcode_url: payment.get('barcode_url')
               };
               return success_callback(response);
             }
@@ -8477,15 +8441,15 @@ Order/Subscription/Quote shared methods
               };
               return error_callback(response);
             } else {
-              if (model.get('fraud_response') === 'Rejected') {
-                form = $("<form></form>");
+              if (model.get('payment').get('fraud_response') === 'Rejected') {
+                form = jQuery("<form></form>");
                 form.attr('style', 'display:none;');
                 form.attr('action', 'https://eps.banorte.com/secure3d/Solucion3DSecure.htm');
                 form.attr('method', 'POST');
-                _.each(model.get('redirect_form_attributes'), function(value, key) {
-                  return form.append($("<input/>").attr("type", "hidden").attr("name", key).val(value));
+                _.each(model.get('payment').get('redirect_form_attributes'), function(value, key) {
+                  return form.append(jQuery("<input/>").attr("type", "hidden").attr("name", key).val(value));
                 });
-                $("body").append(form);
+                jQuery("body").append(form);
                 form.submit();
                 return form.remove();
               } else {
@@ -8605,7 +8569,7 @@ Order/Subscription/Quote shared methods
         proceed_to_step = step;
       }
       if (true) {
-        form = $("<form></form>");
+        form = jQuery("<form></form>");
         form.attr('style', 'display:none;');
         if (document.location.hostname.match(/^127\.0\.0\.1$/) && typeof company_config !== 'undefined') {
           form.attr('action', 'http://127.0.0.1:3000/checkout?company_id=' + checkout_hash['company_id'] + '#' + proceed_to_step + '-bustcache');
@@ -8614,63 +8578,62 @@ Order/Subscription/Quote shared methods
         }
         form.attr('method', 'GET');
         if (checkout_hash['id']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'id').val(checkout_hash['id']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'id').val(checkout_hash['id']));
         }
         if (checkout_hash['reference_id']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'reference_id').val(checkout_hash['reference_id']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'reference_id').val(checkout_hash['reference_id']));
         }
         if (checkout_hash['external_reference_id']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'external_reference_id').val(checkout_hash['external_reference_id']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'external_reference_id').val(checkout_hash['external_reference_id']));
         }
         if (checkout_hash['order_id']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'order_id').val(checkout_hash['order_id']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'order_id').val(checkout_hash['order_id']));
         }
-        form.append($("<input/>").attr("type", "hidden").attr("name", 'company_id').val(checkout_hash['company_id']));
-        if (checkout_hash['billing_period_length'] && checkout_hash['billing_period_unit']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'billing_period_length').val(checkout_hash['billing_period_length']));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'billing_period_unit').val(checkout_hash['billing_period_unit']));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'billing_cycles').val(checkout_hash['billing_cycles']));
-          _.each(checkout_hash['billing_cycle_config'], function(value, key) {
-            return form.append($("<input/>").attr("type", "hidden").attr("name", 'billing_cycle_config[' + key + ']').val(value));
-          });
+        form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'company_id').val(checkout_hash['company_id']));
+        if (checkout_hash['payment'] && checkout_hash['payment']['period'] && checkout_hash['payment']['period']['length'] && checkout_hash['payment']['period']['unit']) {
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_length').val(checkout_hash['payment']['period']['length']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_unit').val(checkout_hash['payment']['period']['unit']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_cycles').val(checkout_hash['payment']['period']['total_number']));
         }
         if (checkout_hash['payment_succeeded_url']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'payment_succeeded_url').val(checkout_hash['payment_succeeded_url']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_succeeded_url').val(checkout_hash['payment_succeeded_url']));
         }
         if (checkout_hash['payment_failed_url']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'payment_failed_url').val(checkout_hash['payment_failed_url']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_failed_url').val(checkout_hash['payment_failed_url']));
         }
-        if (checkout_hash['shipping_period_length'] && checkout_hash['shipping_period_unit']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_period_length').val(checkout_hash['shipping_period_length']));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_period_unit').val(checkout_hash['shipping_period_unit']));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_cycles').val(checkout_hash['shipping_cycles']));
-        }
-        if (checkout_hash['shipping_id']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_id').val(checkout_hash['shipping_id']));
-        }
-        if (typeof checkout_hash['shipping_cost'] !== 'undefined') {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_cost').val(checkout_hash['shipping_cost']));
-        }
-        if (checkout_hash['shipping_carrier']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_carrier').val(checkout_hash['shipping_carrier']));
-        }
-        if (checkout_hash['shipping_service_name']) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_service_name').val(checkout_hash['shipping_service_name']));
-        }
-        if (checkout_hash['shipping_address']) {
-          _.each(checkout_hash['shipping_address'], function(val, key) {
-            return form.append($("<input/>").attr("type", "hidden").attr("name", 'shipping_address[' + key + ']').val(val));
-          });
+        if (checkout_hash['shipment']) {
+          if (checkout_hash['shipment']['period'] && checkout_hash['shipment']['period']['length'] && checkout_hash['shipment']['period']['unit']) {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_period_length').val(checkout_hash['shipment']['period']['length']));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_period_unit').val(checkout_hash['shipment']['period']['unit']));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_cycles').val(checkout_hash['shipment']['period']['total_number']));
+          }
+          if (checkout_hash['shipment']['id']) {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_id').val(checkout_hash['shipment']['id']));
+          }
+          if (typeof checkout_hash['shipment']['price'] !== 'undefined') {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipment_price').val(checkout_hash['shipment']['price']));
+          }
+          if (checkout_hash['shipment']['carrier']) {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_carrier').val(checkout_hash['shipment']['carrier']));
+          }
+          if (checkout_hash['shipment']['service_name']) {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_service_name').val(checkout_hash['shipment']['service_name']));
+          }
+          if (checkout_hash['shipment']['address']) {
+            _.each(checkout_hash['shipment']['address'], function(val, key) {
+              return form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'shipping_address[' + key + ']').val(val));
+            });
+          }
         }
         i = 0;
         _.each(checkout_hash['custom_fields'], function(custom_field, i) {
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'custom_fields[' + i + '][id]').val(custom_field['id']));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'custom_fields[' + i + '][name]').val(custom_field['name']));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'custom_fields[' + i + '][value]').val(custom_field['value']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'custom_fields[' + i + '][id]').val(custom_field['id']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'custom_fields[' + i + '][name]').val(custom_field['name']));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'custom_fields[' + i + '][value]').val(custom_field['value']));
           return i = i + 1;
         });
         _.each(checkout_hash['items'], function(val, i) {
-          var id, image, name, price, product, product_id, product_option_id, product_quantity, sku;
+          var id, image, name, price, product_id, product_option_id, product_quantity, sku;
           id = val['id'];
           product_id = val['product_id'];
           product_option_id = val['product_option_id'];
@@ -8678,24 +8641,21 @@ Order/Subscription/Quote shared methods
           sku = val['sku'];
           price = val['price'];
           name = val['name'];
+          image = val['image'];
           if (id && id !== "") {
-            form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][id]').val(id));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][id]').val(id));
           }
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][product_id]').val(product_id));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][product_option_id]').val(product_option_id));
-          form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][quantity]').val(product_quantity));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][product_id]').val(product_id));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][product_option_id]').val(product_option_id));
+          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][quantity]').val(product_quantity));
           if (sku && sku !== "" && price && price !== "") {
-            form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][name]').val(name));
-            form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][sku]').val(sku));
-            form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][price]').val(price));
-            product = Backbone.Relational.store.find(conekta._models.Product, {
-              id: product_id
-            });
-            image = product.get('file_name');
-            form.append($("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][file_name]').val(image));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][name]').val(name));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][sku]').val(sku));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][price]').val(price));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][image]').val(image));
           }
         });
-        $("body").append(form);
+        jQuery("body").append(form);
         form.submit();
         form.remove();
       } else {
@@ -8759,20 +8719,20 @@ Order/Subscription/Quote shared methods
         },
         setBillingInfo: function(info) {
           var billing_info;
-          billing_info = this._model.get('billing_info');
+          billing_info = this._model.get('payment').get('billing_info');
           if (billing_info) {
             billing_info.set(info);
           } else {
-            this._model.set('billing_info', info);
+            this._model.get('payment').set('billing_info', info);
           }
         },
         setShippingAddress: function(address) {
           var address_model;
-          address_model = this._model.get('shipping_address');
+          address_model = this._model.get('shipment').get('address');
           if (address_model) {
             address_model.set(address);
           } else {
-            this._model.set('shipping_address', address);
+            this._model.get('shipment').set('address', address);
           }
         },
         setCustomField: function(name, value) {
@@ -8859,33 +8819,21 @@ Order/Subscription/Quote shared methods
       };
       if (this instanceof conekta._models.Subscription) {
         _.extend(api, {
-          setBillingPeriod: function(period_unit, period_length, number_cycles) {
+          setBillingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_number_cycles) {
             var model;
-            model = this._model;
-            model.set('billing_period_unit', period_unit);
-            model.set('billing_period_length', period_length);
-            if (typeof number_cycles === 'number') {
-              model.set('billing_cycles', number_cycles);
-            } else if (typeof number_cycles === 'string') {
-              model.set('billing_cycles', parseInt(number_cycles));
-            } else if (typeof number_cycles === 'object') {
-              model.set('billing_cycles', null);
-              model.set('billing_cycle_config', number_cycles);
-            }
+            model = this._model.get('payment').get('period');
+            model.set('unit', period_unit);
+            model.set('length', period_length);
+            model.set('recurring_total_number', recurring_number_cycles);
+            model.set('one_time_number_cycles', one_time_number_cycles);
           },
-          setShippingPeriod: function(period_unit, period_length, number_cycles) {
+          setShippingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_number_cycles) {
             var model;
-            model = this._model;
-            model.set('shipping_period_unit', period_unit);
-            model.set('shipping_period_length', period_length);
-            if (typeof number_cycles === 'number') {
-              model.set('shipping_cycles', number_cycles);
-            } else if (typeof number_cycles === 'string') {
-              model.set('shipping_cycles', parseInt(number_cycles));
-            } else if (typeof number_cycles === 'object') {
-              model.set('shipping_cycles', null);
-              model.set('shipping_cycle_config', number_cycles);
-            }
+            model = this._model.get('shipment').get('period');
+            model.set('unit', period_unit);
+            model.set('length', period_length);
+            model.set('recurring_total_number', recurring_number_cycles);
+            model.set('one_time_number_cycles', one_time_number_cycles);
           }
         });
       }
@@ -9026,6 +8974,12 @@ Order Model, Collections and Views for the cart
         data['company_id'] = conekta._accessors.getCompany().id;
       }
     }
+    if (!data['payment']) {
+      data['payment'] = {};
+    }
+    if (!data['shipment']) {
+      data['shipment'] = {};
+    }
     checkout_model = null;
     if (conekta._store.get('checkout_order')) {
       conekta._store.get('checkout_order').get('items').each(function(item) {
@@ -9052,6 +9006,8 @@ Order Model, Collections and Views for the cart
       });
     }
     if (type === 'subscription') {
+      data['payment']['period'] = {};
+      data['shipment']['period'] = {};
       checkout_model = new conekta._models.Subscription(data);
       conekta._store.set('checkout_subscription', checkout_model);
     } else if (type === 'order') {
