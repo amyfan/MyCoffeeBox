@@ -4508,9 +4508,9 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 							if (!isNaN(parseInt(newItem.get("inventory")))){
 								if (parseInt(newItem.get("inventory"))  < newItem.quantity()){
 									if (parseInt(newItem.get("inventory")) < 1){
-										alert('Perdón, éste producto esta agotado.');
+										alert('PerdÃ³n, Ã©ste producto esta agotado.');
 									}else{
-										alert('Perdón, solo ' + newItem.get("inventory")  + ' unidades están disponibles.');
+										alert('PerdÃ³n, solo ' + newItem.get("inventory")  + ' unidades estÃ¡n disponibles.');
 									}
 									allow_addition = false;
 								}
@@ -5142,9 +5142,9 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 						if (!isNaN(parseInt(this.get("inventory")))){
 							if (parseInt(this.get("inventory")) < this.quantity() + diff){
 								if (parseInt(this.get("inventory")) < 1){
-									alert('Perdón, éste producto esta agotado.');
+									alert('PerdÃ³n, Ã©ste producto esta agotado.');
 								}else{
-									alert('Perdón, solo ' + this.get("inventory")  + ' unidades están disponibles.');
+									alert('PerdÃ³n, solo ' + this.get("inventory")  + ' unidades estÃ¡n disponibles.');
 								}
 								allow_addition = false;
 							}
@@ -5329,7 +5329,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 //                        data.srt = 12;
                         data.src = 1;
                         data.sra = 1;
-                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return custom_field.get('name') == 'Código de Promoción'}).get('value').match(/PROMOTAURUS/i)){
+                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return custom_field.get('name') == 'CÃ³digo de PromociÃ³n'}).get('value').match(/PROMOTAURUS/i)){
                             data.a1 = 0;
                             data.t1 = "M";
                             data.p1= 1;
@@ -5445,7 +5445,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
                     //shipping
                     if (simpleCart.shipping() > 0){
                         counter = counter+1;
-                        data["item_name_" + counter] = "Costo de Envió (con IVA)";
+                        data["item_name_" + counter] = "Costo de EnviÃ³ (con IVA)";
                         data["item_quantity_" + counter] = 1;
                         data["item_ammount_" + counter] = (simpleCart.shipping()*(1+simpleCart.taxRate())).toFixed(2).replace(/\./,'');//.toFixed(2);
                         data["item_currency_" + counter] = 'mxn';
@@ -6986,7 +6986,7 @@ OrderItem Models, Collection and Views and for the cart
         signed_in = order.get('purchaser_user_id');
         if (required && !signed_in) {
           if (!value) {
-            return "Una contraseña está requierida.";
+            return "Una contraseÃ±a estÃ¡ requierida.";
           } else {
             if (user && !user.id) {
               user_session = user.get('session');
@@ -7010,7 +7010,7 @@ OrderItem Models, Collection and Views and for the cart
       email: {
         required: true,
         pattern: 'email',
-        msg: "El correo electrónico de entrega no es valido."
+        msg: "El correo electrÃ³nico de entrega no es valido."
       },
       password: {
         fn: 'passwordRequired'
@@ -7043,11 +7043,11 @@ OrderItem Models, Collection and Views and for the cart
       },
       country: {
         minLength: 2,
-        msg: "El país de entrega no es valido."
+        msg: "El paÃ­s de entrega no es valido."
       },
       postal_code: {
         minLength: 5,
-        msg: "El código postal de entrega no es valido."
+        msg: "El cÃ³digo postal de entrega no es valido."
       },
       line_1: [
         {
@@ -7065,7 +7065,7 @@ OrderItem Models, Collection and Views and for the cart
       phone: {
         minLength: 8,
         pattern: /^[\(\)\-\d ]+$/,
-        msg: "El número de teléfono no es valido."
+        msg: "El nÃºmero de telÃ©fono no es valido."
       }
     }
   });
@@ -7218,7 +7218,7 @@ OrderItem Models, Collection and Views and for the cart
     validation: {
       email: {
         pattern: 'email',
-        msg: "El correo electrónico de facturación no es valido."
+        msg: "El correo electrÃ³nico de facturaciÃ³n no es valido."
       },
       rfc: {
         minLength: 2,
@@ -7226,32 +7226,32 @@ OrderItem Models, Collection and Views and for the cart
       },
       colonia: {
         minLength: 2,
-        msg: "La Colonia de facturación ne es valido."
+        msg: "La Colonia de facturaciÃ³n ne es valido."
       },
       city: {
         minLength: 2,
-        msg: "La ciudad de facturación no es valido."
+        msg: "La ciudad de facturaciÃ³n no es valido."
       },
       state: {
         minLength: 2,
-        msg: "El Estado de facturación no es valido."
+        msg: "El Estado de facturaciÃ³n no es valido."
       },
       postal_code: {
         minLength: 5,
-        msg: "El código postal de facturación no es valido."
+        msg: "El cÃ³digo postal de facturaciÃ³n no es valido."
       },
       street: {
         minLength: 2,
-        msg: "La calle de facturación no es valido."
+        msg: "La calle de facturaciÃ³n no es valido."
       },
       external_number: {
         minLength: 1,
-        msg: "El número exterior de facturación no es valido."
+        msg: "El nÃºmero exterior de facturaciÃ³n no es valido."
       },
       phone: {
         minLength: 8,
         pattern: /^[\(\)\-\d ]+$/,
-        msg: "El número de teléfono no es valido."
+        msg: "El nÃºmero de telÃ©fono no es valido."
       }
     }
   });
@@ -7412,11 +7412,11 @@ UserSession Model, Collections Base
     validation: {
       email: {
         pattern: 'email',
-        msg: "El correo electrónico no es valido."
+        msg: "El correo electrÃ³nico no es valido."
       },
       password: {
         minLength: 1,
-        msg: "La contraseña no es valido."
+        msg: "La contraseÃ±a no es valido."
       },
       name: {
         minLength: 1,
@@ -7499,7 +7499,7 @@ UserSession Model, Collections Base
         dataType: 'json',
         url: '/consumer_admin/send_password_reset',
         success: function(data, textStatus, jqXHR) {
-          return alert('Reciberas un correo para reiniciar tu contraseña.');
+          return alert('Reciberas un correo para reiniciar tu contraseÃ±a.');
         },
         error: function(jqXHR, textStatus, errorThrown) {
           return alert(textStatus);
@@ -8544,7 +8544,7 @@ Order/Subscription/Quote shared methods
               parameters['cmd'] = '_xclick-subscriptions';
               parameters['billing_period_unit'] = billing_period_unit;
               parameters['billing_period_length'] = billing_period_length;
-              description = 'Subscripción  de ';
+              description = 'SubscripciÃ³n  de ';
               descriptions = model.get('items').map(function(item) {
                 return ' ' + item.get('name') + (item.get('product_option_text') || '');
               });
@@ -8827,21 +8827,21 @@ Order/Subscription/Quote shared methods
       };
       if (this instanceof conekta._models.Subscription) {
         _.extend(api, {
-          setBillingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_number_cycles) {
+          setBillingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_total_number) {
             var model;
             model = this._model.get('payment').get('period');
             model.set('unit', period_unit);
             model.set('length', period_length);
             model.set('recurring_total_number', recurring_number_cycles);
-            model.set('one_time_number_cycles', one_time_number_cycles);
+            model.set('one_time_total_number', one_time_total_number);
           },
-          setShippingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_number_cycles) {
+          setShippingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_total_number) {
             var model;
             model = this._model.get('shipment').get('period');
             model.set('unit', period_unit);
             model.set('length', period_length);
             model.set('recurring_total_number', recurring_number_cycles);
-            model.set('one_time_number_cycles', one_time_number_cycles);
+            model.set('one_time_total_number', one_time_total_number);
           }
         });
       }
