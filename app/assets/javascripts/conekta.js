@@ -6552,11 +6552,11 @@ OrderItem Models, Collection and Views and for the cart
           i = i + 1;
         }
       }
-      if (this.get('preventa_amount_outstanding')) {
-        discounted_price = this.get('preventa_amount_outstanding');
-      }
       if (this.get('preventa')) {
         discounted_price = price * (parseFloat(this.get('preventa')) / 100.0);
+      }
+      if (this.get('preventa_amount_outstanding') && this.get('parent').get('status') === 'Preventa Pagada') {
+        discounted_price = this.get('preventa_amount_outstanding');
       }
       if (volume_discounted_price !== null) {
         return Math.round(volume_discounted_price * 100.0) / 100.0;
@@ -8199,9 +8199,11 @@ Order/Subscription/Quote shared methods
         if (payment_option.get('installment_types').indexOf('recurring') !== -1) {
           this.get('shipment').get('period').set('total_number', this.get('shipment').get('period').get('recurring_total_number'));
           this.get('payment').get('period').set('total_number', this.get('payment').get('period').get('recurring_total_number'));
+          this.set('billing_cycles', null);
         } else {
           this.get('shipment').get('period').set('total_number', this.get('shipment').get('period').get('one_time_total_number'));
           this.get('payment').get('period').set('total_number', this.get('payment').get('period').get('one_time_total_number'));
+          this.set('billing_cycles', this.get('payment').get('period').get('one_time_total_number'));
         }
       }
       this.set('payment_method', payment_method_name);
@@ -8834,6 +8836,7 @@ Order/Subscription/Quote shared methods
             model.set('length', period_length);
             model.set('recurring_total_number', recurring_number_cycles);
             model.set('one_time_total_number', one_time_total_number);
+            conekta._store.persist();
           },
           setShippingPeriod: function(period_unit, period_length, recurring_number_cycles, one_time_total_number) {
             var model;
@@ -8842,6 +8845,7 @@ Order/Subscription/Quote shared methods
             model.set('length', period_length);
             model.set('recurring_total_number', recurring_number_cycles);
             model.set('one_time_total_number', one_time_total_number);
+            conekta._store.persist();
           }
         });
       }
