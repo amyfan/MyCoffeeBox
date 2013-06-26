@@ -8553,6 +8553,7 @@ Order/Subscription/Quote shared methods
               description += descriptions.join(', ') + ' por ' + company.get('name') + '.';
               parameters['payment_description'] = description;
             }
+            simpleCart.currency(conekta.checkout.getCurrency());
             if (provider === 'paypal') {
               parameters['email'] = payment_method.get('paypal_email');
               simpleCart.checkout.PayPal(parameters);
@@ -8643,7 +8644,7 @@ Order/Subscription/Quote shared methods
           return i = i + 1;
         });
         _.each(checkout_hash['items'], function(val, i) {
-          var id, image, name, price, product_id, product_option_id, product_quantity, sku;
+          var id, image, name, price, product_id, product_option_id, product_quantity, product_type, sku;
           id = val['id'];
           product_id = val['product_id'];
           product_option_id = val['product_option_id'];
@@ -8652,6 +8653,7 @@ Order/Subscription/Quote shared methods
           price = val['price'];
           name = val['name'];
           image = val['image'];
+          product_type = val['product_type'] || 'physical';
           if (id && id !== "") {
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][id]').val(id));
           }
@@ -8663,6 +8665,7 @@ Order/Subscription/Quote shared methods
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][sku]').val(sku));
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][price]').val(price));
             form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][image]').val(image));
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'items[' + i + '][product_type]').val(product_type));
           }
         });
         jQuery("body").append(form);
@@ -8824,6 +8827,12 @@ Order/Subscription/Quote shared methods
           }
         },
         _model: this,
+        setCurrency: function(currency) {
+          return this._model.set('currency', currency);
+        },
+        getCurrency: function() {
+          return this._model.get('currency') || "MXN";
+        },
         getAttributes: function() {
           return this._model.toJSON();
         }
