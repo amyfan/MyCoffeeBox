@@ -5329,7 +5329,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 //                        data.srt = 12;
                         data.src = 1;
                         data.sra = 1;
-                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return custom_field.get('name') == 'digo de Promoci'}).get('value').match(/PROMOTAURUS/i)){
+                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && (conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return (custom_field.get('name') || "").match(/digo de Promoci/)}).get('value') || "").match(/PROMOTAURUS/i)){
                             data.a1 = 0;
                             data.t1 = "M";
                             data.p1= 1;
