@@ -8813,6 +8813,7 @@ Order/Subscription/Quote shared methods
           }
           if (backbone_item) {
             items.add(backbone_item);
+            backbone_item.recalculate_total();
             backbone_item.bind('change', this._model.update_items, this._model);
             backbone_item.bind('remove', this._model.update_items, this._model);
             backbone_item.trigger('change');
