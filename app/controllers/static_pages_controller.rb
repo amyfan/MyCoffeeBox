@@ -2,16 +2,7 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def subscribe
-  end
-
-  def subscription
-  end
-
   def faq
-  end
-
-  def international
   end
 
   def how
@@ -29,10 +20,10 @@ class StaticPagesController < ApplicationController
   def gift
   end
 
-  def shipping
+  def subscribe
   end
 
-  def subscribetest
+  def shipping
   end
 
   def gus

@@ -1,31 +1,28 @@
 class StaticPagesEnController < ApplicationController
   layout "application_en"
 
-  def home_en
+  def home
   end
 
-  def subscribe_en
+  def faq
   end
 
-  def faq_en
+  def how
   end
 
-  def international_en
+  def team
   end
 
-  def how_en
+  def contact
   end
 
-  def team_en
+  def gift
   end
 
-  def contact_en
+  def subscribe
   end
 
-  def gift_en
-  end
-
-  def shipping_en
+  def shipping
   end
 
 end
