@@ -32,15 +32,14 @@
         h2
           color: $gray
 
-#where
+#where, #giftlength
   @include box
   @include clearfix
   border: none !important
   ul
     width: 100%
     li
-      width: 49%
-      height: 90px
+      height: 120px
       background: $light_yellow_two
       float: left
       display: block
@@ -48,10 +47,18 @@
       margin-right: 0.5em
       padding: 1em 0.5em
       text-align: center
-      h3
-        margin-top: 0.6em
-        margin-bottom: 0.5em
-        font-size: 1.5em
+      h2.li
+        margin-top: 0.5em
+        margin-bottom: 0.2em
+        font-size: 1.6em
+        font-weight: 600
+      h3.li
+        margin-bottom: 0.2em
+        font-size: 1.2em
+      p.li
+        color: red
+      p.gift
+        color: red
         font-weight: 600
       @include box
       &:last-child
@@ -65,44 +72,12 @@
           border: 1px solid $gray
           h2
             color: $gray
-
+#where
+  li
+    width: 49%
 #giftlength
-  @include box
-  @include clearfix
-  border: none !important
   li
     width: 32%
-    height: 120px
-    background: $light_yellow_two
-    float: left
-    display: block
-    border: 1px solid $light_gray
-    margin-right: 0.5em
-    padding: 1em 0.5em
-    text-align: center
-    h2.gift
-      margin-top: 0.5em
-      margin-bottom: 0.2em
-      font-size: 1.6em
-      font-weight: 600
-    h3.gift
-      margin-bottom: 0.2em
-      font-size: 1.2em
-    p.gift
-      color: red
-      font-weight: 600
-    @include box
-    &:last-child
-      margin-bottom: 0
-    &:hover
-      background: $brand
-      cursor: pointer
-    &.selected
-      background: $light_yellow
-      &:hover
-        border: 1px solid $gray
-        h2
-          color: $gray
 
 #alert
   background: $invalid_light
