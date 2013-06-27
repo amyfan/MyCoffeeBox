@@ -1,0 +1,25 @@
+
+#content.gift
+  %h1 ¡Gus!
+  %ul
+    %li.image
+      #gusimage
+        %img{:src => "/images/pasaporte.png"}
+    %li.description
+      %p Hola!
+      %p Como sabes me encanta el café y me subscribí a este club de café
+      %p Está buenisimo, te suscribes y te mandan hasta tu casa café orgánico de los mejores pequeños productores de Chiapas. 
+      %p Si quisieras suscribirte, y pones mi correo electrónico me dan un mes gratis, lo bueno, es que tu puedes hacer lo mismo con otros amigos para que tu también ganes. 
+      %p Imagínate si se suscriben 12 amigos podríamos tener ¡un año gratis!
+#content.cuantogus
+  #frequencygus
+    %h1 ¿Cada cuánto?
+    %ul
+      %li{:"data-frequency" => 2}
+        %h3 Cada 2 semanas
+      %li{:"data-frequency" => 4}
+        %h3 Cada 4 semanas
+      %li{:"data-frequency" => 6}
+        %h3 Cada 6 semanas
+  .actions.siguientegus
+    %a.nextgus{:href => "#"} Siguiente

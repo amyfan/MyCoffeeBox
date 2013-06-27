@@ -16,37 +16,39 @@
   %body
     #header-container
       #header
-        %a.header{:href => "/es", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Logo']);"}
+        %a.header{:href => "/en", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Logo']);"}
           %img{:src => "/images/web_logo.png"}
         %ul
           %li
-            %a.header{:href => "/es/how", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'How Header']);"} ¿Cómo Funciona?
+            %a.header{:href => "/en/how", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'How Header']);"} How It Works
           %li
-            %a.header{:href => "/es/products", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Products Header']);"} Nuestros Cafés
+            %a.header{:href => "/en/products", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Products Header']);"} Our Coffees
           %li
-            %a.header{:href => "/en", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'ES->EN Header']);"} English
+            %a.header{:href => "/en/faq", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'FAQ Header']);"} FAQ
+          %li
+            %a.header{:href => "/es", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'EN->ES Header']);"} Español
     = yield
     #footer
       #info
-        %h2.footer Más información
+        %h2.footer More Information
         %ul
           %li
-            %a.footer{:href => "/es/how", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'How Footer']);"} ¿Cómo funciona?
+            %a.footer{:href => "/en/how", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'How Footer']);"} How It Works
           %li
-            %a.footer{:href => "/es/products", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Products Footer']);"} Nuestros cafés
+            %a.footer{:href => "/en/products", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Products Footer']);"} Our Coffees
           %li
-            %a.footer{:href => "/es/faq", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'FAQ Footer']);"} Preguntas frecuentes
+            %a.footer{:href => "/en/faq", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'FAQ Footer']);"} FAQ
           %li
-            %a.footer{:href => "/es/team", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Team Footer']);"} Equipo
+            %a.footer{:href => "/en/team", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Team Footer']);"} Team
           %li
-            %a.footer{:href => "/es/contact", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Contact Footer']);"} Contacto
+            %a.footer{:href => "/en/contact", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Contact Footer']);"} Contact
       #social
-        %h2.footer Redes sociales
+        %h2.footer Social Networks
         %ul
           %li
-            %a.footer{:href => "https://twitter.com/MyCoffeeBoxmx", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Twitter footer']);", :target => "_blank"}Twitter
+            %a.footer{:href => "https://twitter.com/MyCoffeeBoxmx", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Twitter footer']);", :target => "_blank"}Twitter
           %li
-            %a.footer{:href => "https://www.facebook.com/mycoffeeboxmx", :onClick => "_gaq.push(['_trackEvent', 'ES Layout', 'Link', 'Facebook Footer']);", :target => "_blank"}Facebook
+            %a.footer{:href => "https://www.facebook.com/pages/Mycoffeebox-English/310312309099125", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Facebook Footer']);", :target => "_blank"}Facebook
           %li
             %p &nbsp;
           %li
@@ -58,7 +60,7 @@
     //_gaq.push(['_setAllowLinker', true]);
     _gaq.push(['_trackPageview']);
     
-    //pageTracker._getLinkerUrl('https://secure.conekta.mx/checkout/flow-cart?company_id=2757603');
+    //pageTracker._getLinkerUrl(https://secure.conekta.mx/checkout/flow-cart?company_id=2757603);
 
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

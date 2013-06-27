@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
   def faq
   end
 
-  def international_en
+  def international
   end
 
   def how
@@ -33,6 +33,9 @@ class StaticPagesController < ApplicationController
   end
 
   def subscribetest
+  end
+
+  def gus
   end
 
 end

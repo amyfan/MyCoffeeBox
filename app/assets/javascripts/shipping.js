@@ -51,6 +51,11 @@ function setUpShipping(){
       $('#directions').goTo();
       return;
     };
+    
+    // TODO: temp until conekta removes validation for this field
+    if (colonia.length == 0) {
+    	colonia = 'n/a';
+    }
 
     conekta.checkout.setShippingAddress({
       name: nombre,

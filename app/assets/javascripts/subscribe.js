@@ -1,5 +1,6 @@
-var sorprendememex_product;
+var surprisememex_product;
 var surprisemeusa_product;
+var surprisemelatin_product;
 var surprisemeeuro_product;
 
 $(function() {
@@ -17,9 +18,11 @@ $(function() {
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
     	if (product_attributes.name.indexOf("México") > -1) {
-  	    sorprendememex_product = products[i];
-  	  } else if (product_attributes.name.indexOf("America") > -1) {
+  	    surprisememex_product = products[i];
+  	  } else if (product_attributes.name.indexOf("North") > -1) {
   	    surprisemeusa_product = products[i];
+  	  } else if (product_attributes.name.indexOf("South") > -1) {
+  	    surprisemelatin_product = products[i];
   	  } else if (product_attributes.name.indexOf("Europe") > -1) {
   	    surprisemeeuro_product = products[i];
   	  } else if (product_attributes.name.indexOf("Especial") > -1) {
@@ -146,13 +149,25 @@ function setUpSubscription() {
     // We get the subscription location
     var whereValue = parseInt($("#where .selected").data("where"));
 
+    var product;
     if (whereValue == 1) {
-      conekta.checkout.addItem(sorprendememex_product.createItem());
+      product = surprisememex_product;
+      conekta.checkout.setCurrency('MXN');
     } else if (whereValue == 2) {
-      conekta.checkout.addItem(surprisemeusa_product.createItem());
+      product = surprisemeusa_product;
+      conekta.checkout.setCurrency('USD');
     } else if (whereValue == 3) {
-      conekta.checkout.addItem(surprisemeeuro_product.createItem());
+      product = surprisemelatin_product;
+      conekta.checkout.setCurrency('USD');
+    } else if (whereValue == 4) {
+      product = surprisemeeuro_product;
+      conekta.checkout.setCurrency('EUR');
     }
+    
+    conekta.checkout.addItem(product.createItem());
+    // TODO get following lines to work
+    //var product_attributes = product.getAttributes();
+    //conekta.checkout.setCurrency(product_attributes.currency);
     
     // We get the frequency
     var periodFrequencyValue = parseInt($("#frequency .selected").data("frequency"));
@@ -160,40 +175,13 @@ function setUpSubscription() {
     if (conekta.checkout.getItems().length > 0 && periodFrequencyValue > 0) {
       //configure a 3 month subscription default
       if (periodFrequencyValue == 2) {
-        // conekta.checkout.setBillingPeriod('week', 2, {
-          // recurring : -1,
-          // lump_sum : 8
-        // });
-        // conekta.checkout.setShippingPeriod('week', 2, {
-          // recurring : -1,
-          // lump_sum : 8
-        // });
-
         // new syntax, and also changing from 4->3 months
         conekta.checkout.setBillingPeriod('week',2,-1,6);
         conekta.checkout.setShippingPeriod('week',2,-1,6);
       } else if (periodFrequencyValue == 4) {
-        // conekta.checkout.setBillingPeriod('week', 4, {
-          // recurring : -1,
-          // lump_sum : 4
-        // });
-        // conekta.checkout.setShippingPeriod('week', 4, {
-          // recurring : -1,
-          // lump_sum : 4
-        // });
-
         conekta.checkout.setBillingPeriod('week',4,-1,3);
         conekta.checkout.setShippingPeriod('week',4,-1,3);
       } else {
-        // conekta.checkout.setBillingPeriod('week', 6, {
-          // recurring : -1,
-          // lump_sum : 3
-        // });
-        // conekta.checkout.setShippingPeriod('week', 6, {
-          // recurring : -1,
-          // lump_sum : 3
-        // });
-
         conekta.checkout.setBillingPeriod('week',6,-1,2);
         conekta.checkout.setShippingPeriod('week',6,-1,2);
       }

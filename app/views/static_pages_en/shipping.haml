@@ -1,0 +1,32 @@
+#content.shipping
+  %h1 Shipping Address - International
+  #directions
+    %p
+      %span.numrequired 1
+      %input#email{:type => "text", :placeholder => "Your email"}
+    %p
+      %span.numrequired 2
+      %input#coffeetype{:type => "text", :placeholder => "Whole bean or ground?"}
+    %p
+      %span.number 3
+      %input#referral{:type => "text", :placeholder => "If a friend told you about MyCoffeeBox, enter their email"}
+    %p
+      %span.number 4
+      %input#promocode{:type => "text", :placeholder => "Promo code"}
+  #envelope
+    %p
+      %span.numrequired 5
+      %span Indicate the address to deliver your MyCoffeeBox.
+    #destinatario
+      %h2 Addressee
+      %input#nombre{:type => "text", :placeholder => "Name of Addressee"}
+      %input#calle{:type => "text", :placeholder => "Address Line 1"}
+      %input#colonia{:type => "text", :placeholder => "Address Line 2"}
+      %input#ciudad{:type => "text", :placeholder => "City"}
+      %input#estado{:type => "text", :placeholder => "State"}
+      %input#pais{:type => "text", :placeholder => "Country"}
+      %input#cp{:type => "text", :placeholder => "Zip/Postal Code"}
+      %input#telefono{:type => "text", :placeholder => "Phone Number"}
+
+  .actions.siguienteusa
+    %a.nextusa{:href => "#"} Siguiente
