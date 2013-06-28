@@ -198,7 +198,11 @@ function setUpSubscription() {
         conekta.checkout.proceedToCheckout();
       } else {
       	conekta.checkout.save();
-      	window.location = "/shipping";
+        if (window.location.pathname.indexOf("en") > -1) {
+      	  window.location = "/en/shipping";
+      	} else {
+      	  window.location = "/es/shipping";
+      	}
       }
     } else {
     	// this case should no longer happen based on flow of page
