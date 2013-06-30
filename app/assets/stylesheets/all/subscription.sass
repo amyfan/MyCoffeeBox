@@ -32,14 +32,13 @@
         h2
           color: $gray
 
-#where, #giftlength
+#where, #giftwhere, #giftlength
   @include box
   @include clearfix
   border: none !important
   ul
     width: 100%
     li
-      height: 120px
       background: $light_yellow_two
       float: left
       display: block
@@ -75,9 +74,15 @@
 #where
   li
     width: 49%
+    height: 120px
+#giftwhere
+  li
+    width: 49%
+    height: 90px
 #giftlength
   li
     width: 32%
+    height: 120px
 
 #alert
   background: $invalid_light
@@ -116,7 +121,6 @@
       line-height: 1em
       margin-top: 2em
   &.siguiente, &.siguientegift, &.siguientegus
-    display: none
     border: none !important
     @include box
     padding: 0 !important
@@ -134,3 +138,5 @@
       float: right
       font-size: 1.5em
       line-height: 0.7em
+  &.siguiente, &.siguientegus, &.siguientegift
+    display: none

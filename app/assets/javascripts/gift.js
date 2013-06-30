@@ -1,6 +1,7 @@
 var three_product;
 var six_product;
 var twelve_product;
+var four_product;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
@@ -15,6 +16,9 @@ $(function() {
     	    six_product = products[i];
     	  } else if (product_attributes.name.indexOf("12") > -1) {
     	    twelve_product = products[i];
+    	  } else if (product_attributes.name.indexOf("4") > -1) {
+    	  	// temporary 4 mes special
+    	    four_product = products[i];
     	  }
       }
     }
@@ -78,6 +82,8 @@ function checkOutGift() {
     conekta.checkout.addItem(six_product.createItem());
   } else if (lengthValue == 12) {
     conekta.checkout.addItem(twelve_product.createItem());
+  } else if (lengthValue == 4) {
+    conekta.checkout.addItem(four_product.createItem());
   }
     
   if (conekta.checkout.getItems().length > 0) {

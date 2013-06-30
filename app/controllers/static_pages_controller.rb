@@ -14,9 +14,6 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
-  def padre
-  end
-
   def gift
   end
 
