@@ -19,7 +19,7 @@ function setUpShipping(){
     $('input[type=text]').filter(function() { return $(this).val() == ""; }).addClass("empty");
   });
 
-  $('a.nextusa').click(function(event){
+  $('a.nextship').click(function(event){
     _gaq.push(['_trackEvent', 'Shipping', 'clicked', 'Next']);
     event.preventDefault();
     var correo = $('#email').val();
@@ -40,7 +40,9 @@ function setUpShipping(){
     if (coffeetype.length == 0) {$("#coffeetype").addClass("invalid"); valid = false};
     if (correo.length == 0) {$("#email").addClass("invalid"); valid = false};
     if (calle.length == 0) {$("#calle").addClass("invalid"); valid = false};
-    //if (colonia.length == 0) {$("#colonia").addClass("invalid"); valid = false};
+    if (window.location.pathname.indexOf("mex") > -1) {
+      if (colonia.length == 0) {$("#colonia").addClass("invalid"); valid = false};
+    }
     if (ciudad.length == 0) {$("#ciudad").addClass("invalid"); valid = false};
     if (estado.length == 0) {$("#estado").addClass("invalid"); valid = false};
     if (cp.length == 0) {$("#cp").addClass("invalid"); valid = false};
