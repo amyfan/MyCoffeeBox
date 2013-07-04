@@ -25,4 +25,16 @@ class StaticPagesEnController < ApplicationController
   def shipping
   end
 
+  def shipping_mex
+  end
+
+  def payment
+  end
+
+  def order_success
+  end
+
+  def order_failure
+  end
+
 end

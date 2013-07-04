@@ -10,8 +10,6 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'faq' => 'static_pages#faq'
 
-    match 'international' => 'static_pages#international'
-
     match 'contact' => 'static_pages#contact'
 
     match 'team' => 'static_pages#team'
@@ -24,9 +22,17 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'shipping' => 'static_pages#shipping'
 
-    match 'subscribetest' => 'static_pages#subscribetest'
+    match 'shipping_mex' => 'static_pages#shipping_mex'
+
+    match 'payment' => 'static_pages#payment'
+
+    match 'order_success' => 'static_pages#order_success'
+
+    match 'order_failure' => 'static_pages#order_failure'
 
     match 'gus' => 'static_pages#gus'
+
+    match 'hamiltonbeach' => 'static_pages#hamiltonbeach'
 
   end
 
@@ -52,6 +58,15 @@ MyCoffeeBox::Application.routes.draw do
     match 'gift' => 'static_pages_en#gift'
 
     match 'shipping' => 'static_pages_en#shipping'
+
+    match 'shipping_mex' => 'static_pages#shipping_mex'
+
+    match 'payment' => 'static_pages#payment'
+
+    match 'order_success' => 'static_pages#order_success'
+
+    match 'order_failure' => 'static_pages#order_failure'
+
   end
 
 # The priority is based upon order of creation:
