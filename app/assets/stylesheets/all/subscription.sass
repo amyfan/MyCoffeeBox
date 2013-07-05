@@ -1,6 +1,6 @@
 @import "global"
 
-#frequency, #frequencygus
+#subscribefrequency, #frequencygus
   @include box
   @include clearfix
   border: none !important
@@ -32,7 +32,7 @@
         h2
           color: $gray
 
-#where, #giftwhere, #giftlength
+#subscribewhere, #giftwhere, #giftlength, #payment
   @include box
   @include clearfix
   border: none !important
@@ -71,7 +71,7 @@
           border: 1px solid $gray
           h2
             color: $gray
-#where
+#subscribewhere
   li
     width: 49%
     height: 120px
@@ -109,34 +109,43 @@
     margin-left: 560px
     margin-bottom: 0
     width: 100%
-    a.subscribe, a.surpriseme, a.buy
+    a.subscribe, a.buy
       @include button($brand)
       width: 160px
       font-size: 1.5em
       line-height: 0.7em
+    a.surpriseme
+      @include button($brand)
+      width: 160px
+      font-size: 1.4em
+      line-height: 1em
     a.gift
       @include button($special_pink)
       width: 160px
       font-size: 1.3em
       line-height: 1em
       margin-top: 2em
-  &.siguiente, &.siguientegift, &.siguientegus
+  &.siguientesubscribe, &.siguientegift, &.siguientegus, &.siguientepay
     border: none !important
     @include box
     padding: 0 !important
     float: right
     margin: 0 4em 2em 1em
-    a.next
-      @include button($darker_yellow)
+    a.nextsubscribe
       width: 150px
       float: right
       font-size: 1.5em
       line-height: 0.7em
+    a.nextpay, a.nextpaypal
+      width: 250px
+      float: right
+      font-size: 1.4em
+      line-height: 0.7em
+    a.nextsubscribe, a.nextpay
+      @include button($darker_yellow)
     a.nextgift, a.nextgus
       @include button($special_pink)
-      width: 150px
-      float: right
-      font-size: 1.5em
-      line-height: 0.7em
-  &.siguiente, &.siguientegus, &.siguientegift
+    a.nextpay, a.nextpaypal
+      display: none
+  &.siguientesubscribe, &.siguientegift, &.siguientegus, &.siguientepay
     display: none

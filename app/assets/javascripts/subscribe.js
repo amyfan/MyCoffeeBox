@@ -2,12 +2,19 @@ var surprisememex_product;
 var surprisemeusa_product;
 var surprisemelatin_product;
 var surprisemeeuro_product;
+var locale;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
-  
+
+  if (window.location.pathname.indexOf("en") > -1) {
+    locale = "/en";
+  } else {
+    locale = "/es";
+  }
+
   function render_products(products) {
-		// TODO statically displaying bags
+    // TODO statically displaying bags
     $("#content > ul").append(getStaticPhotoForProduct("/images/triunfo.png", 0));
     $("#content > ul").append(getStaticPhotoForProduct("/images/vinic.png", 0));
     $("#content > ul").append(getStaticPhotoForProduct("/images/metik.png", 0));
@@ -17,35 +24,33 @@ $(function() {
 
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
-    	if (product_attributes.name.indexOf("México") > -1) {
-  	    surprisememex_product = products[i];
-  	  } else if (product_attributes.name.indexOf("North") > -1) {
-  	    surprisemeusa_product = products[i];
-  	  } else if (product_attributes.name.indexOf("South") > -1) {
-  	    surprisemelatin_product = products[i];
-  	  } else if (product_attributes.name.indexOf("Europe") > -1) {
-  	    surprisemeeuro_product = products[i];
-  	  } else if (product_attributes.name.indexOf("Especial") > -1) {
-  	    // filter out special promos (father's day for now)
-  	  } else if (product_attributes.name.indexOf("Regalo") > -1) {
-  	    // filter out special gifts for now
-  	  } else {
-  	  	// TODO going to statically display coffee bags for now
+      if (product_attributes.name.indexOf("México") > -1) {
+        surprisememex_product = products[i];
+      } else if (product_attributes.name.indexOf("North") > -1) {
+        surprisemeusa_product = products[i];
+      } else if (product_attributes.name.indexOf("South") > -1) {
+        surprisemelatin_product = products[i];
+      } else if (product_attributes.name.indexOf("Europe") > -1) {
+        surprisemeeuro_product = products[i];
+      } else if (product_attributes.name.indexOf("Especial") > -1) {
+        // filter out special promos (father's day for now)
+      } else if (product_attributes.name.indexOf("Regalo") > -1) {
+        // filter out special gifts for now
+      } else {
+        // TODO going to statically display coffee bags for now
         //$("#content > ul").append(getTemplateForProduct(products[i], i));
       }
     }
   }
-  
-  conekta.display.getProducts(
-  	{},
-  render_products);
+
+
+  conekta.display.getProducts({}, render_products);
 
   setUpSubscription();
 })
-
 function getStaticPhotoForProduct(image_name, id_num) {
   var template = $("#template").clone();
-  template.attr('id', 'template'+(id_num));
+  template.attr('id', 'template' + (id_num));
   template.show();
 
   $("#product", template).html("<img src='" + image_name + "'/>");
@@ -55,12 +60,12 @@ function getStaticPhotoForProduct(image_name, id_num) {
 
 function getTemplateForProduct(product, id_num) {
   var template = $("#template").clone();
-  template.attr('id', 'template'+(id_num));
+  template.attr('id', 'template' + (id_num));
   template.show();
   // The template is usually hidden
-  
+
   product_attributes = product.getAttributes();
-  
+
   // comment out logs before production (crashes older IE's)
   //console.log(product_attributes);
 
@@ -80,9 +85,9 @@ function addInteractionsToProductTemplate(element, product) {
     el.children(".rollover").show()
     el.children("#product").css("opacity", "0.1")
     el.children("h3").hide();
-    
+
     product_attributes = product.getAttributes();
-    
+
     _gaq.push(['_trackEvent', 'Catalog', 'Product Hover', product.getAttributes().name]);
   }, function() {
     var el = $(this);
@@ -94,123 +99,124 @@ function addInteractionsToProductTemplate(element, product) {
 
 function unselectProductTemplates() {
   var i = 0;
-  var template = $("#template"+i);
-  
-//  while (template != 'undefined' && template != null) {
-	while (i < num_products) { // HARDCODING for now
-  	template.removeClass("selected");
-  	i++;
-    template = $("#template"+i);
+  var template = $("#template" + i);
+
+  //  while (template != 'undefined' && template != null) {
+  while (i < num_products) {// HARDCODING for now
+    template.removeClass("selected");
+    i++;
+    template = $("#template" + i);
   }
 }
 
 (function($) {
-    $.fn.goTo = function() {
-        $('html, body').animate({
-            scrollTop: $(this).offset().top + 'px'
-        }, 250);
-        return this; // for chaining...
-    }
+  $.fn.goTo = function() {
+    $('html, body').animate({
+      scrollTop : $(this).offset().top + 'px'
+    }, 250);
+    return this;
+    // for chaining...
+  }
 })(jQuery);
 
 function setUpSubscription() {
   // subscribe/join button click
   $("a.surpriseme").click(function(e) {
     e.preventDefault();
-    $("#content.donde").show();
-    $('#content.donde').goTo();
+    $("#content.dondesubscribe").show();
+    $('#content.dondesubscribe').goTo();
 
-    _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Subscribe', 'subscribe']);
+    _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Personaliza', 'personaliza']);
   })
 
-  $("#where ul li").click(function(i) {
-    $("#where ul li").removeClass("selected");
+  $("#subscribewhere ul li").click(function(i) {
+    $("#subscribewhere ul li").removeClass("selected");
     $(this).addClass("selected");
-    $("#content.cuanto").show();
-    $('#content.cuanto').goTo();
+    $("#content.cuantosubscribe").show();
+    $('#content.cuantosubscribe').goTo();
 
-    _gaq.push(['_trackEvent', 'Subscribe', 'Where',  'type ' + $(this).data("where")]);
+    _gaq.push(['_trackEvent', 'Subscribe', 'Where', 'type ' + $(this).data("where")]);
   });
 
-  $("#frequency ul li").click(function(i) {
-    $("#frequency ul li").removeClass("selected");
+  $("#subscribefrequency ul li").click(function(i) {
+    $("#subscribefrequency ul li").removeClass("selected");
     $(this).addClass("selected");
-    $(".actions.siguiente").show();
+    $(".actions.siguientesubscribe").show();
     _gaq.push(['_trackEvent', 'Subscribe', 'Frequency', 'type ' + $(this).data("frequency")]);
   });
 
   // siguiente button click
-  $("a.next").click(function(e) {
+  $("a.nextsubscribe").click(function(e) {
     e.preventDefault();
     _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Next', 'next']);
-    
-    conekta.checkout.new('subscription', {company_id: 2757603});
-    
-    // We get the subscription location
-    var whereValue = parseInt($("#where .selected").data("where"));
-
-    var product;
-    if (whereValue == 1) {
-      product = surprisememex_product;
-      conekta.checkout.setCurrency('MXN');
-    } else if (whereValue == 2) {
-      product = surprisemeusa_product;
-      conekta.checkout.setCurrency('USD');
-    } else if (whereValue == 3) {
-      product = surprisemelatin_product;
-      conekta.checkout.setCurrency('USD');
-    } else if (whereValue == 4) {
-      product = surprisemeeuro_product;
-      conekta.checkout.setCurrency('EUR');
-    }
-    
-    conekta.checkout.addItem(product.createItem());
-    // TODO get following lines to work
-    //var product_attributes = product.getAttributes();
-    //conekta.checkout.setCurrency(product_attributes.currency);
-    
-    // We get the frequency
-    var periodFrequencyValue = parseInt($("#frequency .selected").data("frequency"));
-
-    if (conekta.checkout.getItems().length > 0 && periodFrequencyValue > 0) {
-      //configure a 3 month subscription default
-      if (periodFrequencyValue == 2) {
-        // new syntax, and also changing from 4->3 months
-        conekta.checkout.setBillingPeriod('week',2,-1,6);
-        conekta.checkout.setShippingPeriod('week',2,-1,6);
-      } else if (periodFrequencyValue == 4) {
-        conekta.checkout.setBillingPeriod('week',4,-1,3);
-        conekta.checkout.setShippingPeriod('week',4,-1,3);
-      } else {
-        conekta.checkout.setBillingPeriod('week',6,-1,2);
-        conekta.checkout.setShippingPeriod('week',6,-1,2);
-      }
-
-      // free shipping
-      conekta.checkout.setShippingOption({
-        id : 891,
-        cost : 0.0,
-        carrier : 'Envío Nacional',
-        service_name : 'Entrega Gratis'
-      });
-
-      if (whereValue == 1) {
-        conekta.checkout.proceedToCheckout();
-      } else {
-      	conekta.checkout.save();
-        if (window.location.pathname.indexOf("en") > -1) {
-      	  window.location = "/en/shipping";
-      	} else {
-      	  window.location = "/es/shipping";
-      	}
-      }
-    } else {
-    	// this case should no longer happen based on flow of page
-      _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'failed']);
-      $('html, body').animate({
-        scrollTop : 0
-      }, 500);
-      // $("#alert").show(500)
-    }
+    nextSubscribe();
   })
+}
+
+function nextSubscribe() {
+  conekta.checkout.new('subscription', {company_id: 2757603});
+
+  // We get the subscription location
+  var whereValue = parseInt($("#subscribewhere .selected").data("where"));
+
+  var product;
+  if (whereValue == 1) {
+    product = surprisememex_product;
+    conekta.checkout.setCurrency('MXN');
+  } else if (whereValue == 2) {
+    product = surprisemeusa_product;
+    conekta.checkout.setCurrency('USD');
+  } else if (whereValue == 3) {
+    product = surprisemelatin_product;
+    conekta.checkout.setCurrency('USD');
+  } else if (whereValue == 4) {
+    product = surprisemeeuro_product;
+    conekta.checkout.setCurrency('EUR');
+  }
+
+  conekta.checkout.addItem(product.createItem());
+  // TODO get following lines to work
+  //var product_attributes = product.getAttributes();
+  //conekta.checkout.setCurrency(product_attributes.currency);
+
+  // We get the frequency
+  var periodFrequencyValue = parseInt($("#subscribefrequency .selected").data("frequency"));
+
+  if (conekta.checkout.getItems().length > 0 && periodFrequencyValue > 0) {
+    //configure a 3 month subscription default
+    if (periodFrequencyValue == 2) {
+      // new syntax, and also changing from 4->3 months
+      conekta.checkout.setBillingPeriod('week', 2, -1, 6);
+      conekta.checkout.setShippingPeriod('week', 2, -1, 6);
+    } else if (periodFrequencyValue == 4) {
+      conekta.checkout.setBillingPeriod('week', 4, -1, 3);
+      conekta.checkout.setShippingPeriod('week', 4, -1, 3);
+    } else {
+      conekta.checkout.setBillingPeriod('week', 6, -1, 2);
+      conekta.checkout.setShippingPeriod('week', 6, -1, 2);
+    }
+
+    // free shipping
+    conekta.checkout.setShippingOption({
+      id : 891,
+      cost : 0.0,
+      carrier : 'Envío Nacional',
+      service_name : 'Entrega Gratis'
+    });
+
+    conekta.checkout.save();
+    if (whereValue == 1) {
+      conekta.checkout.proceedToCheckout();
+      //window.location = locale + "/shipping_mex";
+    } else {
+      window.location = locale + "/shipping";
+    }
+  } else {
+    // this case should no longer happen based on flow of page
+    _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'failed']);
+    $('html, body').animate({
+      scrollTop : 0
+    }, 500);
+    // $("#alert").show(500)
+  }
 }

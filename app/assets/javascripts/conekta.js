@@ -5329,7 +5329,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
 //                        data.srt = 12;
                         data.src = 1;
                         data.sra = 1;
-                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && (conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return (custom_field.get('name') || "").match(/digo de Promoci/)}).get('value') || "").match(/PROMOTAURUS/i)){
+                        if ((conekta.checkout._model.get('company_id') == 2757603 || conekta.checkout._model.get('company_id') == '2757603') && (conekta.checkout._model.get('custom_fields').find(function(custom_field,i){return (custom_field.get('name') || "").match(/digo de Promoci/)}).get('value') || "").match(/PROMOHB/i)){
                             data.a1 = 0;
                             data.t1 = "M";
                             data.p1= 1;
@@ -8353,13 +8353,17 @@ Order/Subscription/Quote shared methods
         provider = parameter_hash['payment_method'];
         success_callback = parameter_hash['success_callback'];
         error_callback = parameter_hash['error_callback'];
+        if (parameter_hash['success_url']) {
+          this.get('payment').set('success_url', parameter_hash['success_url']);
+        }
+        if (parameter_hash['failure_url']) {
+          this.get('payment').set('failure_url', parameter_hash['failure_url']);
+        }
         payment = this.get('payment');
         this.set('payment_method', provider);
         payment.set('type', provider);
         if (parameter_hash['credit_card']) {
           payment.set('credit_card', parameter_hash['credit_card']);
-          payment.set('success_url', parameter_hash['success_url']);
-          payment.set('failure_url', parameter_hash['failure_url']);
         }
       }
       company = this.getCompany();
@@ -8445,7 +8449,10 @@ Order/Subscription/Quote shared methods
               };
               return error_callback(response);
             } else {
-              if (model.get('payment').get('fraud_response') === 'Rejected') {
+              if (model.get('redirect_form_attributes')) {
+                model.get('payment').set('redirect_form_attributes', model.get('redirect_form_attributes'));
+              }
+              if (model.get('payment').get('redirect_form_attributes')) {
                 form = jQuery("<form></form>");
                 form.attr('style', 'display:none;');
                 form.attr('action', 'https://eps.banorte.com/secure3d/Solucion3DSecure.htm');
@@ -8459,7 +8466,7 @@ Order/Subscription/Quote shared methods
               } else {
                 if (typeof success_callback === 'function') {
                   response = {};
-                  return success_callback(response);
+                  return error_callback(response);
                 }
               }
             }
@@ -8521,11 +8528,11 @@ Order/Subscription/Quote shared methods
               success_location = 'https://secure.conekta.mx/checkout/payment_confirmation/' + model.get('reference_id');
               return_location = document.location.protocol + '//' + document.location.host + document.location.pathname + '?company_id=' + company.get('id');
             }
-            if (model.get('payment_succeeded_url')) {
-              success_location = model.get('payment_succeeded_url');
+            if (model.get('payment').get('success_url')) {
+              success_location = model.get('payment').get('success_url');
             }
-            if (model.get('payment_failed_url')) {
-              return_location = model.get('payment_failed_url');
+            if (model.get('payment').get('failure_url')) {
+              return_location = model.get('payment').get('failure_url');
             }
             payment_method_name = model.get('payment_method');
             payment_method = {};
@@ -8603,12 +8610,12 @@ Order/Subscription/Quote shared methods
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_cycles').val(checkout_hash['payment']['period']['total_number']));
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_recurring_total_number').val(checkout_hash['payment']['period']['recurring_total_number']));
           form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'billing_period_one_time_total_number').val(checkout_hash['payment']['period']['one_time_total_number']));
-        }
-        if (checkout_hash['payment_succeeded_url']) {
-          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_succeeded_url').val(checkout_hash['payment_succeeded_url']));
-        }
-        if (checkout_hash['payment_failed_url']) {
-          form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_failed_url').val(checkout_hash['payment_failed_url']));
+          if (checkout_hash['payment']['success_url']) {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_succeeded_url').val(checkout_hash['payment']['success_url']));
+          }
+          if (checkout_hash['payment']['failure_url']) {
+            form.append(jQuery("<input/>").attr("type", "hidden").attr("name", 'payment_failed_url').val(checkout_hash['payment']['failure_url']));
+          }
         }
         if (checkout_hash['shipment']) {
           if (checkout_hash['shipment']['period'] && checkout_hash['shipment']['period']['length'] && checkout_hash['shipment']['period']['unit']) {
@@ -8768,12 +8775,6 @@ Order/Subscription/Quote shared methods
               value: value
             });
           }
-        },
-        setReturnUrls: function(payment_succeeded_url, payment_failed_url) {
-          return this._model.set({
-            'payment_succeeded_url': payment_succeeded_url,
-            'payment_failed_url': payment_failed_url
-          });
         },
         addItem: function(item) {
           var backbone_item, constructor_params, items, model, product;

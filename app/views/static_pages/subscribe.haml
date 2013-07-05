@@ -3,7 +3,7 @@
   %h1 ¡Suscríbete!
   %h2 Sólo $149 pesos por cada envío: 500 grs de café y envío incluido a toda la República Mexicana.
   .actions.subscribe
-    %a.surpriseme{:href => "#"} ¡Suscríbete!
+    %a.surpriseme{:href => "#"} ¡Personaliza tu suscripción!
     %a.gift{:href => "/es/gift"} ¡Regala una membresía!
   %ul
 
@@ -11,8 +11,8 @@
   #product
     %img{:src => "/images/triunfo.png"}
 
-#content.donde
-  #where
+#content.dondesubscribe
+  #subscribewhere
     %h1 ¿A dónde?
     %ul
       %li{:"data-where" => 1}
@@ -32,8 +32,8 @@
         %h3.li $22.99 EUR por mes
         %p.li Envío incluído
 
-#content.cuanto
-  #frequency
+#content.cuantosubscribe
+  #subscribefrequency
     %h1 ¿Cada cuánto?
     %ul
       %li{:"data-frequency" => 2}
@@ -42,5 +42,5 @@
         %h3 Cada 4 semanas
       %li{:"data-frequency" => 6}
         %h3 Cada 6 semanas
-  .actions.siguiente
-    %a.next{:href => "#"} Siguiente
+  .actions.siguientesubscribe
+    %a.nextsubscribe{:href => "#"} Siguiente

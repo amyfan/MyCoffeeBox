@@ -1,12 +1,17 @@
+var locale;
+
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
+
+  if (window.location.pathname.indexOf("en") > -1) {
+    locale = "/en";
+  } else {
+    locale = "/es";
+  }
+
   if (window.location.pathname.indexOf("shipping") > -1) {
     if (conekta.checkout.getItems().length == 0) {
-      if (window.location.pathname.indexOf("en") > -1) {
-        window.location = "/en/subscribe";
-      } else {
-        window.location = "/es/subscribe";
-      }
+      window.location = locale + "/subscribe";
     } else {
       // will comment this out for production (may crash some IE's)
       //console.log(conekta.checkout.getItems()[0]);
@@ -47,30 +52,36 @@ function nextShip() {
     return;
   }
 
-  function credit_card_callback(info) {
-    var url_location = "https://secure.conekta.mx/checkout/payment_confirmation?reference_id=" + 'paypal';
-    document.location.href = url_location;
-  }
-
-  var success_url_callback;
-  var failure_url_callback;
-  if (window.location.pathname.indexOf("en") > -1) {
-    success_url_callback = "http://www.mycoffeebox.com/en/order_success";
-    failure_url_callback = "http://www.mycoffeebox.com/en/order_failure";
+  if (window.location.pathname.indexOf("mex") > -1) {
+    // go to payment option page for mexico customers
+    conekta.checkout.save();
+    window.location = locale + "/payment";
   } else {
-    success_url_callback = "http://www.mycoffeebox.com/es/order_success";
-    failure_url_callback = "http://www.mycoffeebox.com/es/order_failure";
+    // paypal only option for international customers
+    function credit_card_callback(info) {
+      var url_location = "https://secure.conekta.mx/checkout/payment_confirmation?reference_id=" + 'paypal';
+      document.location.href = url_location;
+    }
+
+    var success_url_callback;
+    var failure_url_callback;
+    if (window.location.pathname.indexOf("en") > -1) {
+      success_url_callback = "http://www.mycoffeebox.com/en/order_success";
+      failure_url_callback = "http://www.mycoffeebox.com/en/order_failure";
+    } else {
+      success_url_callback = "http://www.mycoffeebox.com/es/order_success";
+      failure_url_callback = "http://www.mycoffeebox.com/es/order_failure";
+    }
+
+    conekta.checkout.processPayment({
+      payment_method : 'paypal',
+      success_callback : credit_card_callback, // this supposedly doesn't matter
+      success_url : success_url_callback,
+      failure_url : failure_url_callback
+    });
+
+    //conekta.checkout.proceedToCheckout();
   }
-
-  conekta.checkout.processPayment({
-    payment_method : 'paypal',
-    success_callback : credit_card_callback, // this supposedly doesn't matter
-    success_url : success_url_callback,
-    failure_url : failure_url_callback
-  });
-
-  //conekta.checkout.proceedToCheckout();
-
 }
 
 function validateShippingForm() {
@@ -135,7 +146,7 @@ function validateShippingForm() {
     valid = false;
   }
   if (telefono.length < 2 || !telefono.match(/^[0-9\s-\(\)]+$/)) {
-  	// accept numbers, spaces, -()
+    // accept numbers, spaces, -()
     $("#telefono").addClass("invalid");
     valid = false;
   }
