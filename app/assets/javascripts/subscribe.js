@@ -3,14 +3,17 @@ var surprisemeusa_product;
 var surprisemelatin_product;
 var surprisemeeuro_product;
 var locale;
+var page_name;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
 
   if (window.location.pathname.indexOf("en") > -1) {
     locale = "/en";
+    page_name = "EN Subscribe";
   } else {
     locale = "/es";
+    page_name = "ES Subscribe";
   }
 
   function render_products(products) {
@@ -126,7 +129,7 @@ function setUpSubscription() {
     $("#content.dondesubscribe").show();
     $('#content.dondesubscribe').goTo();
 
-    _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Personaliza', 'personaliza']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Personaliza', 'personaliza']);
   })
 
   $("#subscribewhere ul li").click(function(i) {
@@ -135,20 +138,20 @@ function setUpSubscription() {
     $("#content.cuantosubscribe").show();
     $('#content.cuantosubscribe').goTo();
 
-    _gaq.push(['_trackEvent', 'Subscribe', 'Where', 'type ' + $(this).data("where")]);
+    _gaq.push(['_trackEvent', page_name, 'Where', 'type ' + $(this).data("where")]);
   });
 
   $("#subscribefrequency ul li").click(function(i) {
     $("#subscribefrequency ul li").removeClass("selected");
     $(this).addClass("selected");
     $(".actions.siguientesubscribe").show();
-    _gaq.push(['_trackEvent', 'Subscribe', 'Frequency', 'type ' + $(this).data("frequency")]);
+    _gaq.push(['_trackEvent', page_name, 'Frequency', 'type ' + $(this).data("frequency")]);
   });
 
   // siguiente button click
   $("a.nextsubscribe").click(function(e) {
     e.preventDefault();
-    _gaq.push(['_trackEvent', 'Subscribe', 'Clicked Next', 'next']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'next']);
     nextSubscribe();
   })
 }
@@ -213,7 +216,7 @@ function nextSubscribe() {
     }
   } else {
     // this case should no longer happen based on flow of page
-    _gaq.push(['_trackEvent', 'Subscription', 'Clicked Next', 'failed']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'failed']);
     $('html, body').animate({
       scrollTop : 0
     }, 500);

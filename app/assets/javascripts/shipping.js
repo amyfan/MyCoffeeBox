@@ -1,12 +1,15 @@
 var locale;
+var page_name;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
 
   if (window.location.pathname.indexOf("en") > -1) {
     locale = "/en";
+    page_name = "EN Shipping";
   } else {
     locale = "/es";
+    page_name = "ES Shipping";
   }
 
   if (window.location.pathname.indexOf("shipping") > -1) {
@@ -40,7 +43,7 @@ function setUpShipping() {
   });
 
   $('a.nextship').click(function(event) {
-    _gaq.push(['_trackEvent', 'Shipping', 'clicked', 'Next']);
+    _gaq.push(['_trackEvent', page_name, 'clicked', 'Next']);
     event.preventDefault();
     nextShip();
   });
@@ -146,7 +149,7 @@ function validateShippingForm() {
     valid = false;
   }
   if (!valid) {
-    _gaq.push(['_trackEvent', 'Shipping', 'Data entry', 'failed']);
+    _gaq.push(['_trackEvent', page_name, 'Data entry', 'failed']);
     $('#directions').goTo();
     return false;
   }

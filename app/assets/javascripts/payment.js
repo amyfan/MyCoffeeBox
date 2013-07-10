@@ -1,14 +1,17 @@
-var locale;
 var success_url_callback;
 var failure_url_callback;
+var locale;
+var page_name;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
 
   if (window.location.pathname.indexOf("en") > -1) {
     locale = "/en";
+    page_name = "EN Payment";
   } else {
     locale = "/es";
+    page_name = "ES Payment";
   }
 
   if (window.location.pathname.indexOf("payment") > -1) {
@@ -45,17 +48,17 @@ function setUpPayment() {
       $("a.nextpaypal").hide();
       $("a.nextpay").show();
     }
-    _gaq.push(['_trackEvent', 'Payment', 'Method', 'type ' + $(this).data("paymenttype")]);
+    _gaq.push(['_trackEvent', page_name, 'Method', 'type ' + $(this).data("paymenttype")]);
   });
 
   $('a.nextpaypal').click(function(event) {
-    _gaq.push(['_trackEvent', 'Payment', 'Clicked Next', 'paypal']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'paypal']);
     event.preventDefault();
     nextPayPal();
   });
 
   $('a.nextpay').click(function(event) {
-    _gaq.push(['_trackEvent', 'Payment', 'Clicked Next', 'bank']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'bank']);
     event.preventDefault();
     nextBank();
   });

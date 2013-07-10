@@ -4,9 +4,19 @@ var mex_twelve_product;
 var mex_four_product;
 var usa_four_product;
 var whereValue;
+var locale;
+var page_name;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
+
+  if (window.location.pathname.indexOf("en") > -1) {
+    locale = "/en";
+    page_name = "EN Gift";
+  } else {
+    locale = "/es";
+    page_name = "ES Gift";
+  }
 
   function get_special_product(products) {
     for (var i = 0; i < products.length; i++) {
@@ -43,7 +53,7 @@ $(function() {
 function setUpGiftPurchase() {
 
   $("#giftimage img").click(function(i) {
-    _gaq.push(['_trackEvent', 'Gift', 'Clicked Image', 'next']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Image', 'next']);
     $("#content.dondegift").show();
     $('#content.dondegift').goToGift();
   });
@@ -53,7 +63,7 @@ function setUpGiftPurchase() {
     $("#content.dondegift").show();
     $('#content.dondegift').goToGift();
 
-    _gaq.push(['_trackEvent', 'Gift', 'Clicked Regala', 'regala']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Regala', 'regala']);
   })
 
   $("#giftwhere ul li").click(function(i) {
@@ -81,21 +91,21 @@ function setUpGiftPurchase() {
     $("#content.giftlength").show();
     $('#content.giftlength').goTo();
 
-    _gaq.push(['_trackEvent', 'Gift', 'Where', 'type ' + $(this).data("where")]);
+    _gaq.push(['_trackEvent', page_name, 'Where', 'type ' + $(this).data("where")]);
   });
 
   $("#giftlengthmex ul li").click(function(i) {
     $("#giftlengthmex ul li").removeClass("selected");
     $(this).addClass("selected");
     $(".actions.siguientegift").show();
-    _gaq.push(['_trackEvent', 'Gift', 'Mexico Length', 'type ' + $(this).data("giftlength")]);
+    _gaq.push(['_trackEvent', page_name, 'Mexico Length', 'type ' + $(this).data("giftlength")]);
   });
 
   $("#giftlengthusa ul li").click(function(i) {
     $("#giftlengthusa ul li").removeClass("selected");
     $(this).addClass("selected");
     $(".actions.siguientegift").show();
-    _gaq.push(['_trackEvent', 'Gift', 'USA/Canada Length', 'type ' + $(this).data("giftlength")]);
+    _gaq.push(['_trackEvent', page_name, 'USA/Canada Length', 'type ' + $(this).data("giftlength")]);
   });
 
   // $("#giftlengtheurope ul li").click(function(i) {
@@ -114,7 +124,7 @@ function setUpGiftPurchase() {
 
   $("a.nextgift").click(function(e) {
     e.preventDefault();
-    _gaq.push(['_trackEvent', 'Gift', 'Clicked Next', 'next']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'next']);
     checkOutGift();
   })
 }
@@ -172,7 +182,7 @@ function checkOutGift() {
     }
   } else {
     // this case should no longer happen based on flow of page
-    _gaq.push(['_trackEvent', 'Gift', 'Clicked Next', 'failed']);
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'failed']);
     $('html, body').animate({
       scrollTop : 0
     }, 500);
