@@ -1976,7 +1976,6 @@ if (typeof JSON !== 'object') {
   };
 
   window.Store = (function() {
-
     Store.prototype.sep = '';
 
     function Store(name) {
@@ -2469,7 +2468,7 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
               return complete(500, "timeout");
             };
             xdr.onload = function() {
-              var allResponseHeaders, doc, responses, status;
+              var allResponseHeaders, doc, e, parseMessage, responses, status;
               allResponseHeaders = "Content-Length: " + xdr.responseText.length + "\r\nContent-Type: " + xdr.contentType;
               status = {
                 code: 200,
@@ -2482,7 +2481,8 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
                 if ((userType === "json") || ((userType !== "text") && jsonRegEx.test(xdr.contentType))) {
                   try {
                     return responses.json = jQuery.parseJSON(xdr.responseText);
-                  } catch (e) {
+                  } catch (_error) {
+                    e = _error;
                     status.code = 500;
                     return status.message = "parseerror";
                   }
@@ -2491,7 +2491,8 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
                   doc.async = false;
                   try {
                     doc.loadXML(xdr.responseText);
-                  } catch (e) {
+                  } catch (_error) {
+                    e = _error;
                     doc = undefined;
                   }
                   if (!doc || !doc.documentElement || doc.getElementsByTagName("parsererror").length) {
@@ -2501,7 +2502,8 @@ Backbone.Validation=function(a){"use strict";var b={forceUpdate:!1,selector:"nam
                   }
                   return responses.xml = doc;
                 }
-              } catch (parseMessage) {
+              } catch (_error) {
+                parseMessage = _error;
                 throw parseMessage;
               } finally {
                 complete(status.code, status.message, responses, allResponseHeaders);
@@ -6470,6 +6472,9 @@ removeItem:function (b) {a.load("localStorage");b=c(b);a.removeAttribute(b);a.sa
           success: function(collection) {
             var model;
             model = collection.at(0);
+            if (!model.get('token')) {
+              model.set('token', token);
+            }
             conekta._store.set('company', model);
             return conekta.checkout._model.set('company_id', model.id);
           }
@@ -6512,14 +6517,12 @@ removeItem:function (b) {a.load("localStorage");b=c(b);a.removeAttribute(b);a.sa
 
 }).call(this);
 
-
 /*
 OrderItem Models, Collection and Views and for the cart
 */
 
 
 (function() {
-
   conekta._models.Item = Backbone.RelationalModel.extend({
     defaults: {
       quantity: 0,
@@ -6773,7 +6776,6 @@ OrderItem Models, Collection and Views and for the cart
 }).call(this);
 
 (function() {
-
   conekta._models.ShippingOption = Backbone.RelationalModel.extend({
     modelName: 'shipping_option',
     initialize: function() {
@@ -6796,7 +6798,6 @@ OrderItem Models, Collection and Views and for the cart
 }).call(this);
 
 (function() {
-
   conekta._models.PaymentMethod = Backbone.RelationalModel.extend({
     modelName: 'payment_option',
     initialize: function() {
@@ -6819,14 +6820,12 @@ OrderItem Models, Collection and Views and for the cart
 
 }).call(this);
 
-
 /*
 Company Model, Collections and Views for the cart
 */
 
 
 (function() {
-
   conekta._models.Company = Backbone.RelationalModel.extend({
     urlRoot: '/companies',
     modelName: 'company'
@@ -6840,14 +6839,12 @@ Company Model, Collections and Views for the cart
 
 }).call(this);
 
-
 /*
 ProductOption Models, Collection Base
 */
 
 
 (function() {
-
   conekta._models.ProductOption = Backbone.RelationalModel.extend({
     modelName: 'product_option',
     defaults: {
@@ -6867,14 +6864,12 @@ ProductOption Models, Collection Base
 
 }).call(this);
 
-
 /*
 Order Model, Collections and Views for the cart
 */
 
 
 (function() {
-
   conekta._models.Product = Backbone.RelationalModel.extend({
     urlRoot: '/products',
     modelName: 'product',
@@ -6900,14 +6895,12 @@ Order Model, Collections and Views for the cart
 
 }).call(this);
 
-
 /*
 Shipment Models and Collections
 */
 
 
 (function() {
-
   conekta._models.Shipment = Backbone.RelationalModel.extend({
     modelName: 'shipment'
   });
@@ -6968,14 +6961,12 @@ Shipment Models and Collections
 
 }).call(this);
 
-
 /*
 OrderItem Models, Collection and Views and for the cart
 */
 
 
 (function() {
-
   conekta._models.ShippingAddress = Backbone.RelationalModel.extend({
     modelName: 'shipping_address',
     passwordRequired: function(value, attr, computedState) {
@@ -7101,14 +7092,12 @@ OrderItem Models, Collection and Views and for the cart
 
 }).call(this);
 
-
 /*
 Payment Models and Collections
 */
 
 
 (function() {
-
   conekta._models.Payment = Backbone.RelationalModel.extend({
     modelName: 'payment'
   });
@@ -7171,14 +7160,12 @@ Payment Models and Collections
 
 }).call(this);
 
-
 /*
 OrderItem Models, Collection and Views and for the cart
 */
 
 
 (function() {
-
   conekta._models.Period = Backbone.RelationalModel.extend({
     modelName: 'period'
   });
@@ -7205,14 +7192,12 @@ OrderItem Models, Collection and Views and for the cart
 
 }).call(this);
 
-
 /*
 OrderItem Models, Collection and Views and for the cart
 */
 
 
 (function() {
-
   conekta._models.BillingInfo = Backbone.RelationalModel.extend({
     modelName: 'billing_info',
     validation: {
@@ -7288,14 +7273,12 @@ OrderItem Models, Collection and Views and for the cart
 
 }).call(this);
 
-
 /*
 User Model, Collections Base
 */
 
 
 (function() {
-
   conekta._models.User = Backbone.RelationalModel.extend({
     modelName: 'user',
     urlBase: function() {
@@ -7390,14 +7373,12 @@ User Model, Collections Base
 
 }).call(this);
 
-
 /*
 UserSession Model, Collections Base
 */
 
 
 (function() {
-
   conekta._models.UserSession = Backbone.RelationalModel.extend({
     modelName: 'user_session',
     urlBase: function() {
@@ -7528,14 +7509,12 @@ UserSession Model, Collections Base
 
 }).call(this);
 
-
 /*
 OrderCustomField Models, Collection and Views and for the cart
 */
 
 
 (function() {
-
   conekta._models.CustomField = Backbone.RelationalModel.extend({
     modelName: 'custom_field'
   });
@@ -7558,14 +7537,12 @@ OrderCustomField Models, Collection and Views and for the cart
 
 }).call(this);
 
-
 /*
 Order Model, Collections and Views for the cart
 */
 
 
 (function() {
-
   conekta._models.Order = Backbone.RelationalModel.extend({
     urlRoot: '/orders',
     modelName: 'order',
@@ -7631,14 +7608,12 @@ Order Model, Collections and Views for the cart
 
 }).call(this);
 
-
 /*
 Subscription Model, Collections and Views for the cart
 */
 
 
 (function() {
-
   conekta._models.Subscription = Backbone.RelationalModel.extend({
     urlRoot: '/subscriptions',
     modelName: 'subscription',
@@ -7717,14 +7692,12 @@ Subscription Model, Collections and Views for the cart
 
 }).call(this);
 
-
 /*
 OrderItem cart extensions
 */
 
 
 (function() {
-
   _.extend(conekta._models.Item.prototype, {
     initialize: function() {
       this.on('error', this.error, this);
@@ -7775,14 +7748,12 @@ OrderItem cart extensions
 
 }).call(this);
 
-
 /*
 Company cart extensions
 */
 
 
 (function() {
-
   _.extend(conekta._models.Company.prototype, {
     relations: [
       {
@@ -7801,14 +7772,12 @@ Company cart extensions
 
 }).call(this);
 
-
 /*
 ShippingAddress cart extensions
 */
 
 
 (function() {
-
   _.extend(conekta._models.ShippingAddress.prototype, {
     initialize: function() {
       return this.on('change', function() {
@@ -7827,7 +7796,6 @@ ShippingAddress cart extensions
 }).call(this);
 
 (function() {
-
   _.extend(conekta._models.ShippingOption.prototype, {
     getApi: function() {
       return {
@@ -7841,14 +7809,12 @@ ShippingAddress cart extensions
 
 }).call(this);
 
-
 /*
 BillingInfo cart extensions
 */
 
 
 (function() {
-
   _.extend(conekta._models.Payment.prototype, {
     initialize: function() {
       return this.on('change', function() {
@@ -7866,14 +7832,12 @@ BillingInfo cart extensions
 
 }).call(this);
 
-
 /*
 BillingInfo cart extensions
 */
 
 
 (function() {
-
   _.extend(conekta._models.Period.prototype, {
     initialize: function() {
       return this.on('change', function() {
@@ -7891,14 +7855,12 @@ BillingInfo cart extensions
 
 }).call(this);
 
-
 /*
 BillingInfo cart extensions
 */
 
 
 (function() {
-
   _.extend(conekta._models.BillingInfo.prototype, {
     initialize: function() {
       return this.on('change', function() {
@@ -7917,7 +7879,6 @@ BillingInfo cart extensions
 }).call(this);
 
 (function() {
-
   _.extend(conekta._models.Product.prototype, {
     getApi: function() {
       return {
@@ -7937,7 +7898,6 @@ BillingInfo cart extensions
   });
 
 }).call(this);
-
 
 /*
 Order/Subscription/Quote shared methods
@@ -8366,6 +8326,9 @@ Order/Subscription/Quote shared methods
           payment.set('credit_card', parameter_hash['credit_card']);
         }
       }
+      if (this.get('payment_method') !== provider) {
+        this.setPaymentMethod(provider);
+      }
       company = this.getCompany();
       this.update_items();
       if (typeof mixpanel !== 'undefined') {
@@ -8381,7 +8344,7 @@ Order/Subscription/Quote shared methods
           remote: true,
           success: function(model) {
             simpleCart.empty();
-            return window.location.href = "/checkout/bank_transfer_printout?reference_id=" + model.get('reference_id');
+            return window.location.href = "https://secure.conekta.mx/checkout/bank_transfer_printout?reference_id=" + model.get('reference_id');
           },
           error: function(model, resp) {}
         });
@@ -8711,6 +8674,7 @@ Order/Subscription/Quote shared methods
                   item.set('product', product)
               )
               */
+
               if (callback) {
                 return callback.call(this);
               }
@@ -8870,14 +8834,13 @@ Order/Subscription/Quote shared methods
 
 }).call(this);
 
-
 /*
 Order Model, Collections and Views for the cart
 */
 
 
 (function() {
-  var checkout_model, conekta_store, conekta_store_collection, i, new_checkout, old_conekta_store, prefix, purged_keys, _i, _ref;
+  var checkout_model, conekta_store, conekta_store_collection, data, i, new_checkout, old_conekta_store, prefix, purged_keys, _i, _ref;
 
   conekta._models.PagaloStore = Backbone.RelationalModel.extend({
     modelName: 'conekta_store',
@@ -8984,7 +8947,15 @@ Order Model, Collections and Views for the cart
     });
     checkout_model = conekta._store.get('checkout_order');
   } else {
-    checkout_model = new conekta._models.Order();
+    data = {};
+    if (conekta._accessors.getCompany()) {
+      data['company_id'] = conekta._accessors.getCompany().id;
+    }
+    data['payment'] = {};
+    data['shipment'] = {};
+    data['items'] = [];
+    checkout_model = new conekta._models.Order(data);
+    conekta._store.set('checkout_order', checkout_model);
   }
 
   checkout_model = checkout_model.getApi();

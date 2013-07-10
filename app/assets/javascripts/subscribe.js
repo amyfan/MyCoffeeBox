@@ -206,8 +206,8 @@ function nextSubscribe() {
 
     conekta.checkout.save();
     if (whereValue == 1) {
-      conekta.checkout.proceedToCheckout();
-      //window.location = locale + "/shipping_mex";
+      //conekta.checkout.proceedToCheckout();
+      window.location = locale + "/shipping_mex";
     } else {
       window.location = locale + "/shipping";
     }
