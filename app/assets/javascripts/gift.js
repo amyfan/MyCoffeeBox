@@ -36,6 +36,7 @@ $(function() {
 
   conekta.display.getProducts({}, get_special_product);
 
+  $("#content.dondegift").show();
   setUpGiftPurchase();
 })
 
