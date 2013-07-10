@@ -65,13 +65,8 @@ function nextShip() {
 
     var success_url_callback;
     var failure_url_callback;
-    if (window.location.pathname.indexOf("en") > -1) {
-      success_url_callback = "http://www.mycoffeebox.com/en/order_success";
-      failure_url_callback = "http://www.mycoffeebox.com/en/order_failure";
-    } else {
-      success_url_callback = "http://www.mycoffeebox.com/es/order_success";
-      failure_url_callback = "http://www.mycoffeebox.com/es/order_failure";
-    }
+    success_url_callback = "http://www.mycoffeebox.com" + locale + "/order_success";
+    failure_url_callback = "http://www.mycoffeebox.com" + locale + "/order_failure";
 
     conekta.checkout.processPayment({
       payment_method : 'paypal',

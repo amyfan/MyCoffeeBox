@@ -9,12 +9,29 @@
       %p ¿Tienes un regalo en puerta, pero buscas algo especial y único? ¡Regala una membresía de MyCoffeeBox!
       %p Tu ser querido recibirá cada mes a su domicilio 500 gramos de café orgánico de pequeños productores de Chiapas.
       %p Regálale la aventura de conocer los mejores cafés de Chiapas con un super precio y ayuda a que los pequeños productores que sembraron, cosecharon y tostaron este café reciban hasta 3 veces más ingresos de lo que normalmente hacen.
-#content.length
-  #giftlength
+
+#content.dondegift
+  #giftwhere
+    %h1 ¿A dónde?
     %ul
-      %li{:"data-giftlength" => 4}
+      %li{:"data-where" => 1}
+        %h2.li México
+      %li{:"data-where" => 2}
+        %h2.li USA/Canadá
+
+#content.giftlength
+  #giftlengthmex
+    %ul
+      %li{:"data-giftlengthmex" => 4}
         %h2.li 4 meses - $549 MXN
         %h3.li Sólo $137 MXN por mes
         %p.gift ¡Ahorra $47 (7.9%)!
+  #giftlengthusa
+    %ul
+      %li{:"data-giftlengthusa" => 4}
+        %h2.li 4 meses - $69.96 USD
+        %h3.li Sólo $17.49 USD por mes
+        %p.gift ¡Ahorra $6.00 (7.9%)!
+
   .actions.siguientegift
     %a.nextgift{:href => "#"} ¡Regala!

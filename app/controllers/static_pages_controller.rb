@@ -41,4 +41,7 @@ class StaticPagesController < ApplicationController
   def hamiltonbeach
   end
 
+  def tuola
+  end
+
 end

@@ -32,7 +32,7 @@
         h2
           color: $gray
 
-#subscribewhere, #giftwhere, #giftlengthmex, #giftlengthusa, #giftlengtheurope, #giftlengthlatin, #payment
+#subscribewhere, #giftwhere, #giftlengtheurope, #giftlengthlatin, #payment
   @include box
   @include clearfix
   border: none !important
@@ -71,7 +71,7 @@
           border: 1px solid $gray
           h2
             color: $gray
-#giftlength
+#giftlengthmex, #giftlengthusa
   @include box
   @include clearfix
   border: none !important
@@ -119,9 +119,13 @@
   li
     width: 49%
     height: 90px
-#giftlength, #giftlengthmex, #giftlengthusa, #giftlengtheurope, #giftlengthlatin
+#giftlength, #giftlengtheurope, #giftlengthlatin
   li
     width: 32%
+    height: 120px
+#giftlengthmex, #giftlengthusa
+  li
+    width: 40%
     height: 120px
 
 #alert
