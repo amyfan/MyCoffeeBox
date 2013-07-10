@@ -8320,7 +8320,6 @@ Order/Subscription/Quote shared methods
           this.get('payment').set('failure_url', parameter_hash['failure_url']);
         }
         payment = this.get('payment');
-        this.set('payment_method', provider);
         payment.set('type', provider);
         if (parameter_hash['credit_card']) {
           payment.set('credit_card', parameter_hash['credit_card']);
