@@ -29,6 +29,7 @@
   #teaser
     padding-left: 2em
     width: 100%
+    max-height: 420px
     h2
       text-shadow: 0.1em 0.1em 0.5em black
       margin-top: 0.2em
@@ -38,28 +39,39 @@
       line-height: 0.2em
       color: white
     h3
+      font-family: $stylish
       text-shadow: 0.1em 0.1em 0.5em black
       text-align: center
-      font-size: 1.7em
+      font-size: 2.5em
       line-height: 0.2em
       color: white
     .actions
       &.home
+        img.newbox
+          height: 450px
+          margin-top: 0px
+          float: left
+          margin-left: -255px
+        img.newboxenglish
+          height: 450px
+          margin-top: -10px
+          float: left
+          margin-left: -255px
         a
           width: 150px
           float: right
           font-size: 1.5em
           line-height: 0.7em
           &.main
-            margin-top: 1em
+            margin-top: 0em
             margin-right: -3em
           &.mainenglish
             //margin-left: 4em
-            margin-top: 1em
+            margin-top: 3em
             margin-right: -8em
             @include button($brand)
 #how
-  @include transparent($light_brown, 0.9)
+  @include transparent($light_gray, 0.9)
   @include blur
   ul
     @include clearfix
@@ -84,7 +96,7 @@
   iframe
     margin-top: 2em
 #who
-  @include transparent($light_brown, 0.9)
+  @include transparent($light_gray, 0.9)
   @include blur
   ul
     @include clearfix
