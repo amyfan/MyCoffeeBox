@@ -29,14 +29,17 @@
     = yield :head
   %body
     #header-container
+      #texture
+        %p &nbsp;
       #header
-        %a.header{:href => "/en", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Logo']);"}
-          %img{:src => "/images/web_logo.png"}
         %ul
           %li
             %a.header{:href => "/en/how", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'How Header']);"} How It Works
           %li
             %a.header{:href => "/en/products", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Products Header']);"} Our Coffees
+          %li
+            %a.header{:href => "/en", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Logo']);"}
+              %img{:src => "/images/mcb_logo_new.png"}
           %li
             %a.header{:href => "/en/faq", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'FAQ Header']);"} FAQ
           %li
