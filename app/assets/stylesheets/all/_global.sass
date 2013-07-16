@@ -3,7 +3,7 @@
 body
   font-family: $base_sans
   font-weight: 300
-  background: url(../../images/wood7.jpg) center center fixed
+  //background: url(../../images/wood7.jpg) center center fixed
   background-repeat: repeat-x repeat-y
   // background: url(../images/wood7.jpg) no-repeat center center fixed
   // -webkit-background-size: cover
@@ -23,7 +23,8 @@ h2
   font-size: 2em
   &.footer
     font-weight: 600
-    text-shadow: 0.1em 0.1em 0.5em black
+    text-transform: uppercase
+    //text-shadow: 0.1em 0.1em 0.5em black
 h3
   margin-bottom: 1em
 
@@ -42,28 +43,30 @@ a
     text-decoration: none
     color: $hover_brand
   &.header
-    font-weight: 600
-    text-shadow: 0.2em 0.2em 0.5em black
-    color: white
-    font-size: 1.3em
+    //font-weight: 600
+    //text-shadow: 0.2em 0.2em 0.5em black
+    //color: white
+    //font-size: 1.3em
+    height: 100px
+    line-height: 200px
     img
       -webkit-filter: drop-shadow(0.1em 0.1em 0.5em black)
       filter: drop-shadow(0.1em 0.1em 0.5em black)
       //-webkit-filter: drop-shadow(5px 5px 5px #222)
       //filter: drop-shadow(5px 5px 5px #222)
   &.footer
-    font-weight: 600
-    text-shadow: 0.2em 0.2em 0.5em black
-    color: white
-    font-size: 1.1em
+    //font-weight: 600
+    //text-shadow: 0.2em 0.2em 0.5em black
+    //color: white
+    //font-size: 1.1em
     &:hover
       // need this to make footer work for some reason
       text-decoration: none
       color: $hover_brand
   &.pfooter
-    text-shadow: 0.2em 0.2em 0.5em black
-    color: $white
-    font-size: 0.9em
+    //text-shadow: 0.2em 0.2em 0.5em black
+    //color: $white
+    //font-size: 0.9em
     text-decoration: underline
     &:hover
       // need this to make footer work for some reason
@@ -78,16 +81,21 @@ a
   @include clearfix
   // background: $black
   width: 100%
-  padding-top: 2em
-  padding-bottom: 2em
-  // border-top: 5px solid $brand
+  #texture
+    width: 100%
+    margin: 0 auto
+    background: url(../../images/top_texture.png) 0 0 repeat-x
+    p
+      height: 75px
   #header
+    padding-bottom: 2em
+    // border-top: 5px solid $brand
     @include box
     @include clearfix
-    padding: 0 0.5em
+    //padding: 0 0.5em
     img
       width: 220px
-      float: left
+      float: center
     h1
       margin-top: 0
       margin-bottom: 0
@@ -95,64 +103,21 @@ a
     ul
       @include box
       @include clearfix
-      float: right
-      padding-top: 35px
+      float: center
       li
         float: left
         margin-left: 3.1em
         text-align: right
-        //text-transform: uppercase
+        text-transform: uppercase
+        height: 230px
         a
+          margin-top: 35px
           cursor: pointer
           &:hover
             color: $hover_brand
-
-#progress
-  margin-top: 1em
-  margin-bottom: 4em
-  position: relative
-  @include clearfix
-  @include centered(90%)
-  #bar
-    position: absolute
-    height: 10px
-    background: $light_gray
-    top: 25px
-    left: 20px 
-    @include centered(90%)
-  ul
-    position: relative
-    background: transparent
-    @include box
-    @include clearfix  
-    li
-      @include box
-      float: left
-      margin-right: 162px
-      &:last-child
-        margin-right: 0
-      &.current
-        .number
-          border-color: $brand
-          color: $brand
-        .label
-          color: $brand
-      .number
-        @include round-corners(60px)
-        @include centered(60px)
-        @include box
-        height: 60px
-        border: 7px solid $light_gray
-        text-align: center
-        line-height: 45px
-        background: $white
-        color: darken($light_gray,30)
-      .label
-        margin-top: 0.5em
-        text-align: center
-        text-transform: uppercase
-        font-size: 0.9em
-        color: darken($light_gray,30)
+        img
+          width: 220px
+          float: center
 
 #content
   box-shadow: 0.1em 0.1em 0.4em black
@@ -174,7 +139,7 @@ a
     ul li
       margin-bottom: 0.5em
     h2
-      color: white
+      //color: $white
       font-size: 1.5em
   #newsletter
     input[type="text"]
