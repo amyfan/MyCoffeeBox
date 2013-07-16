@@ -142,28 +142,32 @@ function setUpGiftPurchase() {
 function checkOutGift() {
   conekta.checkout.new('order', {company_id: 2757603});
 
-  var four_product;
+  var selected_product;
   var lengthValue;
   if (whereValue == 1) {
     conekta.checkout.setCurrency('MXN');
-    four_product = mex_four_product;
     lengthValue = parseInt($("#giftlengthmex .selected").data("giftlengthmex"));
+    if (lengthValue == 3) {
+      selected_product = mex_three_product;
+    } else if (lengthValue == 6) {
+      selected_product = mex_six_product;
+    } else if (lengthValue == 12) {
+      selected_product = mex_twelve_product;
+    } else if (lengthValue == 4) {
+      selected_product = mex_four_product;
+    }
   } else if (whereValue == 2) {
     conekta.checkout.setCurrency('USD');
-    four_product = usa_four_product;
     lengthValue = parseInt($("#giftlengthusa .selected").data("giftlengthusa"));
+    if (lengthValue == 3) {
+    } else if (lengthValue == 6) {
+    } else if (lengthValue == 12) {
+    } else if (lengthValue == 4) {
+      selected_product = usa_four_product;
+    }
   }
-
-  // if (lengthValue == 3) {
-  // conekta.checkout.addItem(mex_three_product.createItem());
-  // } else if (lengthValue == 6) {
-  // conekta.checkout.addItem(mex_six_product.createItem());
-  // } else if (lengthValue == 12) {
-  // conekta.checkout.addItem(mex_twelve_product.createItem());
-  // } else
-  if (lengthValue == 4) {
-    conekta.checkout.addItem(four_product.createItem());
-  }
+  
+  conekta.checkout.addItem(selected_product.createItem());
 
   if (conekta.checkout.getItems().length > 0) {
     // free shipping
@@ -176,7 +180,8 @@ function checkOutGift() {
 
     conekta.checkout.save();
     if (whereValue == 1) {
-      window.location = locale + "/shipping_mex";
+      conekta.checkout.proceedToCheckout();
+      //window.location = locale + "/shipping_mex";
     } else {
       window.location = locale + "/shipping";
     }
