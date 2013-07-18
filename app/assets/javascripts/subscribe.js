@@ -27,7 +27,7 @@ $(function() {
 
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
-      if (product_attributes.name.indexOf("México") > -1) {
+      if (product_attributes.name.indexOf("México") > -1 && product_attributes.name.indexOf("149") < 0) {
         surprisememex_product = products[i];
       } else if (product_attributes.name.indexOf("North") > -1) {
         surprisemeusa_product = products[i];
