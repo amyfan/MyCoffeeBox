@@ -55,9 +55,9 @@ function nextShip() {
     return;
   }
 
+  conekta.checkout.save();
   if (window.location.pathname.indexOf("mex") > -1) {
     // go to payment option page for mexico customers
-    conekta.checkout.save();
     window.location = locale + "/payment";
   } else {
     // paypal only option for international customers
