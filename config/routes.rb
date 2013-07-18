@@ -36,6 +36,8 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'tuola' => 'static_pages#tuola'
 
+    match 'especial' => 'static_pages#especial'
+
   end
 
   scope "(:locale)", :locale => /en/ do

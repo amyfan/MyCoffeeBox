@@ -44,4 +44,7 @@ class StaticPagesController < ApplicationController
   def tuola
   end
 
+  def especial
+  end
+
 end

@@ -143,7 +143,7 @@ function validateShippingForm() {
     $("#pais").addClass("invalid");
     valid = false;
   }
-  if (telefono.length < 2 || !telefono.match(/^[0-9\s-\(\)]+$/)) {
+  if (telefono.length < 8 || !telefono.match(/^[0-9\s-\(\)]+$/)) {
     // accept numbers, spaces, -()
     $("#telefono").addClass("invalid");
     valid = false;
