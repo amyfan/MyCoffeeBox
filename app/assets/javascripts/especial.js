@@ -68,12 +68,9 @@ function nextSubscribe149() {
     });
 
     conekta.checkout.save();
-    if (whereValue == 1) {
-      //conekta.checkout.proceedToCheckout();
-      window.location = locale + "/shipping_mex";
-    } else {
-      window.location = locale + "/shipping";
-    }
+
+    conekta.checkout.proceedToCheckout();
+    //window.location = locale + "/shipping_mex";
   } else {
     // this case should no longer happen based on flow of page
     _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'failed']);

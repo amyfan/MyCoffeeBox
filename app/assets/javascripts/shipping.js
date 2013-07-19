@@ -161,13 +161,13 @@ function validateShippingForm() {
 
   conekta.checkout.setShippingAddress({
     name : nombre,
-    email : correo,
     street : calle,
     colonia : colonia,
     city : ciudad,
     state : estado,
     postal_code : cp,
     country : pais,
+    email : correo,
     phone : telefono
   });
 
