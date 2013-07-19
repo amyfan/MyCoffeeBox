@@ -69,8 +69,8 @@ function nextSubscribe149() {
 
     conekta.checkout.save();
 
-    conekta.checkout.proceedToCheckout();
-    //window.location = locale + "/shipping_mex";
+    //conekta.checkout.proceedToCheckout();
+    window.location = locale + "/shipping_mex";
   } else {
     // this case should no longer happen based on flow of page
     _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'failed']);
