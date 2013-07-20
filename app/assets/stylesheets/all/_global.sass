@@ -4,7 +4,7 @@ body
   font-family: $base_sans
   font-weight: 300
   //background: url(../../images/wood7.jpg) center center fixed
-  background-repeat: repeat-x repeat-y
+  //background-repeat: repeat-x repeat-y
   // background: url(../images/wood7.jpg) no-repeat center center fixed
   // -webkit-background-size: cover
   // -moz-background-size: cover
@@ -73,9 +73,6 @@ a
       text-decoration: none
       color: $hover_brand
 
-#header, #content, #footer
-  @include centered
-
 #header-container
   @include box
   @include clearfix
@@ -107,7 +104,7 @@ a
       float: center
       li
         float: left
-        margin-left: 3.1em
+        margin-left: 3.0em
         text-align: right
         text-transform: uppercase
         height: 220px
@@ -120,13 +117,26 @@ a
           height: 220px
           float: center
 
-#content
-  box-shadow: 0.1em 0.1em 0.4em black
+#header, #content, #footer
+  @include centered
+
+#content, #contenthome
   @include clearfix
   @include box
   h1
     margin-top: 1em
-    text-align: center        
+    text-align: center
+  border: none
+  padding: 0
+  > div
+    padding: 2.5em
+    @include clearfix
+    h2
+      text-align: center
+
+#content
+  box-shadow: 0.1em 0.1em 0.4em black
+
 #footer
   @include clearfix
   @include box
@@ -135,13 +145,16 @@ a
   margin-top: 4em
   > div
     @include box
-    width: 50%
+    width: 33%
     float: left
     ul li
       margin-bottom: 0.5em
     h2
       //color: $white
       font-size: 1.5em
+    img
+      padding: 1em
+      width: 60%
   #newsletter
     input[type="text"]
       width: 173px

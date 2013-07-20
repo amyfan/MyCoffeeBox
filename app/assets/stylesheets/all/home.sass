@@ -1,21 +1,17 @@
 @import "global"
 
 
-#content
-  border: none
-  padding: 0
-  > div
-    padding: 2.5em
-    @include clearfix
-    h2
-      text-align: center
+#contenthome
+  width: 100%
+  &.what, &.who
+    background-color: black
   &.what, &.how
-    box-shadow: 0.1em 0.1em 0.4em black
     border: none
 #what
-  background-image: url(../../images/coffee_animated.gif)
-  background-position: center
-  background-size: 100% auto
+  background: url(../../images/coffee_animated.gif) no-repeat center
+  //background-position: center
+  //background-size: 100%
+  //background-size: 100% auto
   > div
     @include box
     float: left
@@ -51,7 +47,7 @@
           height: 450px
           margin-top: 0px
           float: left
-          margin-left: -255px
+          margin-left: -300px
         img.newboxenglish
           height: 450px
           margin-top: -10px
@@ -71,6 +67,7 @@
             margin-right: -8em
             @include button($brand)
 #how
+  @include centered
   @include transparent($light_gray, 0.9)
   @include blur
   ul
@@ -80,14 +77,15 @@
       float: left
       padding-left: 1em
       padding-right: 1em
-      img
-        width: 140px
-        //margin-bottom: 1em
-        &.home
-          width: 160px
-          margin-left: 50px
       &.home
         width: 33%
+        img
+          //margin-bottom: 1em
+          width: 160px
+          margin-left: 60px
+  h2
+    margin-top: 0.5em
+    margin-bottom: 0em
   h3
     text-align: center
     font-weight: bold
@@ -96,13 +94,48 @@
     //@include css-hyphens(auto)
     text-align: justify
     font-size: 1em
+#who
+  @include centered(1000px)
+  ul
+    @include clearfix
+    li
+      background-color: white
+      @include box
+      float: left
+      padding: 1em
+      margin: 1em
+      img
+        //margin-bottom: 1em
+        width: 160px
+        margin-left: 50px
+      width: 30%
+  h1
+    font-size: 1.5em
+    margin-bottom: 0.5em
+    font-family: $title_sans
+  h2
+    font-size: 1.5em
+    font-family: $stylish
+    margin-bottom: 0.5em
+  h3
+    font-size: 1.3em
+    font-family: $title_sans
+    text-align: center
+    font-weight: bold
+  p
+    //@include css-hyphens(auto)
+    text-align: justify
+    font-size: 0.9em
 #why
+  @include centered
   text-align: center
+  h2
+    margin-bottom: 0em
   iframe
     margin-top: 2em
-#who
-  @include transparent($light_gray, 0.9)
-  @include blur
+#press
+  @include centered
+  background-color: $light-gray
   ul
     @include clearfix
     li
