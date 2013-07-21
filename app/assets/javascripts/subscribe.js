@@ -27,21 +27,23 @@ $(function() {
 
     for (var i = 0; i < products.length; i++) {
       product_attributes = products[i].getAttributes();
-      if (product_attributes.name.indexOf("México") > -1 && product_attributes.name.indexOf("149") < 0) {
-        surprisememex_product = products[i];
-      } else if (product_attributes.name.indexOf("North") > -1) {
-        surprisemeusa_product = products[i];
-      } else if (product_attributes.name.indexOf("South") > -1) {
-        surprisemelatin_product = products[i];
-      } else if (product_attributes.name.indexOf("Europe") > -1) {
-        surprisemeeuro_product = products[i];
-      } else if (product_attributes.name.indexOf("Especial") > -1) {
-        // filter out special promos (father's day for now)
-      } else if (product_attributes.name.indexOf("Regalo") > -1) {
-        // filter out special gifts for now
-      } else {
-        // TODO going to statically display coffee bags for now
-        //$("#content > ul").append(getTemplateForProduct(products[i], i));
+      if (product_attributes.name.indexOf("Suscripción") > -1 || product_attributes.name.indexOf("Subscription") > -1) {
+        if (product_attributes.name.indexOf("México") > -1 && product_attributes.name.indexOf("149") < 0) {
+          surprisememex_product = products[i];
+        } else if (product_attributes.name.indexOf("North") > -1) {
+          surprisemeusa_product = products[i];
+        } else if (product_attributes.name.indexOf("South") > -1) {
+          surprisemelatin_product = products[i];
+        } else if (product_attributes.name.indexOf("Europe") > -1) {
+          surprisemeeuro_product = products[i];
+        } else if (product_attributes.name.indexOf("Especial") > -1) {
+          // filter out special promos (father's day for now)
+        } else if (product_attributes.name.indexOf("Regalo") > -1) {
+          // filter out special gifts for now
+        } else {
+          // TODO going to statically display coffee bags for now
+          //$("#content > ul").append(getTemplateForProduct(products[i], i));
+        }
       }
     }
   }
