@@ -101,7 +101,7 @@ function validateShippingForm() {
     $("#nombre").addClass("invalid");
     valid = false;
   }
-  if (coffeetype.length < 2) {
+  if (coffeetype.length < 2 || coffeetype.length > 30) {
     $("#coffeetype").addClass("invalid");
     valid = false;
   }
