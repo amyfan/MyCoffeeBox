@@ -97,7 +97,7 @@ function validateShippingForm() {
   var telefono = $("#telefono").val();
 
   var valid = true;
-  if (nombre.length < 2) {
+  if (nombre.length < 2 || nombre.length > 30) {
     $("#nombre").addClass("invalid");
     valid = false;
   }
@@ -117,29 +117,29 @@ function validateShippingForm() {
     }
     // alternatively can try regex validation: /^[a-zA-Z0-9_.-]+@[a-z0-9][a-z0-9\-]{1,64}(\.[a-z]{2,4}|[a-z]{2,3}\.[a-z]{2})$/i
   }
-  if (calle.length < 2) {
+  if (calle.length < 2 || calle.length > 30) {
     $("#calle").addClass("invalid");
     valid = false;
   }
   if (window.location.pathname.indexOf("mex") > -1) {
-    if (colonia.length < 2) {
+    if (colonia.length < 2 || colonia.length > 30) {
       $("#colonia").addClass("invalid");
       valid = false;
     }
   }
-  if (ciudad.length < 2) {
+  if (ciudad.length < 2 || ciudad.length > 30) {
     $("#ciudad").addClass("invalid");
     valid = false;
   }
-  if (estado.length < 2) {
+  if (estado.length < 2 || estado.length > 30) {
     $("#estado").addClass("invalid");
     valid = false;
   }
-  if (cp.length < 4) {
+  if (cp.length < 4 || cp.length > 30) {
     $("#cp").addClass("invalid");
     valid = false;
   }
-  if (pais.length < 2) {
+  if (pais.length < 2 || pais.length > 30) {
     $("#pais").addClass("invalid");
     valid = false;
   }
