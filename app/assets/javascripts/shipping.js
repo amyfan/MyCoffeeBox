@@ -95,6 +95,7 @@ function validateShippingForm() {
   var cp = $("#cp").val();
   var pais = $("#pais").val();
   var telefono = $("#telefono").val();
+  var adicional = $("#adicional").val();
 
   var valid = true;
   if (nombre.length < 2 || nombre.length > 30) {
@@ -191,6 +192,8 @@ function validateShippingForm() {
   if (readCookie('utm_campaign') != undefined) {
     conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
   }
+
+  conekta.checkout.setCustomField('Información adicional', adicional);
 
   return true;
 }
