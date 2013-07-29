@@ -3,6 +3,9 @@
   %ul
     %li.image
       #promoimage
-        <img src="images/tuola.png"/>
+        <img src="/images/tuola.png"/>
     %li.description
-      %p &nbsp;
+      %input#promocode.tuola{:type => "text", :placeholder => "Código de promoción"}
+      .actions.siguientetuola
+        %a.nexttuola{:href => "#"}
+          %img{:src => "/images/canjea.png"}

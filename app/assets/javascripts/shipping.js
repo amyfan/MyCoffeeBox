@@ -174,7 +174,7 @@ function validateShippingForm() {
 
   conekta.checkout.setCustomField('¿Lo quiere en Grano o Molido Tradicional?', coffeetype);
   conekta.checkout.setCustomField('Si un amigo te recomendó pon su correo electrónico', referral);
-  conekta.checkout.setCustomField('Código de Promoción', promocode);
+  conekta.checkout.setCustomField('Promo Code', promocode);
 
   // track referral URL if applicable
   if (readCookie('utm_source') != undefined) {
