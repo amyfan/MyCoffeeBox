@@ -177,21 +177,21 @@ function validateShippingForm() {
   conekta.checkout.setCustomField('Promo Code', promocode);
 
   // track referral URL if applicable
-  if (readCookie('utm_source') != undefined) {
-    conekta.checkout.setCustomField('utm_source', readCookie('utm_source'));
-  }
-  if (readCookie('utm_medium') != undefined) {
-    conekta.checkout.setCustomField('utm_medium', readCookie('utm_medium'));
-  }
-  if (readCookie('utm_term') != undefined) {
-    conekta.checkout.setCustomField('utm_term', readCookie('utm_term'));
-  }
-  if (readCookie('utm_content') != undefined) {
-    conekta.checkout.setCustomField('utm_content', readCookie('utm_content'));
-  }
-  if (readCookie('utm_campaign') != undefined) {
-    conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
-  }
+  // if (readCookie('utm_source') != undefined) {
+    // conekta.checkout.setCustomField('utm_source', readCookie('utm_source'));
+  // }
+  // if (readCookie('utm_medium') != undefined) {
+    // conekta.checkout.setCustomField('utm_medium', readCookie('utm_medium'));
+  // }
+  // if (readCookie('utm_term') != undefined) {
+    // conekta.checkout.setCustomField('utm_term', readCookie('utm_term'));
+  // }
+  // if (readCookie('utm_content') != undefined) {
+    // conekta.checkout.setCustomField('utm_content', readCookie('utm_content'));
+  // }
+  // if (readCookie('utm_campaign') != undefined) {
+    // conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
+  // }
 
   conekta.checkout.setCustomField('Información adicional', adicional);
 

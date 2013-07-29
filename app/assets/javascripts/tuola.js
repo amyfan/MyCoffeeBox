@@ -35,10 +35,6 @@ function checkOutTuola() {
     return;
   }
 
-  conekta.checkout.new ('order', {company_id: 2757603});
-
-  conekta.checkout.addItem(tuola_product.createItem());
-
   if (conekta.checkout.getItems().length > 0) {
     // free shipping
     conekta.checkout.setShippingOption({
@@ -49,6 +45,7 @@ function checkOutTuola() {
       service_name : 'Entrega Gratis'
     });
 
+    conekta.checkout.save();
     conekta.checkout.proceedToCheckout();
     //window.location = "es/shipping_mex";
 
@@ -72,6 +69,10 @@ function validateTuolaForm() {
     _gaq.push(['_trackEvent', page_name, 'Data entry', 'failed']);    $('#directions').goTo();
     return false;
   }
+
+  conekta.checkout.new ('order', {company_id: 2757603});
+
+  conekta.checkout.addItem(tuola_product.createItem());
 
   conekta.checkout.setCustomField('Promo Code', promocode);
 
