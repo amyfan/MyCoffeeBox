@@ -13,7 +13,7 @@
     %link{ :href => 'http://fonts.googleapis.com/css?family=Oswald', :rel => 'stylesheet', :type => 'text/css' }
     %link{ :href => 'http://fonts.googleapis.com/css?family=Roboto', :rel => 'stylesheet', :type => 'text/css' }
     %link{ :href => 'http://fonts.googleapis.com/css?family=Grand+Hotel', :rel => 'stylesheet', :type => 'text/css' }
-    %link{ :href => 'images/mcb_logo_favicon.ico', :rel => 'shortcut icon', :type => 'image/x-icon' }
+    %link{ :href => '/images/mcb_logo_favicon.ico', :rel => 'shortcut icon', :type => 'image/x-icon' }
     <script type="text/javascript">
     var _kmq = _kmq || [];
     var _kmk = _kmk || '39b2c8a4b1aadd149f15b9a90362d8ed7e891310';
@@ -43,7 +43,7 @@
           %li
             %a.header{:href => "/en/faq", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'FAQ Header']);"} FAQ
           %li
-            %a.header{:href => "/es", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'EN->ES Header']);"} Español
+            = link_to "Español", url_for( :locale => 'es' ), html_options = { :class => "header", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'EN->ES Header']);" }
     = yield
     #footer
       #logo
