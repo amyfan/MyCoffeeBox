@@ -1,0 +1,34 @@
+#context
+  %p#notice= notice
+
+  %p
+    %b Payment type:
+    = @payment_method.payment_type
+  %p
+    %b Last4:
+    = @payment_method.last4
+  %p
+    %b Address one:
+    = @payment_method.address_one
+  %p
+    %b Address two:
+    = @payment_method.address_two
+  %p
+    %b City:
+    = @payment_method.city
+  %p
+    %b State:
+    = @payment_method.state
+  %p
+    %b Postal code:
+    = @payment_method.postal_code
+  %p
+    %b Country:
+    = @payment_method.country
+  %p
+    %b Phone:
+    = @payment_method.phone
+
+  = link_to 'Edit', edit_payment_method_path(@payment_method)
+  \|
+  = link_to 'Back to Dashboard', dashboards_path

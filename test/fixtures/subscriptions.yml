@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shipping_period: 1
+  billing_period: 1
+  coffee_type: MyString
+  referral_email: MyString
+  promo_code: MyString
+  payment_status: MyString
+  utm_source: MyString
+  utm_medium: MyString
+  utm_term: MyString
+  utm_content: MyString
+  utm_campaign: MyString
+
+two:
+  shipping_period: 1
+  billing_period: 1
+  coffee_type: MyString
+  referral_email: MyString
+  promo_code: MyString
+  payment_status: MyString
+  utm_source: MyString
+  utm_medium: MyString
+  utm_term: MyString
+  utm_content: MyString
+  utm_campaign: MyString

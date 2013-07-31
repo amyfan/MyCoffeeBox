@@ -1,0 +1,26 @@
+#context
+
+  %p#notice= notice
+
+  %p
+    %b Shipped date:
+    = @shipment.shipped_date
+  %p
+    %b Received date:
+    = @shipment.received_date
+  %p
+    %b Shipment status:
+    = @shipment.shipment_status
+  %p
+    %b Shipment cost:
+    = @shipment.shipment_cost
+  %p
+    %b Shipping provider:
+    = @shipment.shipping_provider
+  %p
+    %b Notes:
+    = @shipment.notes
+
+  = link_to 'Edit', edit_shipment_path(@shipment)
+  \|
+  = link_to 'Back to Dashboard', dashboards_path

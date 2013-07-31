@@ -1,0 +1,41 @@
+#content
+  %p#notice= notice
+
+  %p
+    %b ID:
+    = @user.id
+  %p
+    %b Name:
+    = @user.name
+  %p
+    %b Email:
+    = @user.email
+  %p
+    %b Phone:
+    = @user.phone
+  - if can? :manage, User
+    %p
+      %b User role:
+      = @user.user_role
+    %p
+      %b Status:
+      = @user.status
+    -# %p
+      -# %b Subcriptions:
+      -# - @user.subscriptions.each do |subscription|
+        -# %p
+          -# = subscription.id
+          -# :plain
+            -# -
+          -# = subscription.created_at
+
+  = link_to 'Edit', edit_user_path(@user)
+
+  - if can? :manage, User
+    = render_cell :subscription, :manage, :user => @user    
+
+  = render_cell :payment_method, :display, :user => @user
+  = render_cell :shipping_info, :manage, :user => @user
+  = link_to 'New Shipping Info', new_shipping_info_path(:user_id => @user.id)
+
+  = link_to 'Back to Dashboard', dashboards_path

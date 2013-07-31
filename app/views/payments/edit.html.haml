@@ -1,0 +1,11 @@
+#context
+
+  %h1 Editing payment
+
+  = render 'form'
+
+  = @payment.subscription = @subscription
+
+  = link_to 'Show', @payment
+  \|
+  = link_to 'Back to Dashboard', dashboards_path
