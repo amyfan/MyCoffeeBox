@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shipped_date: 2013-07-23 22:29:52
+  received_date: 2013-07-23 22:29:52
+  shipment_status: MyString
+  shipment_cost: 9.99
+  shipping_provider: MyString
+  notes: MyString
+
+two:
+  shipped_date: 2013-07-23 22:29:52
+  received_date: 2013-07-23 22:29:52
+  shipment_status: MyString
+  shipment_cost: 9.99
+  shipping_provider: MyString
+  notes: MyString

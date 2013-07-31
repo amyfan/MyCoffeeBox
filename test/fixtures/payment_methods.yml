@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  payment_type: MyString
+  last4: 1
+  address_one: MyString
+  address_two: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  country: MyString
+  phone: MyString
+
+two:
+  payment_type: MyString
+  last4: 1
+  address_one: MyString
+  address_two: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  country: MyString
+  phone: MyString

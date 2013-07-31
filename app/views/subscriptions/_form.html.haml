@@ -1,0 +1,43 @@
+= form_for @subscription do |f|
+  - if @subscription.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@subscription.errors.count, "error")} prohibited this subscription from being saved:"
+      %ul
+        - @subscription.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :shipping_period
+    = f.number_field :shipping_period
+  .field
+    = f.label :billing_period
+    = f.number_field :billing_period
+  .field
+    = f.label :coffee_type
+    = f.text_field :coffee_type
+  .field
+    = f.label :referral_email
+    = f.text_field :referral_email
+  .field
+    = f.label :promo_code
+    = f.text_field :promo_code
+  .field
+    = f.label :payment_status
+    = f.text_field :payment_status
+  .field
+    = f.label :utm_source
+    = f.text_field :utm_source
+  .field
+    = f.label :utm_medium
+    = f.text_field :utm_medium
+  .field
+    = f.label :utm_term
+    = f.text_field :utm_term
+  .field
+    = f.label :utm_content
+    = f.text_field :utm_content
+  .field
+    = f.label :utm_campaign
+    = f.text_field :utm_campaign
+  .actions
+    = f.submit 'Save'

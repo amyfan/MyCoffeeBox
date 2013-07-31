@@ -1,0 +1,55 @@
+#content
+
+  %h1 Subscription Details
+
+  %p#notice= notice
+
+  %p
+    %b ID:
+    = @subscription.id
+  %p
+    %b User Email:
+    - if @subscription.user != nil
+      = @subscription.user.email
+  %p
+    %b Shipping period:
+    = @subscription.shipping_period
+  %p
+    %b Billing period:
+    = @subscription.billing_period
+  %p
+    %b Coffee type:
+    = @subscription.coffee_type
+  %p
+    %b Referral email:
+    = @subscription.referral_email
+  %p
+    %b Payment status:
+    = @subscription.payment_status
+  - if can? :manage, User
+    %p
+      %b Promo code:
+      = @subscription.promo_code
+    %p
+      %b Utm source:
+      = @subscription.utm_source
+    %p
+      %b Utm medium:
+      = @subscription.utm_medium
+    %p
+      %b Utm term:
+      = @subscription.utm_term
+    %p
+      %b Utm content:
+      = @subscription.utm_content
+    %p
+      %b Utm campaign:
+      = @subscription.utm_campaign
+
+    = link_to 'Edit', edit_subscription_path(@subscription)
+
+  = render_cell :shipping_info, :display, :subscription => @subscription
+  = render_cell :payment, :display, :payments => @subscription.payments
+  = link_to 'New Payment', new_payment_path(:subscription_id => @subscription.id)
+  \|
+  = link_to 'Back to Dashboard', dashboards_path

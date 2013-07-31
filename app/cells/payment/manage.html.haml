@@ -1,0 +1,29 @@
+#payment
+
+  %h3 Payments Made
+
+  %table
+    %tr
+      %th Date
+      %th Subscription ID
+      %th User Name
+      %th Amount
+      %th
+      %th
+      %th
+
+    - @payments.each do |payment|
+      %tr
+        %td= payment.created_at
+        - if payment.subscription != nil
+          %td= payment.subscription_id
+          %td= payment.subscription.user.name
+        - else
+          %td &nbsp;
+          %td &nbsp;
+        %td= payment.amount.to_s + " " + payment.currency
+        %td= link_to 'Show', payment
+        %td= link_to 'Edit', edit_payment_path(payment)
+        %td= link_to 'Destroy', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br

@@ -1,0 +1,32 @@
+#shippinginfo
+
+  %h3 Listing Shipping Info's
+
+  %table
+    %tr
+      %th User ID
+      %th Name
+      %th City
+      %th State
+      %th Postal code
+      %th Country
+      %th
+      %th
+      %th
+
+    - @shipping_infos.each do |shipping_info|
+      %tr
+        - if shipping_info.user != nil
+          %td= shipping_info.user.id
+        - else
+          %td &nbsp;
+        %td= shipping_info.name
+        %td= shipping_info.city
+        %td= shipping_info.state
+        %td= shipping_info.postal_code
+        %td= shipping_info.country
+        %td= link_to 'Show', shipping_info
+        %td= link_to 'Edit', edit_shipping_info_path(shipping_info)
+        %td= link_to 'Destroy', shipping_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br

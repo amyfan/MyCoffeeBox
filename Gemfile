@@ -1,11 +1,15 @@
 source 'https://rubygems.org'
 
-ruby '1.8.7'
+ruby '1.9.3'
 
 gem 'rails', '3.2.13'
 gem "haml", '4.0.2'
 gem 'sass-rails', '~> 3.2.6'
 gem 'redcarpet', '2.2.2'
+gem 'haml-rails', '0.4'
+gem 'devise', '3.0.0'
+gem 'cancan'
+gem 'cells'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,0 +1,35 @@
+#context
+
+  %p#notice= notice
+
+  %p
+    %b Name:
+    = @shipping_info.name
+  %p
+    %b Address one:
+    = @shipping_info.address_one
+  %p
+    %b Address two:
+    = @shipping_info.address_two
+  %p
+    %b City:
+    = @shipping_info.city
+  %p
+    %b State:
+    = @shipping_info.state
+  %p
+    %b Postal code:
+    = @shipping_info.postal_code
+  %p
+    %b Country:
+    = @shipping_info.country
+  %p
+    %b Phone:
+    = @shipping_info.phone
+  %p
+    %b Additional info:
+    = @shipping_info.additional_info
+
+  = link_to 'Edit', edit_shipping_info_path(@shipping_info)
+  \|
+  = link_to 'Back to Dashboard', dashboards_path

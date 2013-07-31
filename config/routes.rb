@@ -1,4 +1,19 @@
 MyCoffeeBox::Application.routes.draw do
+  scope "(:locale)", :locale => /en|es/ do
+    devise_for :users, :controllers => { :sessions => 'my_sessions', :registrations => 'my_registrations', :passwords => 'my_passwords', :confirmations => 'my_confirmations' }
+
+    resources :users
+    resources :subscriptions
+    resources :payments
+    resources :shipments
+    resources :payment_methods
+    resources :shipping_infos
+    resources :products
+    resources :product_items
+
+    resources :dashboards
+  end
+
   scope "(:locale)", :locale => /es/ do
     match ':locale/:action(/:id)', :controller => "static_pages"
     root :to => "static_pages#home"
@@ -6,7 +21,7 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'subscribe' => 'static_pages#subscribe'
 
-    match 'products' => 'static_pages#products'
+    match 'our_products' => 'static_pages#our_products'
 
     match 'faq' => 'static_pages#faq'
 
@@ -24,7 +39,7 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'shipping_mex' => 'static_pages#shipping_mex'
 
-    match 'payment' => 'static_pages#payment'
+    match 'payment_option' => 'static_pages#payment_option'
 
     match 'order_success' => 'static_pages#order_success'
 
@@ -38,6 +53,8 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'especial' => 'static_pages#especial'
 
+    match 'progress' => 'static_pages#progress'
+
   end
 
   scope "(:locale)", :locale => /en/ do
@@ -49,7 +66,7 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'subscribe' => 'static_pages_en#subscribe'
 
-    match 'products' => 'static_pages_en#products'
+    match 'our_products' => 'static_pages_en#our_products'
 
     match 'faq' => 'static_pages_en#faq'
 
@@ -65,7 +82,7 @@ MyCoffeeBox::Application.routes.draw do
 
     match 'shipping_mex' => 'static_pages#shipping_mex'
 
-    match 'payment' => 'static_pages#payment'
+    match 'payment_option' => 'static_pages#payment_option'
 
     match 'order_success' => 'static_pages#order_success'
 

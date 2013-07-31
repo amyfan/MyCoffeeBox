@@ -1,0 +1,31 @@
+#shipment
+
+  %h3 Listing Shipments
+
+  %table
+    %tr
+      %th Shipped date
+      %th Received date
+      %th Shipment status
+      %th Shipment cost
+      %th Shipping provider
+      %th Notes
+      %th
+      %th
+      %th
+
+    - @shipments.each do |shipment|
+      %tr
+        %td= shipment.shipped_date
+        %td= shipment.received_date
+        %td= shipment.shipment_status
+        %td= shipment.shipment_cost
+        %td= shipment.shipping_provider
+        %td= shipment.notes
+        %td= link_to 'Show', shipment
+        %td= link_to 'Edit', edit_shipment_path(shipment)
+        %td= link_to 'Destroy', shipment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Shipment', new_shipment_path

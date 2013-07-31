@@ -1,4 +1,5 @@
 !!! 5
+-# coding: UTF-8
 %html{ :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
     %title
@@ -6,7 +7,7 @@
     %meta{ :charset => 'utf-8' }
     %meta{ :name => "google-site-verification", :content => "tlCgBH2AAVBE9vXOiXGjUOejmKf50tu3QkD0aYesqfk"}
     %meta{ :description => 'MyCoffeeBox es una suscripción mensual para recibir una caja con café chiapaneco que ayuda directamente a los pequeños productores aumentando sus ingresos. Consumidores responsables y amantes del café recibirán cada mes un café diferente... Del cafetal a tu casa.' }
-    %meta{ :keywords => 'mycoffeebox, coffee box, chiapas coffee, chiapas cafe, cafe de chiapas, mexico coffee, mexican coffee, cafe de mexico, organic coffee, cafe organico, high quality, quality coffee, roasted coffee, fair trade, Coffee Beans, Whole Bean, dark roast, medium roast, Drip Coffee, Brewed Coffee, Coffee at home, cafe casa, coffee subscription, cafe suscripcion' }
+    %meta{ :keywords => 'mycoffeebox, coffee box, chiapas coffee, chiapas cafe, cafe de chiapas, mexico coffee, cafe de mexico, organic coffee, cafe organico, quality coffee, roasted coffee, fair trade, Coffee Beans, Whole Bean, dark roast, medium roast, Drip Coffee, cafe casa, coffee subscription, cafe suscripcion' }
     = stylesheet_link_tag "application-all", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -44,6 +45,16 @@
             %a.header{:href => "/en/faq", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'FAQ Header']);"} FAQ
           %li
             = link_to "Español", url_for( :locale => 'es' ), html_options = { :class => "header", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'EN->ES Header']);" }
+      %p.navbar-text.pull-right
+        - if user_signed_in?
+          = link_to current_user.email, dashboards_path, :class => 'subheader'
+          = link_to "Log Out", destroy_user_session_path, method: :delete, :class => 'subheader'
+        - else
+          %a.subheader{:href => "/en/users/sign_in", :onClick => "_gaq.push(['_trackEvent', 'EN Layout', 'Link', 'Account Header']);"} My Account
+    - if notice != nil || alert != nil
+      %p.notice
+        = notice
+        = alert
     = yield
     #footer
       #logo

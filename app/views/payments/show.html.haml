@@ -1,0 +1,25 @@
+#content
+
+  %p#notice= notice
+
+  %p
+    %b Date:
+    = @payment.created_at
+  %p
+    %b Subscription ID:
+    = @payment.subscription_id
+  %p
+    %b Customer Name:
+    = @payment.subscription.user.name
+  %p
+    %b Amount:
+    = @payment.amount
+  %p
+    %b Currency:
+    = @payment.currency
+
+  = link_to 'Edit', edit_payment_path(@payment)
+  = render_cell :shipment, :display, :payment => @payment
+  = link_to 'New Shipment', new_shipment_path(:payment_id => @payment.id)
+  \|
+  = link_to 'Back to Dashboard', dashboards_path

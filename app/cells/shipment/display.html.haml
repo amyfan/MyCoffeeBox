@@ -1,0 +1,17 @@
+#shipment
+
+  %h3 Listing Shipments
+
+  %table
+    %tr
+      %th Shipped date
+      %th Received date
+      %th Shipment status
+
+    - @shipments.each do |shipment|
+      %tr
+        %td= shipment.shipped_date
+        %td= shipment.received_date
+        %td= shipment.shipment_status
+
+  %br

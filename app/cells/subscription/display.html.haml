@@ -1,0 +1,22 @@
+#subscription
+  You have #{@subscriptions.size} subscriptions.
+
+  %table
+    %tr
+      %th Start Date
+      %th Billing/Shipping period
+      %th Coffee type
+      %th Payment status
+      %th
+
+    - @subscriptions.each do |subscription|
+      %tr
+        %td= subscription.created_at
+        %td= subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s
+        %td= subscription.coffee_type
+        %td= subscription.payment_status
+        %td= link_to 'Show', subscription
+
+  %br
+
+  = link_to 'New Subscription', new_subscription_path

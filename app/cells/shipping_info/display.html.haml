@@ -1,0 +1,27 @@
+#shippinginfo
+
+  %h3 Shipping Info
+
+  %table
+    %tr
+      %th Name
+      %th City
+      %th State
+      %th Postal code
+      %th Country
+      %th
+      %th
+      %th
+
+    - if @shipping_info != nil
+      %tr
+        %td= @shipping_info.name
+        %td= @shipping_info.city
+        %td= @shipping_info.state
+        %td= @shipping_info.postal_code
+        %td= @shipping_info.country
+        %td= link_to 'Show', shipping_info
+        %td= link_to 'Edit', edit_shipping_info_path(shipping_info)
+        %td= link_to 'Destroy', shipping_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br

@@ -1,0 +1,13 @@
+#content
+
+  %h1 Admin Dashboard
+
+  = render_cell :user, :display
+  
+  = render_cell :subscription, :manage, :user => nil
+
+  = render_cell :payment, :manage
+
+  = render_cell :shipment, :manage
+
+  = render_cell :shipping_info, :manage, :user => nil
