@@ -49,7 +49,6 @@ $(function() {
   $("#content.dondegift").show();
   setUpGiftPurchase();
 })
-
 function setUpGiftPurchase() {
 
   $("#giftimage img").click(function(i) {
@@ -166,7 +165,7 @@ function checkOutGift() {
       selected_product = usa_four_product;
     }
   }
-  
+
   conekta.checkout.addItem(selected_product.createItem());
 
   if (conekta.checkout.getItems().length > 0) {
@@ -180,8 +179,9 @@ function checkOutGift() {
 
     conekta.checkout.save();
     if (whereValue == 1) {
-      //conekta.checkout.proceedToCheckout();
-      window.location = locale + "/shipping_mex";
+      // TODO strange bug in which address line not saving for one-time orders via custom cart
+      conekta.checkout.proceedToCheckout();
+      //window.location = locale + "/shipping_mex";
     } else {
       window.location = locale + "/shipping";
     }
