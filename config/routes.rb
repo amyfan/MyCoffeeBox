@@ -12,6 +12,8 @@ MyCoffeeBox::Application.routes.draw do
     resources :product_items
 
     resources :dashboards
+    
+    post 'shipping_infos/action(/:id)' => 'shipping_infos#action'
   end
 
   scope "(:locale)", :locale => /es/ do

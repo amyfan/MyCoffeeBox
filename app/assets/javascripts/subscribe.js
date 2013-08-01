@@ -48,11 +48,11 @@ $(function() {
     }
   }
 
-
   conekta.display.getProducts({}, render_products);
 
   setUpSubscription();
 })
+
 function getStaticPhotoForProduct(image_name, id_num) {
   var template = $("#template").clone();
   template.attr('id', 'template' + (id_num));
