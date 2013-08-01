@@ -12,7 +12,7 @@ $(function() {
     page_name = "ES Shipping";
   }
 
-  if (window.location.pathname.indexOf("shipping") > -1) {
+  if (window.location.pathname.indexOf("shipping") > -1 && window.location.pathname.indexOf("shipping_info") < 0) {
     if (conekta.checkout.getItems().length == 0) {
       window.location = locale + "/subscribe";
     } else {
