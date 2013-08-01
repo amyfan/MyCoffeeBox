@@ -56,9 +56,10 @@ function nextShip() {
   }
 
   conekta.checkout.save();
+
   if (window.location.pathname.indexOf("mex") > -1) {
     // go to payment option page for mexico customers
-    window.location = locale + "/payment";
+    window.location = locale + "/payment_option";
   } else {
     // paypal only option for international customers
     function credit_card_callback(info) {
@@ -66,10 +67,8 @@ function nextShip() {
       document.location.href = url_location;
     }
 
-    var success_url_callback;
-    var failure_url_callback;
-    success_url_callback = "http://www.mycoffeebox.com" + locale + "/order_success";
-    failure_url_callback = "http://www.mycoffeebox.com" + locale + "/order_failure";
+    var success_url_callback = "http://www.mycoffeebox.com" + locale + "/order_success";
+    var failure_url_callback = "http://www.mycoffeebox.com" + locale + "/order_failure";
 
     conekta.checkout.processPayment({
       payment_method : 'paypal',
@@ -172,25 +171,40 @@ function validateShippingForm() {
     phone : telefono
   });
 
+  // for our back end
+  $.post("/shipping_infos/action", {
+    "shipping_info" : {
+      "name" : nombre,
+      "address_one" : calle,
+      "address_two" : colonia,
+      "city" : ciudad,
+      "state" : estado,
+      "postal_code" : cp,
+      "country" : pais,
+      //"email" : correo,
+      "phone" : telefono
+    }
+  });
+
   conekta.checkout.setCustomField('¿Lo quiere en Grano o Molido Tradicional?', coffeetype);
   conekta.checkout.setCustomField('Si un amigo te recomendó pon su correo electrónico', referral);
   conekta.checkout.setCustomField('Promo Code', promocode);
 
   // track referral URL if applicable
   // if (readCookie('utm_source') != undefined) {
-    // conekta.checkout.setCustomField('utm_source', readCookie('utm_source'));
+  // conekta.checkout.setCustomField('utm_source', readCookie('utm_source'));
   // }
   // if (readCookie('utm_medium') != undefined) {
-    // conekta.checkout.setCustomField('utm_medium', readCookie('utm_medium'));
+  // conekta.checkout.setCustomField('utm_medium', readCookie('utm_medium'));
   // }
   // if (readCookie('utm_term') != undefined) {
-    // conekta.checkout.setCustomField('utm_term', readCookie('utm_term'));
+  // conekta.checkout.setCustomField('utm_term', readCookie('utm_term'));
   // }
   // if (readCookie('utm_content') != undefined) {
-    // conekta.checkout.setCustomField('utm_content', readCookie('utm_content'));
+  // conekta.checkout.setCustomField('utm_content', readCookie('utm_content'));
   // }
   // if (readCookie('utm_campaign') != undefined) {
-    // conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
+  // conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
   // }
 
   conekta.checkout.setCustomField('Información adicional', adicional);
