@@ -14,7 +14,7 @@ $(function() {
     page_name = "ES Payment";
   }
 
-  if (window.location.pathname.indexOf("payment") > -1) {
+  if (window.location.pathname.indexOf("payment_option") > -1) {
     if (conekta.checkout.getItems().length == 0) {
       window.location = locale + "/subscribe";
     } else {
