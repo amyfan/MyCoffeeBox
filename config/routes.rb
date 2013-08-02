@@ -13,7 +13,8 @@ MyCoffeeBox::Application.routes.draw do
 
     resources :dashboards
     
-    post 'shipping_infos/action(/:id)' => 'shipping_infos#action'
+    post 'shipping_infos/createcopy(/:id)' => 'shipping_infos#createcopy'
+    post 'subscriptions/createcopy(/:id)' => 'subscriptions#createcopy'
   end
 
   scope "(:locale)", :locale => /es/ do

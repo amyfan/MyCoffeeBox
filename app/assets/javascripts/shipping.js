@@ -1,5 +1,6 @@
 var locale;
 var page_name;
+var correo;
 
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
@@ -57,6 +58,9 @@ function nextShip() {
 
   conekta.checkout.save();
 
+  // copy subscription info to our back end
+  $.post("/subscriptions/createcopy", { "email" : correo });
+
   if (window.location.pathname.indexOf("mex") > -1) {
     // go to payment option page for mexico customers
     window.location = locale + "/payment_option";
@@ -82,7 +86,7 @@ function nextShip() {
 }
 
 function validateShippingForm() {
-  var correo = $('#email').val();
+  correo = $('#email').val();
   var coffeetype = $('#coffeetype').val();
   var referral = $('#referral').val();
   var promocode = $('#promocode').val();
@@ -171,8 +175,8 @@ function validateShippingForm() {
     phone : telefono
   });
 
-  // for our back end
-  $.post("/shipping_infos/action", {
+  // copy shipping info to our back end
+  $.post("/shipping_infos/createcopy", {
     "shipping_info" : {
       "name" : nombre,
       "address_one" : calle,
