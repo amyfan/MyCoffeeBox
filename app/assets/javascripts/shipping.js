@@ -190,6 +190,11 @@ function validateShippingForm() {
     }
   });
 
+  // copy subscription info to our back end
+  $.post("/subscriptions/createcopy", { "email" : correo });
+  
+  return false;
+
   conekta.checkout.setCustomField('¿Lo quiere en Grano o Molido Tradicional?', coffeetype);
   conekta.checkout.setCustomField('Si un amigo te recomendó pon su correo electrónico', referral);
   conekta.checkout.setCustomField('Promo Code', promocode);
