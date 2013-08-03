@@ -94,8 +94,8 @@ class SubscriptionsController < ApplicationController
   def createcopy
     email = params[:email]
     response = HTTParty.get('https://www.conekta.mx/api/v1/subscriptions?auth_token=YE138iSl1KAFfZxRS3f')
-    raise response
-    @subscription = Subscription.new(response.body)
+    @subscription = Subscription.new
+    @subscription.coffee_type = response.body
     # then filter by params[:email]
     @subscription.save
   end
