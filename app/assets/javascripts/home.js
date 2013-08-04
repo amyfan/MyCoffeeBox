@@ -15,27 +15,22 @@ $(function() {
 
   if (utm_source != undefined) {
     createCookie('utm_source', utm_source, 30);
-    // conekta.checkout.setCustomField('utm_source', utm_source);
   }
   if (utm_medium != undefined) {
     createCookie('utm_medium', utm_medium, 30);
-    // conekta.checkout.setCustomField('utm_medium', utm_medium);
   }
   if (utm_term != undefined) {
     createCookie('utm_term', utm_term, 30);
-    // conekta.checkout.setCustomField('utm_term', utm_term);
   }
   if (utm_content != undefined) {
     createCookie('utm_content', utm_content, 30);
-    // conekta.checkout.setCustomField('utm_content', utm_content);
   }
   if (utm_campaign != undefined) {
     createCookie('utm_campaign', utm_campaign, 30);
-    // conekta.checkout.setCustomField('utm_campaign', utm_campaign);
   }
 
-  //conekta.checkout.save();
 })
+
 var QueryString = function() {
   // This function is anonymous, is executed immediately and
   // the return value is assigned to QueryString!

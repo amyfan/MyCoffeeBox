@@ -51,12 +51,21 @@
         margin-bottom: 0.2em
         font-size: 1.6em
         font-weight: 600
+      h2.lipayment
+        margin-top: 0.2em
+        margin-bottom: 0.2em
+        font-size: 1.6em
+        font-weight: 600
       h2.limex
         margin-top: 0.5em
         margin-bottom: 0.2em
         font-size: 1.4em
         font-weight: 600
       h3.li
+        margin-bottom: 0.2em
+        font-size: 1.2em
+      h3.lipayment
+        margin-top: 0.6em
         margin-bottom: 0.2em
         font-size: 1.2em
       p.li
@@ -192,16 +201,42 @@
       line-height: 0.7em
       margin-right: -3em
       margin-top: -2em
-    a.nextpay, a.nextpaypal
+    a.nextpaypade
+    a.nextpaybank, a.nextpaypal
       width: 250px
       float: right
       font-size: 1.4em
       line-height: 0.7em
-    a.nextsubscribe, a.nextsubscribe149, a.nextpay
+    a.nextsubscribe, a.nextsubscribe149, a.nextpaybank
       @include button($darker_yellow)
     a.nextgift, a.nextgus
       @include button($special_pink)
-    a.nextpay, a.nextpaypal
+    a.nextpaybank, a.nextpaypal
       display: none
   &.siguientesubscribe, &.siguientesubscribe149, &.siguientegift, &.siguientegus, &.siguientepay
     display: none
+
+#pademobile
+  display: none
+  width: 189px
+  float: right
+  margin-top: -2.5em
+  margin-right: -30em
+  #title-span
+    display: inline-block
+    font-size: 20px
+    color: #666
+    font-weight: bold
+    text-align: left
+    margin-bottom: 15px
+    vertical-align: middle
+    width: 125px
+  #price-span
+    display: inline-block
+    font-size: 20px
+    color: #666
+    font-weight: bold
+    text-align: right
+    margin-bottom: 15px
+    vertical-align: middle
+    width: 60px

@@ -4,7 +4,7 @@ var page_name;
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
 
-  if (window.location.pathname.indexOf("en") > -1) {
+  if (window.location.pathname.indexOf("/en") > -1) {
     locale = "/en";
     page_name = "EN Shipping";
   } else {

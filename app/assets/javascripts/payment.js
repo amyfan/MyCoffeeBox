@@ -6,12 +6,12 @@ var page_name;
 $(function() {
   conekta.setToken('YE138iSl1KAFfZxRS3f');
 
-  if (window.location.pathname.indexOf("en") > -1) {
+  if (window.location.pathname.indexOf("/en") > -1) {
     locale = "/en";
-    page_name = "EN Payment";
+    page_name = "EN Payment Option";
   } else {
     locale = "/es";
-    page_name = "ES Payment";
+    page_name = "ES Payment Option";
   }
 
   if (window.location.pathname.indexOf("payment") > -1) {
@@ -32,6 +32,7 @@ $(function() {
 
   setUpPayment();
 })
+
 function setUpPayment() {
 
   $("#payment ul li").click(function(i) {
@@ -42,11 +43,17 @@ function setUpPayment() {
     var paymentType = parseInt($("#payment .selected").data("paymenttype"));
 
     if (paymentType == 1) {
-      $("a.nextpay").hide();
+      $("a.nextpaybank").hide();
+      $("#pademobile").hide();
       $("a.nextpaypal").show();
     } else if (paymentType == 2) {
       $("a.nextpaypal").hide();
-      $("a.nextpay").show();
+      $("#pademobile").hide();
+      $("a.nextpaybank").show();
+    } else if (paymentType == 3) {
+      $("a.nextpaypal").hide();
+      $("a.nextpaybank").hide();
+      $("#pademobile").show();
     }
     _gaq.push(['_trackEvent', page_name, 'Method', 'type ' + $(this).data("paymenttype")]);
   });
@@ -57,10 +64,16 @@ function setUpPayment() {
     nextPayPal();
   });
 
-  $('a.nextpay').click(function(event) {
+  $('a.nextpaybank').click(function(event) {
     _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'bank']);
     event.preventDefault();
     nextBank();
+  });
+
+  $('a.nextpaypade').click(function(event) {
+    _gaq.push(['_trackEvent', page_name, 'Clicked Next', 'pademobile']);
+    event.preventDefault();
+    nextPademobile();
   });
 
 }
@@ -81,7 +94,6 @@ function nextPayPal() {
   //conekta.checkout.proceedToCheckout();
 }
 
-
 function nextBank() {
   function bank_callback(info) {
     var url_location = "https://secure.conekta.mx/checkout/payment_confirmation?reference_id=" + 'bank';
@@ -96,4 +108,18 @@ function nextBank() {
   });
 
   //conekta.checkout.proceedToCheckout();
+}
+
+// NOTE to the next CTO: In Pademobile's current iteration, the URL to Pademobile is coupled with the name & price created in Pademobile's product catalog
+// Therefore, if you want to change the name or price, or create a new product, you MUST ensure there's a product of the same name & price in the Pademobile system
+function nextPademobile() {
+  var order_name = readCookie('pademobile_order_name');
+	var price = readCookie('price');
+	var firma = readCookie('firma');
+  var url_string = "https://www.pademobile.com/comprar/?descripcion=";
+  url_string += order_name;
+  url_string += "&id_usuario=6804&pais=MX&url=http%3A%2F%2Fwww.mycoffeebox.com%2Fes%2Forder_success&importe=";
+  url_string += price;
+  url_string += "&firma=" + firma;
+  window.location.href = url_string;
 }

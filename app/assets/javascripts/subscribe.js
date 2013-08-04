@@ -165,19 +165,21 @@ function nextSubscribe() {
   var whereValue = parseInt($("#subscribewhere .selected").data("where"));
 
   var product;
+  var currency;
   if (whereValue == 1) {
     product = surprisememex_product;
-    conekta.checkout.setCurrency('MXN');
+    currency = 'MXN';
   } else if (whereValue == 2) {
     product = surprisemeusa_product;
-    conekta.checkout.setCurrency('USD');
+    currency = 'USD';
   } else if (whereValue == 3) {
     product = surprisemelatin_product;
-    conekta.checkout.setCurrency('USD');
+    currency = 'USD';
   } else if (whereValue == 4) {
     product = surprisemeeuro_product;
-    conekta.checkout.setCurrency('EUR');
+    currency = 'EUR';
   }
+  conekta.checkout.setCurrency(currency);
 
   conekta.checkout.addItem(product.createItem());
   // TODO get following lines to work
@@ -187,18 +189,25 @@ function nextSubscribe() {
   // We get the frequency
   var periodFrequencyValue = parseInt($("#subscribefrequency .selected").data("frequency"));
 
+  var one_time_price;
+  var firma;
   if (conekta.checkout.getItems().length > 0 && periodFrequencyValue > 0) {
     //configure a 3 month subscription default
     if (periodFrequencyValue == 2) {
-      // new syntax, and also changing from 4->3 months
       conekta.checkout.setBillingPeriod('week', 2, -1, 6);
       conekta.checkout.setShippingPeriod('week', 2, -1, 6);
+      one_time_price = '1074';
+      firma = 'daf784aa0ba9ff3db8c04a14acc1f4118bd0bc06';
     } else if (periodFrequencyValue == 4) {
       conekta.checkout.setBillingPeriod('week', 4, -1, 3);
       conekta.checkout.setShippingPeriod('week', 4, -1, 3);
+      one_time_price = '537';
+      firma = '4910d14984f53d7133bd283ada8744b8b5323f8b';
     } else {
       conekta.checkout.setBillingPeriod('week', 6, -1, 2);
       conekta.checkout.setShippingPeriod('week', 6, -1, 2);
+      one_time_price = '358';
+      firma = '44f3ff596a02a06bf5b103a1a40330c65a89cc51';
     }
 
     // free shipping
@@ -210,7 +219,16 @@ function nextSubscribe() {
     });
 
     conekta.checkout.save();
+
     if (whereValue == 1) {
+      // now save shopping cart data in cookies (independent of conekta storing our info in js)
+      // at the moment, primarily to store info to determine pademobile product item
+      createCookie('pademobile_order_name', 'Sorpr%C3%A9ndeme+M%C3%A9xico+' + periodFrequencyValue + '+Semanas', 30);
+      createCookie('price', one_time_price, 30);
+      createCookie('firma', firma, 1);
+      // createCookie('order_type', 'subscription', 30);
+      // createCookie('currency', currency, 30);
+
       //conekta.checkout.proceedToCheckout();
       window.location = locale + "/shipping_mex";
     } else {

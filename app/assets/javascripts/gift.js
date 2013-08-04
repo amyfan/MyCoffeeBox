@@ -143,15 +143,23 @@ function checkOutGift() {
 
   var selected_product;
   var lengthValue;
+  var price;
+  var firma;
   if (whereValue == 1) {
     conekta.checkout.setCurrency('MXN');
     lengthValue = parseInt($("#giftlengthmex .selected").data("giftlengthmex"));
     if (lengthValue == 3) {
       selected_product = mex_three_product;
+      price = '510';
+      firma = '54122fdcabd0c49c2c4b7971436e018fa39d4b5a';
     } else if (lengthValue == 6) {
       selected_product = mex_six_product;
+      price = '966';
+      firma = '57d3c8616887798e69c8895f1a8c056ef5ceea3a';
     } else if (lengthValue == 12) {
       selected_product = mex_twelve_product;
+      price = '1716';
+      firma = '7b6d25e49451ad2b7e39af55ebe04d1a0226e1de';
     } else if (lengthValue == 4) {
       selected_product = mex_four_product;
     }
@@ -178,9 +186,14 @@ function checkOutGift() {
     });
 
     conekta.checkout.save();
+
     if (whereValue == 1) {
       // TODO strange bug in which address line not saving for one-time orders via custom cart
       conekta.checkout.proceedToCheckout();
+
+      createCookie('pademobile_order_name', 'Regalo+M%C3%A9xico+' + lengthValue + '+Cajas', 30);
+      createCookie('price', price, 30);
+      createCookie('firma', firma, 1);
       //window.location = locale + "/shipping_mex";
     } else {
       window.location = locale + "/shipping";
