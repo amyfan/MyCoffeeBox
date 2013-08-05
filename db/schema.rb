@@ -48,7 +48,10 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.string   "description"
+<<<<<<< HEAD
     t.string   "conekta_id"
+=======
+>>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
     t.decimal  "price"
     t.string   "currency"
     t.decimal  "weight"
@@ -85,7 +88,10 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
   end
 
   create_table "subscriptions", :force => true do |t|
+<<<<<<< HEAD
     t.string   "conekta_id"
+=======
+>>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
     t.integer  "shipping_period"
     t.integer  "billing_period"
     t.string   "coffee_type"

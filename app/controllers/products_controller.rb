@@ -78,7 +78,11 @@ class ProductsController < ApplicationController
     @product.destroy
 
     respond_to do |format|
+<<<<<<< HEAD
       format.html { redirect_to dashboards_url }
+=======
+      format.html { redirect_to products_url }
+>>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
       format.json { head :no_content }
     end
   end

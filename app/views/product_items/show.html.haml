@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #context
 
   %p#notice= notice
@@ -12,3 +13,17 @@
   = link_to 'Edit', edit_product_item_path(@product_item)
   \|
   = link_to 'Back to Dashboard', dashboards_path
+=======
+%p#notice= notice
+
+%p
+  %b Quantity:
+  = @product_item.quantity
+%p
+  %b Custom options:
+  = @product_item.custom_options
+
+= link_to 'Edit', edit_product_item_path(@product_item)
+\|
+= link_to 'Back', product_items_path
+>>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf

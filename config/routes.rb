@@ -13,6 +13,10 @@ MyCoffeeBox::Application.routes.draw do
 
     resources :dashboards
     
+<<<<<<< HEAD
+=======
+    post 'shipping_infos/createcopy(/:id)' => 'shipping_infos#createcopy'
+>>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
     post 'subscriptions/createcopy(/:id)' => 'subscriptions#createcopy'
   end
 

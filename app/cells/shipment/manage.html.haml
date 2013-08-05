@@ -11,6 +11,7 @@
       %th Shipping provider
       %th Notes
       %th
+<<<<<<< HEAD
 
     - @shipments.each do |shipment|
       %tr
@@ -20,6 +21,21 @@
         %td= link_to shipment.shipment_cost, shipment
         %td= link_to shipment.shipping_provider, shipment
         %td= link_to shipment.notes, shipment
+=======
+      %th
+      %th
+
+    - @shipments.each do |shipment|
+      %tr
+        %td= shipment.shipped_date
+        %td= shipment.received_date
+        %td= shipment.shipment_status
+        %td= shipment.shipment_cost
+        %td= shipment.shipping_provider
+        %td= shipment.notes
+        %td= link_to 'Show', shipment
+        %td= link_to 'Edit', edit_shipment_path(shipment)
+>>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
         %td= link_to 'Destroy', shipment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br

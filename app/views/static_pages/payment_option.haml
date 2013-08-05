@@ -3,13 +3,11 @@
     %h1 Selecciona el método de pago
     %ul
       %li{:"data-paymenttype" => 1}
-        %h2.lipayment Tarjeta de Débito
-        %h2.lipayment o Crédito
-        %h3.lipayment Con PayPal
+        %h2.li Tarjeta de Débito o Crédito
+        %h3.li Con PayPal
       %li{:"data-paymenttype" => 2}
-        %h2.lipayment Depósito o Transferencia
-        %h2.lipayment Bancaria
-        %h3.lipayment Suscripción de 3 meses
+        %h2.li Depósito o Transferencia Bancaria
+        %h3.li Suscripción de 3 meses
   .actions.siguientepay
     %a.nextpaypal{:href => "#"} <img src="../images/paypal.png" width="250px"/>
-    %a.nextpaybank{:href => "#"} Generar Ficha de Pago
+    %a.nextpay{:href => "#"} Generar Ficha de Pago
