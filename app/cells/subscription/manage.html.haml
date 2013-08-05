@@ -6,28 +6,29 @@
       %th Start Date
       %th Customer email
       %th Billing/Shipping period
+      %th Location
       %th Coffee type
       %th Referral email
       %th Promo code
       %th Payment status
       %th
-      %th
-      %th
 
     - @subscriptions.each do |subscription|
       %tr
-        %td= subscription.created_at
+        %td= link_to subscription.created_at, subscription
         - if subscription.user != nil
-          %td= subscription.user.email
+          %td= link_to subscription.user.email, subscription
         - else
           %td &nbsp;
-        %td= subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s
-        %td= subscription.coffee_type
-        %td= subscription.referral_email
-        %td= subscription.promo_code
-        %td= subscription.payment_status
-        %td= link_to 'Show', subscription
-        %td= link_to 'Edit', edit_subscription_path(subscription)
+        %td= link_to subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s, subscription
+        - if subscription.shipping_info != nil
+          %td= link_to subscription.shipping_info.country, subscription
+        - else
+          %td &nbsp;
+        %td= link_to subscription.coffee_type, subscription
+        %td= link_to subscription.referral_email, subscription
+        %td= link_to subscription.promo_code, subscription
+        %td= link_to subscription.payment_status, subscription
         %td= link_to 'Destroy', subscription, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br

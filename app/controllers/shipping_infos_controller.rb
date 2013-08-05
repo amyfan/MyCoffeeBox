@@ -84,11 +84,4 @@ class ShippingInfosController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # POST /shipping_infos/action
-  # POST /shipping_infos/action.json
-  def createcopy
-    @shipping_info = ShippingInfo.new(params[:shipping_info])
-    @shipping_info.save
-  end
 end

@@ -10,18 +10,14 @@
       %th Postal code
       %th Country
       %th
-      %th
-      %th
 
     - if @shipping_info != nil
       %tr
-        %td= @shipping_info.name
-        %td= @shipping_info.city
-        %td= @shipping_info.state
-        %td= @shipping_info.postal_code
-        %td= @shipping_info.country
-        %td= link_to 'Show', shipping_info
-        %td= link_to 'Edit', edit_shipping_info_path(shipping_info)
-        %td= link_to 'Destroy', shipping_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to @shipping_info.name, @shipping_info
+        %td= link_to @shipping_info.city, @shipping_info
+        %td= link_to @shipping_info.state, @shipping_info
+        %td= link_to @shipping_info.postal_code, @shipping_info
+        %td= link_to @shipping_info.country, @shipping_info
+        %td= link_to 'Destroy', @shipping_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br

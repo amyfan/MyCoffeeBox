@@ -1,0 +1,27 @@
+#product
+
+  %h3 Products
+
+  %table
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Currency
+      %th Weight
+      %th Image URL
+      %th
+
+    - @products.each do |product|
+      %tr
+        %td= link_to product.name, product
+        %td= link_to product.description, product
+        %td= link_to product.price, product
+        %td= link_to product.currency, product
+        %td= link_to product.weight, product
+        %td= link_to product.image_url, product
+        %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Product', new_product_path

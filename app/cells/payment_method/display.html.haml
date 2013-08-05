@@ -6,15 +6,11 @@
       %th Payment type
       %th Last4
       %th
-      %th
-      %th
 
     - @payment_methods.each do |payment_method|
       %tr
-        %td= payment_method.payment_type
-        %td= payment_method.last4
-        %td= link_to 'Show', payment_method
-        %td= link_to 'Edit', edit_payment_method_path(payment_method)
+        %td= link_to payment_method.payment_type, payment_method
+        %td= link_to payment_method.last4, payment_method
         %td= link_to 'Destroy', payment_method, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br

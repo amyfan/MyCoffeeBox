@@ -24,6 +24,7 @@ $(function() {
 
   setUpShipping();
 })
+
 function setUpShipping() {
   $('input[type=text]').addClass("empty");
 
@@ -175,30 +176,12 @@ function validateShippingForm() {
     phone : telefono
   });
 
-  // copy shipping info to our back end
-  $.post("/shipping_infos/createcopy", {
-    "shipping_info" : {
-      "name" : nombre,
-      "address_one" : calle,
-      "address_two" : colonia,
-      "city" : ciudad,
-      "state" : estado,
-      "postal_code" : cp,
-      "country" : pais,
-      //"email" : correo,
-      "phone" : telefono
-    }
-  });
-
-  // copy subscription info to our back end
-  $.post("/subscriptions/createcopy", { "email" : correo });
-  
-  return false;
-
   conekta.checkout.setCustomField('¿Lo quiere en Grano o Molido Tradicional?', coffeetype);
   conekta.checkout.setCustomField('Si un amigo te recomendó pon su correo electrónico', referral);
   conekta.checkout.setCustomField('Promo Code', promocode);
+  conekta.checkout.setCustomField('Información adicional', adicional);
 
+  // TODO disabling while customers are able to access default conekta cart, and we're apparently not launching any relevant campaigns anyway
   // track referral URL if applicable
   // if (readCookie('utm_source') != undefined) {
   // conekta.checkout.setCustomField('utm_source', readCookie('utm_source'));
@@ -216,7 +199,44 @@ function validateShippingForm() {
   // conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
   // }
 
-  conekta.checkout.setCustomField('Información adicional', adicional);
+  // copy shipping info to our back end
+  var shipping_info_json = {
+    "name" : nombre,
+    "address_one" : calle,
+    "address_two" : colonia,
+    "city" : ciudad,
+    "state" : estado,
+    "postal_code" : cp,
+    "country" : pais,
+    //"email" : correo,
+    "phone" : telefono,
+    "additional_info" : adicional
+  };
+
+  if (readCookie('order_type').indexOf('subscription') > -1) {
+    // copy subscription info to our back end
+    $.post("/subscriptions/createcopy", {
+    	"email" : correo,
+    	"where_value" : readCookie('where_value'),
+    	"shipping_info" :	shipping_info_json, 
+      "subscription" : {
+  	    "coffee_type" : coffeetype,
+  	    "referral_email" : referral,
+  	    "promo_code" : promocode,
+  	    "billing_period" : readCookie('billing_period'),
+  	    "shipping_period" : readCookie('shipping_period'),
+  	    "utm_source" : readCookie('utm_source'),
+  	    "utm_medium" : readCookie('utm_medium'),
+  	    "utm_term" : readCookie('utm_term'),
+  	    "utm_content" : readCookie('utm_content'),
+  	    "utm_campaign" : readCookie('utm_campaign')
+  	  }
+    });
+  } else {
+  	// TODO: copy single order info to our back end
+  }
+
+  return false;
 
   return true;
 }

@@ -1,6 +1,7 @@
 class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
+      t.string :conekta_id
       t.integer :shipping_period
       t.integer :billing_period
       t.string :coffee_type

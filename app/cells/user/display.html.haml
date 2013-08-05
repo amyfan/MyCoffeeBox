@@ -11,18 +11,14 @@
       %th User role
       %th Status
       %th
-      %th
-      %th
 
     - @users.each do |user|
       %tr
-        %td= user.name
-        %td= user.email
-        %td= user.phone
-        %td= user.user_role
-        %td= user.status
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to user.name, user
+        %td= link_to user.email, user
+        %td= link_to user.phone, user
+        %td= link_to user.user_role, user
+        %td= link_to user.status, user
         %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br

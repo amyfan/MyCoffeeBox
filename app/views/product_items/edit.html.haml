@@ -1,7 +1,9 @@
-%h1 Editing product_item
+#context
 
-= render 'form'
+  %h1 Editing Product Item
 
-= link_to 'Show', @product_item
-\|
-= link_to 'Back', product_items_path
+  = render 'form'
+
+  = link_to 'Show', @product_item
+  \|
+  = link_to 'Back to Dashboard', dashboards_path

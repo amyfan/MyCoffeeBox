@@ -7,15 +7,13 @@
       %th Billing/Shipping period
       %th Coffee type
       %th Payment status
-      %th
 
     - @subscriptions.each do |subscription|
       %tr
-        %td= subscription.created_at
-        %td= subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s
-        %td= subscription.coffee_type
-        %td= subscription.payment_status
-        %td= link_to 'Show', subscription
+        %td= link_to subscription.created_at, subscription
+        %td= link_to subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s, subscription
+        %td= link_to subscription.coffee_type, subscription
+        %td= link_to subscription.payment_status, subscription
 
   %br
 

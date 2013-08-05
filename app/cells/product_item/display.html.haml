@@ -1,0 +1,19 @@
+#product
+
+  %h3 Product Items
+
+  %table
+    %tr
+      %th Quantity
+      %th Custom options
+      %th
+
+    - @product_items.each do |product_item|
+      %tr
+        %td= link_to product_item.quantity, product_item
+        %td= link_to product_item.custom_options, product_item
+        %td= link_to 'Destroy', product_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Product Item', new_product_item_path

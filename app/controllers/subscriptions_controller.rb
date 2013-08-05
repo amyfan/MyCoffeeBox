@@ -92,11 +92,38 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions/action
   # POST /subscriptions/action.json
   def createcopy
-    email = params[:email]
-    response = HTTParty.get('https://www.conekta.mx/api/v1/subscriptions?auth_token=YE138iSl1KAFfZxRS3f')
-    @subscription = Subscription.new
-    @subscription.coffee_type = response.body
-    # then filter by params[:email]
+    where_value = params[:where_value]
+    product_item = create_product_item(where_value)
+    shipping_info = create_shipping(params[:shipping_info])
+    puts shipping_info
+    @subscription = Subscription.new(params[:subscription])
+    # @subscription.conekta_id = latest_subscription[:id]
+    @subscription.payment_status = 'Pending'
+    @subscription.shipping_info = shipping_info
     @subscription.save
+  end
+  
+  def queryconekta
+    email = params[:email]
+    url_string = 'http://www.conekta.mx/api/v1/subscriptions?auth_token=YE138iSl1KAFfZxRS3f&search=' + email
+    response = HTTParty.get(url_string)
+    hash = JSON.parse response.body
+    # sort in descending order
+    hash.sort! {|a,b| b['id']<=>a['id']}
+    latest_subscription = hash[0]
+    # TODO: use filter to only accept pagado status
+  end
+  
+  private
+
+  def create_product_item(where_value)
+    product = Product.find(:conditions => {:order_type => 'subscription', :where_value => where_value})
+    return product_item
+  end
+
+  def create_shipping(params)
+    shipping_info = ShippingInfo.new(params)
+    shipping_info.save
+    return shipping_info
   end
 end

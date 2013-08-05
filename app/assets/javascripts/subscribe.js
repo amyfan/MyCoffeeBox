@@ -219,15 +219,20 @@ function nextSubscribe() {
     });
 
     conekta.checkout.save();
+    
+    // now save shopping cart data in cookies (independent of conekta storing our info in js)
+    // these cookies for our own back end
+    createCookie('order_type', 'subscription', 30);
+    createCookie('billing_period', periodFrequencyValue, 30);
+    createCookie('shipping_period', periodFrequencyValue, 30);
+    createCookie('currency', currency, 30);
+    createCookie('where_value', whereValue, 30);
 
     if (whereValue == 1) {
-      // now save shopping cart data in cookies (independent of conekta storing our info in js)
-      // at the moment, primarily to store info to determine pademobile product item
+      // these cookies are for pademobile
       createCookie('pademobile_order_name', 'Sorpr%C3%A9ndeme+M%C3%A9xico+' + periodFrequencyValue + '+Semanas', 30);
       createCookie('price', one_time_price, 30);
       createCookie('firma', firma, 1);
-      // createCookie('order_type', 'subscription', 30);
-      // createCookie('currency', currency, 30);
 
       //conekta.checkout.proceedToCheckout();
       window.location = locale + "/shipping_mex";
