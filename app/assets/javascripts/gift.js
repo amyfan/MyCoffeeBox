@@ -194,6 +194,8 @@ function checkOutGift() {
       createCookie('pademobile_order_name', 'Regalo+M%C3%A9xico+' + lengthValue + '+Cajas', 30);
       createCookie('price', price, 30);
       createCookie('firma', firma, 1);
+      
+      // TODO restore custom cart & save cookies for back end
       //window.location = locale + "/shipping_mex";
     } else {
       window.location = locale + "/shipping";

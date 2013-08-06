@@ -7,7 +7,7 @@
   #directions
     %p
       %span.numrequired 1
-      %input#email{:type => "text", :placeholder => "Tu correo electrónico"}
+      %input#email{:type => "text", :value => "#{current_user.email}", :placeholder => "Tu correo electrónico"}
     %p
       %span.numrequired 2
       %input#coffeetype{:type => "text", :placeholder => "¿Lo quiere en Grano o Molido Tradicional?"}
