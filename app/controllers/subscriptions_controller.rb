@@ -92,7 +92,6 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions/action
   # POST /subscriptions/action.json
   def createcopy
-<<<<<<< HEAD
     where_value = params[:where_value]
     product_item = create_product_item(where_value)
     shipping_info = create_shipping(params[:shipping_info])
@@ -126,13 +125,5 @@ class SubscriptionsController < ApplicationController
     shipping_info = ShippingInfo.new(params)
     shipping_info.save
     return shipping_info
-=======
-    email = params[:email]
-    response = HTTParty.get('https://www.conekta.mx/api/v1/subscriptions?auth_token=YE138iSl1KAFfZxRS3f')
-    @subscription = Subscription.new
-    @subscription.coffee_type = response.body
-    # then filter by params[:email]
-    @subscription.save
->>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
   end
 end

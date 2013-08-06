@@ -9,8 +9,6 @@
       %th User Name
       %th Amount
       %th
-<<<<<<< HEAD
-
     - @payments.each do |payment|
       %tr
         %td= link_to payment.created_at, payment
@@ -21,23 +19,6 @@
           %td &nbsp;
           %td &nbsp;
         %td= link_to payment.amount.to_s + " " + payment.currency, payment
-=======
-      %th
-      %th
-
-    - @payments.each do |payment|
-      %tr
-        %td= payment.created_at
-        - if payment.subscription != nil
-          %td= payment.subscription_id
-          %td= payment.subscription.user.name
-        - else
-          %td &nbsp;
-          %td &nbsp;
-        %td= payment.amount.to_s + " " + payment.currency
-        %td= link_to 'Show', payment
-        %td= link_to 'Edit', edit_payment_path(payment)
->>>>>>> 0e98ad2b23d969d5fc0e659075fb655a013323bf
         %td= link_to 'Destroy', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br
