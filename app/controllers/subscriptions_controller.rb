@@ -89,16 +89,15 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # POST /subscriptions/action
-  # POST /subscriptions/action.json
+  # POST /subscriptions/createcopy
+  # POST /subscriptions/createcopy.json
   def createcopy
-    where_value = params[:where_value]
-    product_item = create_product_item(where_value)
+    product_item = create_product_item(params[:where_value])
     shipping_info = create_shipping(params[:shipping_info])
-    puts shipping_info
     @subscription = Subscription.new(params[:subscription])
     # @subscription.conekta_id = latest_subscription[:id]
     @subscription.payment_status = 'Pending'
+    @subscription.product_item = product_item
     @subscription.shipping_info = shipping_info
     @subscription.save
   end
@@ -117,7 +116,12 @@ class SubscriptionsController < ApplicationController
   private
 
   def create_product_item(where_value)
-    product = Product.find(:conditions => {:order_type => 'subscription', :where_value => where_value})
+    product = Product.where(:order_type => 'subscription', :where_value => where_value).first
+    puts product
+    product_item = ProductItem.new
+    product_item.product = product
+    product_item.quantity = 1
+    product_item.save
     return product_item
   end
 

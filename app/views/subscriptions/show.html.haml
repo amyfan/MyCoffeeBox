@@ -48,6 +48,7 @@
 
     = link_to 'Edit', edit_subscription_path(@subscription)
 
+  = render_cell :product_item, :display, :subscription => @subscription
   = render_cell :shipping_info, :display, :subscription => @subscription
   = render_cell :payment, :display, :payments => @subscription.payments
   = link_to 'New Payment', new_payment_path(:subscription_id => @subscription.id)

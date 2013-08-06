@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
     t.string   "name"
     t.string   "description"
     t.string   "conekta_id"
+    t.string   "where_value"
+    t.string   "order_type"
     t.decimal  "price"
     t.string   "currency"
     t.decimal  "weight"

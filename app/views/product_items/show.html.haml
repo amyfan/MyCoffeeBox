@@ -9,6 +9,7 @@
     %b Custom options:
     = @product_item.custom_options
 
+  = render_cell :product, :display, :product_item => @product_item
   = link_to 'Edit', edit_product_item_path(@product_item)
   \|
   = link_to 'Back to Dashboard', dashboards_path

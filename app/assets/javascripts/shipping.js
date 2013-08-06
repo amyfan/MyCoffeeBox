@@ -176,26 +176,6 @@ function validateShippingForm() {
     phone : telefono
   });
 
-  // copy shipping info to our back end
-  $.post("/shipping_infos/createcopy", {
-    "shipping_info" : {
-      "name" : nombre,
-      "address_one" : calle,
-      "address_two" : colonia,
-      "city" : ciudad,
-      "state" : estado,
-      "postal_code" : cp,
-      "country" : pais,
-      //"email" : correo,
-      "phone" : telefono
-    }
-  });
-
-  // copy subscription info to our back end
-  $.post("/subscriptions/createcopy", { "email" : correo });
-  
-  return false;
-
   conekta.checkout.setCustomField('¿Lo quiere en Grano o Molido Tradicional?', coffeetype);
   conekta.checkout.setCustomField('Si un amigo te recomendó pon su correo electrónico', referral);
   conekta.checkout.setCustomField('Promo Code', promocode);

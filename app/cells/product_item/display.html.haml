@@ -1,18 +1,25 @@
 #product
 
-  %h3 Product Items
+  %h3 Product Item
 
   %table
     %tr
+      %th Product Name
+      %th Price
       %th Quantity
       %th Custom options
       %th
 
-    - @product_items.each do |product_item|
-      %tr
-        %td= link_to product_item.quantity, product_item
-        %td= link_to product_item.custom_options, product_item
-        %td= link_to 'Destroy', product_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %tr
+      - if @product_item.product != nil
+        %td= link_to @product_item.product.name, @product_item
+        %td= link_to @product_item.product.price.to_s + " " + @product_item.product.currency, @product_item
+      - else
+        %td &nbsp;
+        %td &nbsp;
+      %td= link_to @product_item.quantity, @product_item
+      %td= link_to @product_item.custom_options, @product_item
+      %td= link_to 'Destroy', @product_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br
 

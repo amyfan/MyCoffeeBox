@@ -1,7 +1,8 @@
 class ProductItemCell < Cell::Rails
 
-  def display
-    @product_items = ProductItem.all
+  def display(args)
+    @subscription = args[:subscription]
+    @product_item  = @subscription.product_item
     render
   end
 
