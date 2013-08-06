@@ -4,29 +4,35 @@
 
   %p#notice= notice
 
-  %p
-    %b ID:
-    = @subscription.id
-  %p
-    %b User Email:
-    - if @subscription.user != nil
-      = @subscription.user.email
+  - if can? :manage, User
+    %p
+      %b Subscription ID:
+      = @subscription.id
+    %p
+      %b Conekta ID:
+      = @subscription.conekta_id
+    %p
+      %b User Email:
+      - if @subscription.user != nil
+        = @subscription.user.email
   %p
     %b Shipping period:
     = @subscription.shipping_period
+    weeks
   %p
     %b Billing period:
     = @subscription.billing_period
+    weeks
   %p
     %b Coffee type:
     = @subscription.coffee_type
   %p
-    %b Referral email:
-    = @subscription.referral_email
-  %p
     %b Payment status:
     = @subscription.payment_status
   - if can? :manage, User
+    %p
+      %b Referral email:
+      = @subscription.referral_email
     %p
       %b Promo code:
       = @subscription.promo_code
@@ -51,6 +57,7 @@
   = render_cell :product_item, :display, :subscription => @subscription
   = render_cell :shipping_info, :display, :subscription => @subscription
   = render_cell :payment, :display, :payments => @subscription.payments
-  = link_to 'New Payment', new_payment_path(:subscription_id => @subscription.id)
-  \|
+  - if can? :manage, User
+    = link_to 'New Payment', new_payment_path(:subscription_id => @subscription.id)
+    \|
   = link_to 'Back to Dashboard', dashboards_path

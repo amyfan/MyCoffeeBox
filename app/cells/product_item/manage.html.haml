@@ -8,6 +8,7 @@
       %th Price
       %th Quantity
       %th Custom options
+      %th
 
     %tr
       - if @product_item.product != nil
@@ -18,3 +19,8 @@
         %td &nbsp;
       %td= link_to @product_item.quantity, @product_item
       %td= link_to @product_item.custom_options, @product_item
+      %td= link_to 'Destroy', @product_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Product Item', new_product_item_path

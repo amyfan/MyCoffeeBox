@@ -96,6 +96,7 @@ class SubscriptionsController < ApplicationController
     shipping_info = create_shipping(params[:shipping_info])
     @subscription = Subscription.new(params[:subscription])
     # @subscription.conekta_id = latest_subscription[:id]
+    @subscription.user = current_user
     @subscription.payment_status = 'Pending'
     @subscription.product_item = product_item
     @subscription.shipping_info = shipping_info

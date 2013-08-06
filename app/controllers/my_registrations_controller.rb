@@ -31,4 +31,12 @@ class MyRegistrationsController < Devise::RegistrationsController
   def edit
     super
   end
+
+  def after_sign_in_path_for(resource)
+    if session[:path] != nil
+      session[:path]
+    else
+      dashboards_path
+    end
+  end
 end

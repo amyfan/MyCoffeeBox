@@ -9,7 +9,6 @@
       %th State
       %th Postal code
       %th Country
-      %th
 
     - if @shipping_info != nil
       %tr
@@ -18,6 +17,3 @@
         %td= link_to @shipping_info.state, @shipping_info
         %td= link_to @shipping_info.postal_code, @shipping_info
         %td= link_to @shipping_info.country, @shipping_info
-        %td= link_to 'Destroy', @shipping_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %br
