@@ -1,4 +1,4 @@
-#content.dashboard
+#dashboard.content
 
   %h1 Subscription Details
 
@@ -52,12 +52,12 @@
       %b Utm campaign:
       = @subscription.utm_campaign
 
-    = link_to 'Edit', edit_subscription_path(@subscription)
+    = link_to 'Edit', edit_subscription_path(@subscription), :class => "prominent"
 
   = render_cell :product_item, :display, :subscription => @subscription
   = render_cell :shipping_info, :display, :subscription => @subscription
   = render_cell :payment, :display, :payments => @subscription.payments
   - if can? :manage, User
-    = link_to 'New Payment', new_payment_path(:subscription_id => @subscription.id)
+    = link_to 'New Payment', new_payment_path(:subscription_id => @subscription.id), :class => "prominent"
     \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

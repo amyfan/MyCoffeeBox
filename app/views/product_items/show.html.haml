@@ -1,5 +1,4 @@
-#context.dashboard
-
+#dashboard.content
   %p#notice= notice
 
   %p
@@ -10,6 +9,6 @@
     = @product_item.custom_options
 
   = render_cell :product, :display, :product_item => @product_item
-  = link_to 'Edit', edit_product_item_path(@product_item)
+  = link_to 'Edit', edit_product_item_path(@product_item), :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

@@ -43,17 +43,18 @@ p
     margin-right: 50px
 
 table
-  border: 1px solid $light_gray
+  border: 1px solid $gray
 th, td
-  border: 1px solid $light_gray
+  border: 1px solid $gray
   padding: 0.5em
 th
-  background-color: $light_gray
+  background-color: $mild_gray
   font-family: $title_sans
   font-weight: 600
   //text-transform: uppercase
 td
   font-size: 0.9em
+  background-color: white
 
 a
   text-decoration: none
@@ -143,7 +144,7 @@ a
           height: 150px
           float: center
 
-#header, #content, #footer
+#header, #content, #dashboard, #footer
   @include centered
 
 #content, #contenthome
@@ -159,6 +160,28 @@ a
     @include clearfix
     h2
       text-align: center
+
+#dashboard
+  @include clearfix
+  @include box
+  @include blur
+  @include transparent($light_gray, 0.9)
+  a.prominent
+    text-transform: uppercase
+  h1
+    margin-top: 1em
+    text-align: center
+  border: none
+  padding: 0
+  > div
+    padding: 1em
+    @include clearfix
+    h2
+      text-align: center
+  &.content
+    padding: 1em 1em 1em
+    h1
+      margin-bottom: 1em
 
 #content
   box-shadow: 0.1em 0.1em 0.4em black

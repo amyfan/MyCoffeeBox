@@ -1,9 +1,9 @@
-#content
+#dashboard.content
 
   %h1 Editing Subscription
 
   = render 'form'
 
-  = link_to 'Show', @subscription
+  = link_to 'Cancel', @subscription, :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

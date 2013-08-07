@@ -29,8 +29,4 @@
         %td= link_to subscription.referral_email, subscription
         %td= link_to subscription.promo_code, subscription
         %td= link_to subscription.payment_status, subscription
-        %td= link_to 'Destroy', subscription, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %br
-
-  = link_to 'New Subscription (to test)', new_subscription_path
+        %td= link_to 'Delete', subscription, :method => :delete, :data => { :confirm => 'Are you sure?' }

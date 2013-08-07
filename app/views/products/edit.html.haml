@@ -1,9 +1,9 @@
-#context
+#dashboard.content
 
   %h1 Editing product
 
   = render 'form'
 
-  = link_to 'Show', @product
+  = link_to 'Cancel', @product, :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

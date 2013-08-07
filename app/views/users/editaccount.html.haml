@@ -1,9 +1,9 @@
-#content
+#dashboard.content
 
   %h1 Edit Account Info
 
   = render 'formcustomer'
 
-  = link_to 'Show', @user
+  = link_to 'Cancel', @user, :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

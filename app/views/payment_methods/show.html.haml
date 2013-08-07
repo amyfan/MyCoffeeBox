@@ -1,4 +1,4 @@
-#context.dashboard
+#dashboard.content
   %p#notice= notice
 
   %p
@@ -29,6 +29,6 @@
     %b Phone:
     = @payment_method.phone
 
-  = link_to 'Edit', edit_payment_method_path(@payment_method)
+  = link_to 'Edit', edit_payment_method_path(@payment_method), :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

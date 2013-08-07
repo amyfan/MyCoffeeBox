@@ -1,4 +1,4 @@
-#content.dashboard
+#dashboard.content
   %p#notice= notice
 
   %p
@@ -29,13 +29,11 @@
             -# -
           -# = subscription.created_at
 
-  = link_to 'Edit', edit_user_path(@user)
-
   - if can? :manage, User
-    = render_cell :subscription, :manage, :user => @user    
+    = render_cell :subscription, :manage, :user => @user
 
   = render_cell :payment_method, :display, :user => @user
-  = render_cell :shipping_info, :manage, :user => @user
-  = link_to 'New Shipping Info', new_shipping_info_path(:user_id => @user.id)
 
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Edit', edit_user_path(@user), :class => "prominent"
+  \|
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

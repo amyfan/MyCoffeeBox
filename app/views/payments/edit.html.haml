@@ -1,4 +1,4 @@
-#context
+#dashboard.content
 
   %h1 Editing payment
 
@@ -6,6 +6,6 @@
 
   = @payment.subscription = @subscription
 
-  = link_to 'Show', @payment
+  = link_to 'Cancel', @payment, :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

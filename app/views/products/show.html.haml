@@ -1,4 +1,4 @@
-#context.dashboard
+#dashboard.content
 
   %p#notice= notice
 
@@ -24,6 +24,6 @@
     %b Image url:
     = @product.image_url
 
-  = link_to 'Edit', edit_product_path(@product)
+  = link_to 'Edit', edit_product_path(@product), :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

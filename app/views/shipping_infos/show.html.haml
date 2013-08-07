@@ -1,4 +1,4 @@
-#context.dashboard
+#dashboard.content
 
   %p#notice= notice
 
@@ -30,6 +30,6 @@
     %b Additional info:
     = @shipping_info.additional_info
 
-  = link_to 'Edit', edit_shipping_info_path(@shipping_info)
+  = link_to 'Edit', edit_shipping_info_path(@shipping_info), :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"

@@ -1,4 +1,4 @@
-#content.dashboard
+#dashboard.content
 
   %p#notice= notice
 
@@ -18,8 +18,8 @@
     %b Currency:
     = @payment.currency
 
-  = link_to 'Edit', edit_payment_path(@payment)
+  = link_to 'Edit', edit_payment_path(@payment), :class => "prominent"
   = render_cell :shipment, :display, :payment => @payment
-  = link_to 'New Shipment', new_shipment_path(:payment_id => @payment.id)
+  = link_to 'New Shipment', new_shipment_path(:payment_id => @payment.id), :class => "prominent"
   \|
-  = link_to 'Back to Dashboard', dashboards_path
+  = link_to 'Back to Dashboard', dashboards_path, :class => "prominent"
