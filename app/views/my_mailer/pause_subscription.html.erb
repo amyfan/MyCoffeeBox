@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Subscription to be paused</h2>
+    <p>Customer Name: <%= @subscription.user.name %></p>
+    <p>Customer Email: <%= @subscription.user.email %></p>
+    <p>Subscription ID: <%= @subscription.id %></p>
+    <p>Conekta ID: <%= @subscription.conekta_id %></p>
+    <p>Product Name: <%= @subscription.product_item.product.name %></p>
+    <p>Billing Period: <%= @subscription.billing_period %></p>
+  </body>
+</html>

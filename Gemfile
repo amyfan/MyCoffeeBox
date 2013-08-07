@@ -12,6 +12,7 @@ gem 'cancan', '1.6.10'
 gem 'cells', '3.8.8'
 gem 'active_shipping', '0.10.0'
 gem 'httparty', '0.11.0'
+gem 'figaro'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

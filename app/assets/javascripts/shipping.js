@@ -56,9 +56,6 @@ function nextShip() {
 
   conekta.checkout.save();
 
-  // copy subscription info to our back end
-  $.post("/subscriptions/createcopy", { "email" : correo });
-
   if (window.location.pathname.indexOf("mex") > -1) {
     // go to payment option page for mexico customers
     window.location = locale + "/payment_option";
@@ -212,8 +209,7 @@ function validateShippingForm() {
 
   if (readCookie('order_type').indexOf('subscription') > -1) {
     // copy subscription info to our back end
-    $.post("/subscriptions/createcopy", {
-    	"email" : correo,
+    $.post("/subscriptions/create_copy", {
     	"where_value" : readCookie('where_value'),
     	"shipping_info" :	shipping_info_json, 
       "subscription" : {

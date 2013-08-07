@@ -151,3 +151,6 @@ Thumbs.db
 *.sql
 *.sqlite
 Coacheller-iOS/.DS_Store
+
+# Ignore application configuration
+/config/application.yml

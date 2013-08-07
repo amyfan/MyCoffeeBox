@@ -89,9 +89,9 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # POST /subscriptions/createcopy
-  # POST /subscriptions/createcopy.json
-  def createcopy
+  # POST /subscriptions/create_copy
+  # POST /subscriptions/create_copy.json
+  def create_copy
     product_item = create_product_item(params[:where_value])
     shipping_info = create_shipping(params[:shipping_info])
     @subscription = Subscription.new(params[:subscription])
@@ -101,9 +101,40 @@ class SubscriptionsController < ApplicationController
     @subscription.product_item = product_item
     @subscription.shipping_info = shipping_info
     @subscription.save
+
+    respond_to do |format|
+      format.html { head :no_content }
+      format.json { head :no_content }
+    end
   end
-  
-  def queryconekta
+
+  # POST /subscriptions/pause_subscription/1
+  # POST /subscriptions/pause_subscription/1.json
+  def pause_subscription
+    @subscription = Subscription.find(params[:id])
+    MyMailer.pause_subscription(@subscription).deliver
+    @subscription.payment_status = 'Paused'
+    @subscription.save
+
+    respond_to do |format|
+      format.html { redirect_to dashboards_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def resume_subscription
+    @subscription = Subscription.find(params[:id])
+    MyMailer.resume_subscription(@subscription).deliver
+    @subscription.payment_status = 'Pending'
+    @subscription.save
+
+    respond_to do |format|
+      format.html { redirect_to dashboards_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def query_conekta
     email = params[:email]
     url_string = 'http://www.conekta.mx/api/v1/subscriptions?auth_token=YE138iSl1KAFfZxRS3f&search=' + email
     response = HTTParty.get(url_string)
@@ -118,7 +149,6 @@ class SubscriptionsController < ApplicationController
 
   def create_product_item(where_value)
     product = Product.where(:order_type => 'subscription', :where_value => where_value).first
-    puts product
     product_item = ProductItem.new
     product_item.product = product
     product_item.quantity = 1

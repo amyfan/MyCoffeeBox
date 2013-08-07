@@ -84,4 +84,9 @@ class ShippingInfosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def gen_fedex_label
+    fedex = FedEx.new(:login => 'info@mycoffeebox.mx', :password => 'S3gur1dadcoffee', :account => '372717939', :test => true)
+    response = fedex.find_rates(origin, destination, packages)
+  end
 end

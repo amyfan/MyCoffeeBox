@@ -49,6 +49,7 @@ $(function() {
   $("#content.dondegift").show();
   setUpGiftPurchase();
 })
+
 function setUpGiftPurchase() {
 
   $("#giftimage img").click(function(i) {

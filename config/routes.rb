@@ -13,7 +13,9 @@ MyCoffeeBox::Application.routes.draw do
 
     resources :dashboards
     
-    post 'subscriptions/createcopy(/:id)' => 'subscriptions#createcopy'
+    post 'subscriptions/create_copy(/:id)' => 'subscriptions#create_copy'
+    post 'subscriptions/pause_subscription(/:id)' => 'subscriptions#pause_subscription'
+    post 'subscriptions/resume_subscription(/:id)' => 'subscriptions#resume_subscription'
   end
 
   scope "(:locale)", :locale => /es/ do

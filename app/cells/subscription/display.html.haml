@@ -7,6 +7,7 @@
       %th Billing/Shipping period
       %th Coffee type
       %th Payment status
+      %th
 
     - @subscriptions.each do |subscription|
       %tr
@@ -14,6 +15,12 @@
         %td= link_to subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s, subscription
         %td= link_to subscription.coffee_type, subscription
         %td= link_to subscription.payment_status, subscription
+        - if subscription.payment_status != 'Paused' && subscription.payment_status != 'Canceled'
+          %td= link_to 'Pause', "/subscriptions/pause_subscription/" + subscription.id.to_s, :method => :pause_subscription, :data => { :confirm => 'Are you sure you want to pause your subscription?' }
+        - elsif subscription.payment_status == 'Paused'
+          %td= link_to 'Resume', "/subscriptions/resume_subscription/" + subscription.id.to_s, :method => :resume_subscription, :data => { :confirm => 'Are you sure you want to resume your subscription?' }
+        - else
+          %td
 
   %br
 
