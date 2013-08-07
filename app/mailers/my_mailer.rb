@@ -3,11 +3,11 @@ class MyMailer < ActionMailer::Base
 
   def pause_subscription(subscription)
     @subscription = subscription
-    mail(to: 'amyfan@gmail.com', subject: 'REQUEST: Pause Subscription')
+    mail(to: 'info@mycoffeebox.mx', subject: 'REQUEST: Pause Subscription')
   end
 
   def resume_subscription(subscription)
     @subscription = subscription
-    mail(to: 'amyfan@gmail.com', subject: 'REQUEST: Resume Subscription')
+    mail(to: 'info@mycoffeebox.mx', subject: 'REQUEST: Resume Subscription')
   end
 end

@@ -1,16 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 es:
-  errors:
-    messages:
-      expired: "ha expirado, por favor pida uno nuevo"
-      not_found: "no encontrado"
-      already_confirmed: "ya está confirmada, por favor intente ingresar"
-      not_locked: "no está bloqueada"
-      not_saved:
-        one: "1 error evitó que este %{resource} fuera guardado:"
-        other: "%{count} errores evitaron que este %{resource} fuera guardado:"
- 
   devise:
     failure:
       already_authenticated: 'Ya estás dentro del sistema.'
@@ -19,6 +9,7 @@ es:
       locked: 'Tu cuenta está bloqueada.'
       invalid: 'Correo o contraseña inválidos.'
       invalid_token: 'Ficha de autenticación invalida.'
+      not_found_in_database: 'Correo o contraseña inválidos.'
       timeout: 'Tu sesión ha expirado, por favor ingresa nuevamente para continuar.'
       inactive: 'Tu cuenta aún no ha sido activada.'
     my_sessions:
@@ -56,3 +47,13 @@ es:
         subject: 'Instrucciones de reinicio de contraseña'
       unlock_instructions:
         subject: 'Instrucciones de desbloqueo'
+  errors:
+    messages:
+      expired: "ha expirado, por favor pida uno nuevo"
+      not_found: "no encontrado"
+      already_confirmed: "ya está confirmada, por favor intente ingresar"
+      not_locked: "no está bloqueada"
+      not_saved:
+        one: "1 error evitó que este %{resource} fuera guardado:"
+        other: "%{count} errores evitaron que este %{resource} fuera guardado:"
+ 
