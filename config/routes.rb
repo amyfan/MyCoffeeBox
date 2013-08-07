@@ -10,12 +10,12 @@ MyCoffeeBox::Application.routes.draw do
     resources :shipping_infos
     resources :products
     resources :product_items
-
     resources :dashboards
     
     post 'subscriptions/create_copy(/:id)' => 'subscriptions#create_copy'
     post 'subscriptions/pause_subscription(/:id)' => 'subscriptions#pause_subscription'
     post 'subscriptions/resume_subscription(/:id)' => 'subscriptions#resume_subscription'
+    match 'check_sign_in' => 'routings#check_sign_in'
   end
 
   scope "(:locale)", :locale => /es/ do
@@ -24,39 +24,22 @@ MyCoffeeBox::Application.routes.draw do
     get "static_pages/home"
 
     match 'subscribe' => 'static_pages#subscribe'
-
     match 'our_products' => 'static_pages#our_products'
-
     match 'faq' => 'static_pages#faq'
-
     match 'contact' => 'static_pages#contact'
-
     match 'team' => 'static_pages#team'
-
     match 'how' => 'static_pages#how'
-
     match 'gift' => 'static_pages#gift'
-
     match 'padre' => 'static_pages#gift'
-
     match 'shipping' => 'static_pages#shipping'
-
     match 'shipping_mex' => 'static_pages#shipping_mex'
-
     match 'payment_option' => 'static_pages#payment_option'
-
     match 'order_success' => 'static_pages#order_success'
-
     match 'order_failure' => 'static_pages#order_failure'
-
     match 'gus' => 'static_pages#gus'
-
     match 'hamiltonbeach' => 'static_pages#hamiltonbeach'
-
     match 'tuola' => 'static_pages#tuola'
-
     match 'especial' => 'static_pages#especial'
-
     match 'progress' => 'static_pages#progress'
 
   end
@@ -67,29 +50,17 @@ MyCoffeeBox::Application.routes.draw do
     get "static_pages_en/home"
 
     match 'home' => 'static_pages_en#home'
-
     match 'subscribe' => 'static_pages_en#subscribe'
-
     match 'our_products' => 'static_pages_en#our_products'
-
     match 'faq' => 'static_pages_en#faq'
-
     match 'contact' => 'static_pages_en#contact'
-
     match 'team' => 'static_pages_en#team'
-
     match 'how' => 'static_pages_en#how'
-
     match 'gift' => 'static_pages_en#gift'
-
     match 'shipping' => 'static_pages_en#shipping'
-
     match 'shipping_mex' => 'static_pages#shipping_mex'
-
     match 'payment_option' => 'static_pages#payment_option'
-
     match 'order_success' => 'static_pages#order_success'
-
     match 'order_failure' => 'static_pages#order_failure'
 
   end

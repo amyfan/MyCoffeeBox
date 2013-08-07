@@ -236,10 +236,10 @@ function nextSubscribe() {
 
       //conekta.checkout.proceedToCheckout();
       // window.location = locale + "/shipping_mex";
-      window.location = "/es/users/sign_in?path=" + locale + "/shipping_mex"
+      window.location = locale + "/check_sign_in?path=" + locale + "/shipping_mex"
     } else {
       // window.location = locale + "/shipping";
-      window.location = "/es/users/sign_in?path=" + locale + "/shipping"
+      window.location = locale + "/check_sign_in?path=" + locale + "/shipping"
     }
   } else {
     // this case should no longer happen based on flow of page

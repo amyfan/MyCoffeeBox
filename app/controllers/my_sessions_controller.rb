@@ -4,7 +4,9 @@ class MySessionsController < Devise::SessionsController
 
   def new
     super
-    session[:path] = params[:path]
+    if params[:path] != nil
+      session[:path] = params[:path]
+    end
   end
 
   def after_sign_in_path_for(user)
@@ -14,7 +16,9 @@ class MySessionsController < Devise::SessionsController
     #  user_path(user)
     #end
     if session[:path] != nil
-      session[:path]
+      path = session[:path]
+      session.delete(:path)
+      path
     else
       dashboards_path
     end

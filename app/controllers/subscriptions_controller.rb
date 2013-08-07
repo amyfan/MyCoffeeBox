@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  before_filter :authenticate_user!
   layout :layout_locale
 
   # GET /subscriptions
