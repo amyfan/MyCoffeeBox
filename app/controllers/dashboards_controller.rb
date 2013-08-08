@@ -12,5 +12,32 @@ class DashboardsController < ApplicationController
       render :index_user
     end
   end
+  
+  def view_products
+    authorize! :read, @user
+    if can? :manage, @user
+      render :products_admin
+    else
+      render :index_user
+    end
+  end
+
+  def view_subscriptions
+    authorize! :read, @user
+    if can? :manage, @user
+      render :subscriptions_admin
+    else
+      render :index_user
+    end
+  end
+
+  def view_payments
+    authorize! :read, @user
+    if can? :manage, @user
+      render :payments_admin
+    else
+      render :index_user
+    end
+  end
 
 end

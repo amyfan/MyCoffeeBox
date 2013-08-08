@@ -1,0 +1,7 @@
+%h1 User Dashboard
+  
+%ul
+  %li
+    = link_to 'Main', dashboards_path, :class => "tab"
+  %li
+    = link_to 'Account Info', user_path(@current_user), :class => "tab"

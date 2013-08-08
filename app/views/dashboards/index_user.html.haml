@@ -1,7 +1,5 @@
 #dashboard.content
 
-  %h1 User Dashboard
-  
-  = link_to 'Account Info', user_path(@current_user), :class => "prominent"
+  = render 'header_user'
 
   = render_cell :subscription, :display, :user => @current_user

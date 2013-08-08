@@ -1,6 +1,11 @@
 #dashboard.content
   %p#notice= notice
 
+  - if can? :manage, User
+    = render 'dashboards/header_admin'
+  - else
+    = render 'dashboards/header_user'
+
   %p
     %b ID:
     = @user.id
@@ -33,6 +38,8 @@
     = render_cell :subscription, :manage, :user => @user
 
   = render_cell :payment_method, :display, :user => @user
+
+  %p &nbsp;
 
   = link_to 'Edit', edit_user_path(@user), :class => "prominent"
   \|

@@ -1,0 +1,13 @@
+%h1 Admin Dashboard
+
+%ul
+  %li
+    = link_to 'Main', dashboards_path, :class => "tab"
+  %li
+    = link_to 'Account Info', user_path(@current_user), :class => "tab"
+  %li
+    = link_to 'Products', {:controller => 'dashboards', :action => 'view_products'}, :class => "tab"
+  %li
+    = link_to 'Subscriptions', {:controller => 'dashboards', :action => 'view_subscriptions'}, :class => "tab"
+  %li
+    = link_to 'Payments', {:controller => 'dashboards', :action => 'view_payments'}, :class => "tab"
