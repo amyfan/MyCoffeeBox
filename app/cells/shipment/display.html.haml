@@ -10,8 +10,8 @@
 
     - @shipments.each do |shipment|
       %tr
-        %td= shipment.shipped_date
-        %td= shipment.received_date
+        %td= link_to_if shipment.shipped_date, shipment.shipped_date, shipment
+        %td= link_to_if shipment.received_date, shipment.received_date, shipment
         %td= shipment.shipment_status
 
   %br

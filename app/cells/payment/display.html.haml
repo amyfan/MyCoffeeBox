@@ -11,12 +11,12 @@
 
     - @payments.each do |payment|
       %tr
-        %td= payment.created_at
+        %td= link_to payment.created_at, payment
         - if payment.subscription != nil
-          %td= payment.subscription_id
-          %td= payment.subscription.user.name
+          %td= link_to payment.subscription_id, payment
+          %td= link_to payment.subscription.user.name, payment
         - else
           %td &nbsp;
           %td &nbsp;
-        %td= payment.amount.to_s + " " + payment.currency
+        %td= link_to payment.amount.to_s + " " + payment.currency, payment
 

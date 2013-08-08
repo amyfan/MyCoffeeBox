@@ -24,7 +24,7 @@
       = @user.user_role
     %p
       %b Status:
-      = @user.status
+      = @user.is_active
     -# %p
       -# %b Subcriptions:
       -# - @user.subscriptions.each do |subscription|
@@ -36,8 +36,7 @@
 
   - if can? :manage, User
     = render_cell :subscription, :manage, :user => @user
-
-  = render_cell :payment_method, :display, :user => @user
+    = render_cell :payment_method, :display, :user => @user
 
   %p &nbsp;
 

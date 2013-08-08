@@ -162,6 +162,7 @@ class SubscriptionsController < ApplicationController
 
   def create_shipping(params)
     shipping_info = ShippingInfo.new(params)
+    shipping_info.user = current_user
     shipping_info.save
     return shipping_info
   end

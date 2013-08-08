@@ -18,5 +18,5 @@
         %td &nbsp;
         %td &nbsp;
       %td= link_to @product_item.quantity, @product_item
-      %td= link_to @product_item.custom_options, @product_item
+      %td= link_to_if @product_item.custom_options, @product_item.custom_options, @product_item
       %td= link_to 'Delete', @product_item, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -2,6 +2,11 @@
 
   %p#notice= notice
 
+  - if can? :manage, User
+    %p
+      %b User Email:
+      - if @shipping_info.user != nil
+        = @shipping_info.user.email
   %p
     %b Name:
     = @shipping_info.name

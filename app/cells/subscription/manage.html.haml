@@ -26,7 +26,7 @@
         - else
           %td &nbsp;
         %td= link_to subscription.coffee_type, subscription
-        %td= link_to subscription.referral_email, subscription
-        %td= link_to subscription.promo_code, subscription
+        %td= link_to_if subscription.referral_email, subscription.referral_email, subscription
+        %td= link_to_if subscription.promo_code, subscription.promo_code, subscription
         %td= link_to subscription.payment_status, subscription
         %td= link_to 'Delete', subscription, :method => :delete, :data => { :confirm => 'Are you sure?' }

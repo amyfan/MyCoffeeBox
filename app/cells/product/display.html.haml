@@ -13,8 +13,8 @@
 
     %tr
       %td= link_to @product.name, @product
-      %td= link_to @product.description, @product
+      %td= link_to_if @product.description, @product.description, @product
       %td= link_to @product.price, @product
       %td= link_to @product.currency, @product
       %td= link_to @product.weight, @product
-      %td= link_to @product.image_url, @product
+      %td= link_to_if @product.image_url, @product.image_url, @product

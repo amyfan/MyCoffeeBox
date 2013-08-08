@@ -13,9 +13,9 @@
 
     - @shipments.each do |shipment|
       %tr
-        %td= link_to shipment.shipped_date, shipment
-        %td= link_to shipment.received_date, shipment
+        %td= link_to_if shipment.shipped_date, shipment.shipped_date, shipment
+        %td= link_to_if shipment.received_date, shipment.received_date, shipment
         %td= link_to shipment.shipment_status, shipment
-        %td= link_to shipment.shipment_cost, shipment
-        %td= link_to shipment.shipping_provider, shipment
-        %td= link_to shipment.notes, shipment
+        %td= link_to_if shipment.shipment_cost, shipment.shipment_cost, shipment
+        %td= link_to_if shipment.shipping_provider, shipment.shipping_provider, shipment
+        %td= link_to_if shipment.notes, shipment.notes, shipment

@@ -9,14 +9,14 @@
       %th Email
       %th Phone
       %th User role
-      %th Status
+      %th Is Active
       %th
 
     - @users.each do |user|
       %tr
-        %td= link_to user.name, user
+        %td= link_to_if user.name, user.name, user
         %td= link_to user.email, user
-        %td= link_to user.phone, user
+        %td= link_to_if user.phone, user.phone, user
         %td= link_to user.user_role, user
-        %td= link_to user.status, user
+        %td= link_to user.is_active, user
         %td= link_to 'Delete', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
