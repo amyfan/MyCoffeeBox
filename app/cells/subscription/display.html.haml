@@ -11,7 +11,7 @@
 
     - @subscriptions.each do |subscription|
       %tr
-        %td= link_to subscription.created_at, subscription
+        %td= link_to subscription.start_date, subscription
         %td= link_to subscription.billing_period.to_s + "/" + subscription.shipping_period.to_s, subscription
         %td= link_to subscription.coffee_type, subscription
         %td= link_to subscription.payment_status, subscription

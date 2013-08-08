@@ -11,4 +11,9 @@ class PaymentCell < Cell::Rails
     render :manage
   end
 
+  def recent
+    @payments = Payment.limit(10).order('created_at desc')
+    render :recent
+  end
+
 end

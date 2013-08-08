@@ -229,7 +229,5 @@ function validateShippingForm() {
   	// TODO: copy single order info to our back end
   }
 
-  return false;
-
   return true;
 }

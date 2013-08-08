@@ -1,6 +1,6 @@
 #payment
 
-  %h3 Payments Made
+  %h3 Recent Payments
 
   %table
     %tr
@@ -8,7 +8,6 @@
       %th Subscription ID
       %th User Name
       %th Amount
-      %th
     - @payments.each do |payment|
       %tr
         %td= link_to payment.created_at, payment
@@ -19,4 +18,3 @@
           %td &nbsp;
           %td &nbsp;
         %td= link_to payment.amount.to_s + " " + payment.currency, payment
-        %td= link_to 'Delete', payment, :method => :delete, :data => { :confirm => 'Are you sure?' }

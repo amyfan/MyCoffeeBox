@@ -16,9 +16,11 @@ MyCoffeeBox::Application.routes.draw do
     post 'subscriptions/pause_subscription(/:id)' => 'subscriptions#pause_subscription'
     post 'subscriptions/resume_subscription(/:id)' => 'subscriptions#resume_subscription'
     match 'check_sign_in' => 'routings#check_sign_in'
+    match 'view_users' => 'dashboards#view_users'
     match 'view_products' => 'dashboards#view_products'
     match 'view_subscriptions' => 'dashboards#view_subscriptions'
     match 'view_payments' => 'dashboards#view_payments'
+    match 'view_shipments' => 'dashboards#view_shipments'
   end
 
   scope "(:locale)", :locale => /es/ do

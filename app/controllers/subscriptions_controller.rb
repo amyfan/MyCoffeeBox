@@ -101,6 +101,7 @@ class SubscriptionsController < ApplicationController
     @subscription.payment_status = 'Pending'
     @subscription.product_item = product_item
     @subscription.shipping_info = shipping_info
+    @subscription.start_date = DateTime.current()
     @subscription.save
 
     respond_to do |format|

@@ -13,4 +13,10 @@ class ShipmentCell < Cell::Rails
     render :manage
   end
 
+  def recent
+    @shipments = Shipment.limit(10).order('created_at desc')
+
+    render :recent
+  end
+
 end

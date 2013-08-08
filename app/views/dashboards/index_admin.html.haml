@@ -2,14 +2,10 @@
   
   = render 'header_admin'
 
-  = render_cell :user, :display
+  = render_cell :subscription, :recent
 
-  = render_cell :product, :manage
+  = render_cell :payment, :recent
 
-  = render_cell :subscription, :manage, :user => nil
+  = render_cell :shipment, :recent
 
-  = render_cell :payment, :manage
-
-  = render_cell :shipment, :manage
-
-  = render_cell :shipping_info, :manage, :user => nil
+  -# = render_cell :shipping_info, :manage, :user => nil

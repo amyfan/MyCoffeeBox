@@ -16,25 +16,28 @@
       - if @subscription.user != nil
         = @subscription.user.email
   %p
-    %b Shipping period:
+    %b Start Date:
+    = @subscription.start_date
+  %p
+    %b Shipping Period:
     = @subscription.shipping_period
     weeks
   %p
-    %b Billing period:
+    %b Billing Period:
     = @subscription.billing_period
     weeks
   %p
-    %b Coffee type:
+    %b Coffee Type:
     = @subscription.coffee_type
   %p
-    %b Payment status:
+    %b Payment Status:
     = @subscription.payment_status
   - if can? :manage, User
     %p
-      %b Referral email:
+      %b Referral Email:
       = @subscription.referral_email
     %p
-      %b Promo code:
+      %b Promo Code:
       = @subscription.promo_code
     %p
       %b Utm source:
