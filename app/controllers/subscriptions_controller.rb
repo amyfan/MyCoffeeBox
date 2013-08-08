@@ -93,15 +93,16 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions/create_copy
   # POST /subscriptions/create_copy.json
   def create_copy
-    product_item = create_product_item(params[:where_value])
+    product_item = create_product_item(params[:product_info])
     shipping_info = create_shipping(params[:shipping_info])
     @subscription = Subscription.new(params[:subscription])
-    # @subscription.conekta_id = latest_subscription[:id]
+    # @subscription.public_id = latest_subscription[:id]
+    @subscription.start_date = DateTime.current()
+    # TODO: calculate end_date
     @subscription.user = current_user
     @subscription.payment_status = 'Pending'
     @subscription.product_item = product_item
     @subscription.shipping_info = shipping_info
-    @subscription.start_date = DateTime.current()
     @subscription.save
 
     respond_to do |format|
@@ -149,8 +150,9 @@ class SubscriptionsController < ApplicationController
   
   private
 
-  def create_product_item(where_value)
-    product = Product.where(:order_type => 'subscription', :where_value => where_value).first
+  def create_product_item(product_info)
+    public_id = product_info[:public_id]
+    product = Product.where(:public_id => public_id).first
     product_item = ProductItem.new
     product_item.product = product
     product_item.quantity = 1

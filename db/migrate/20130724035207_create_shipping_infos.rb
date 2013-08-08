@@ -9,7 +9,7 @@ class CreateShippingInfos < ActiveRecord::Migration
       t.string :postal_code
       t.string :country
       t.string :phone
-      t.string :additional_info
+      t.text :additional_info
 
       t.timestamps
     end

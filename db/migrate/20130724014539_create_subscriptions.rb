@@ -2,7 +2,9 @@ class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
       t.datetime :start_date
-      t.string :conekta_id
+      t.datetime :end_date
+      t.datetime :pause_date
+      t.string :public_id
       t.integer :shipping_period
       t.integer :billing_period
       t.string :coffee_type
@@ -14,6 +16,8 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.string :utm_term
       t.string :utm_content
       t.string :utm_campaign
+      t.integer :is_gift
+      t.text :notes
 
       t.timestamps
     end

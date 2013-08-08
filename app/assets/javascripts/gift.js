@@ -143,11 +143,12 @@ function checkOutGift() {
   conekta.checkout.new('order', {company_id: 2757603});
 
   var selected_product;
+  var currency;
   var lengthValue;
   var price;
   var firma;
   if (whereValue == 1) {
-    conekta.checkout.setCurrency('MXN');
+    currency = 'MXN';
     lengthValue = parseInt($("#giftlengthmex .selected").data("giftlengthmex"));
     if (lengthValue == 3) {
       selected_product = mex_three_product;
@@ -165,7 +166,7 @@ function checkOutGift() {
       selected_product = mex_four_product;
     }
   } else if (whereValue == 2) {
-    conekta.checkout.setCurrency('USD');
+    currency = 'USD';
     lengthValue = parseInt($("#giftlengthusa .selected").data("giftlengthusa"));
     if (lengthValue == 3) {
     } else if (lengthValue == 6) {
@@ -174,6 +175,7 @@ function checkOutGift() {
       selected_product = usa_four_product;
     }
   }
+  conekta.checkout.setCurrency(currency);
 
   conekta.checkout.addItem(selected_product.createItem());
 
@@ -188,18 +190,30 @@ function checkOutGift() {
 
     conekta.checkout.save();
 
+    // now save shopping cart data in cookies (independent of conekta storing our info in js)
+    // these cookies for our own back end
+    createCookie('order_type', 'prepaid', 30); // may change this to 'gift' in future
+    createCookie('billing_period', 0, 30);
+    createCookie('shipping_period', 4, 30); // TODO: may offer different frequencies if there's demand
+    //createCookie('currency', currency, 30);
+    //createCookie('where_value', whereValue, 30);
+    createCookie('public_id', selected_product.getAttributes().id, 30);
+    createCookie('is_gift', 1, 30);
+
     if (whereValue == 1) {
       // TODO strange bug in which address line not saving for one-time orders via custom cart
-      conekta.checkout.proceedToCheckout();
+      //conekta.checkout.proceedToCheckout();
 
+      // these cookies are for pademobile
       createCookie('pademobile_order_name', 'Regalo+M%C3%A9xico+' + lengthValue + '+Cajas', 30);
       createCookie('price', price, 30);
       createCookie('firma', firma, 1);
       
-      // TODO restore custom cart & save cookies for back end
-      //window.location = locale + "/shipping_mex";
+      // window.location = locale + "/shipping_mex";
+      window.location = locale + "/check_sign_in?path=" + locale + "/shipping_mex"
     } else {
-      window.location = locale + "/shipping";
+      // window.location = locale + "/shipping";
+      window.location = locale + "/check_sign_in?path=" + locale + "/shipping"
     }
   } else {
     // this case should no longer happen based on flow of page

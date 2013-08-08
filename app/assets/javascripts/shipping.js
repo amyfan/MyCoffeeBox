@@ -193,7 +193,14 @@ function validateShippingForm() {
   // conekta.checkout.setCustomField('utm_campaign', readCookie('utm_campaign'));
   // }
 
-  // copy shipping info to our back end
+  // now time to copy all our data->back end
+  //if (readCookie('order_type').indexOf('subscription') > -1) {
+  var product_info_json = {
+  	"order_type" : readCookie('order_type'),
+  	"public_id" : readCookie('public_id'),
+  	"is_gift" : readCookie('is_gift')
+  };
+
   var shipping_info_json = {
     "name" : nombre,
     "address_one" : calle,
@@ -207,27 +214,24 @@ function validateShippingForm() {
     "additional_info" : adicional
   };
 
-  if (readCookie('order_type').indexOf('subscription') > -1) {
-    // copy subscription info to our back end
-    $.post("/subscriptions/create_copy", {
-    	"where_value" : readCookie('where_value'),
-    	"shipping_info" :	shipping_info_json, 
-      "subscription" : {
-  	    "coffee_type" : coffeetype,
-  	    "referral_email" : referral,
-  	    "promo_code" : promocode,
-  	    "billing_period" : readCookie('billing_period'),
-  	    "shipping_period" : readCookie('shipping_period'),
-  	    "utm_source" : readCookie('utm_source'),
-  	    "utm_medium" : readCookie('utm_medium'),
-  	    "utm_term" : readCookie('utm_term'),
-  	    "utm_content" : readCookie('utm_content'),
-  	    "utm_campaign" : readCookie('utm_campaign')
-  	  }
-    });
-  } else {
-  	// TODO: copy single order info to our back end
-  }
+  // copy subscription info to our back end
+  $.post("/subscriptions/create_copy", {
+    "product_info" : product_info_json,
+    "shipping_info" :	shipping_info_json, 
+    "subscription" : {
+  	  "coffee_type" : coffeetype,
+  	  "referral_email" : referral,
+  	  "promo_code" : promocode,
+  	  "billing_period" : readCookie('billing_period'),
+  	  "shipping_period" : readCookie('shipping_period'),
+  	  "utm_source" : readCookie('utm_source'),
+  	  "utm_medium" : readCookie('utm_medium'),
+  	  "utm_term" : readCookie('utm_term'),
+  	  "utm_content" : readCookie('utm_content'),
+  	  "utm_campaign" : readCookie('utm_campaign'),
+  	  "is_gift" : readCookie('is_gift')
+  	}
+  });
 
   return true;
 }

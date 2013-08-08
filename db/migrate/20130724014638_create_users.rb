@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :user_role
       t.datetime :last_used
-      t.integer :status
+      t.integer :is_active
 
       t.timestamps
     end

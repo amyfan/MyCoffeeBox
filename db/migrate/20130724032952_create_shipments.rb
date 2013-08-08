@@ -6,7 +6,7 @@ class CreateShipments < ActiveRecord::Migration
       t.string :shipment_status
       t.decimal :shipment_cost
       t.string :shipping_provider
-      t.string :notes
+      t.text :notes
 
       t.timestamps
     end

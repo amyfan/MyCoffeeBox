@@ -10,7 +10,7 @@ class MyRegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.user_role = "customer"
-    resource.status = 1
+    resource.is_active = 1
 
     if resource.save
       if resource.active_for_authentication?
@@ -34,7 +34,9 @@ class MyRegistrationsController < Devise::RegistrationsController
 
   def after_sign_in_path_for(resource)
     if session[:path] != nil
-      session[:path]
+      path = session[:path]
+      session.delete(:path)
+      path
     else
       dashboards_path
     end

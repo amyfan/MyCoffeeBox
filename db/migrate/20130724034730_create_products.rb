@@ -2,8 +2,8 @@ class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
       t.string :name
-      t.string :description
-      t.string :conekta_id
+      t.text :description
+      t.string :public_id
       t.string :where_value
       t.string :order_type
       t.decimal :price

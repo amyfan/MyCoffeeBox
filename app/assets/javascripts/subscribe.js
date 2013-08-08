@@ -223,10 +223,12 @@ function nextSubscribe() {
     // now save shopping cart data in cookies (independent of conekta storing our info in js)
     // these cookies for our own back end
     createCookie('order_type', 'subscription', 30);
-    createCookie('billing_period', periodFrequencyValue, 30);
+    createCookie('billing_period', periodFrequencyValue, 30); // TODO: this value may change if payment method = prepaid
     createCookie('shipping_period', periodFrequencyValue, 30);
-    createCookie('currency', currency, 30);
-    createCookie('where_value', whereValue, 30);
+    //createCookie('currency', currency, 30);
+    //createCookie('where_value', whereValue, 30);
+    createCookie('public_id', product.getAttributes().id, 30);
+    createCookie('is_gift', 0, 30);
 
     if (whereValue == 1) {
       // these cookies are for pademobile

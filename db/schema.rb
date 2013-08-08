@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.string   "description"
-    t.string   "conekta_id"
+    t.text     "description"
+    t.string   "public_id"
     t.string   "where_value"
     t.string   "order_type"
     t.decimal  "price"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
     t.string   "shipment_status"
     t.decimal  "shipment_cost"
     t.string   "shipping_provider"
-    t.string   "notes"
+    t.text     "notes"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "payment_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
     t.string   "postal_code"
     t.string   "country"
     t.string   "phone"
-    t.string   "additional_info"
+    t.text     "additional_info"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "user_id"
@@ -88,7 +88,9 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
 
   create_table "subscriptions", :force => true do |t|
     t.datetime "start_date"
-    t.string   "conekta_id"
+    t.datetime "end_date"
+    t.datetime "pause_date"
+    t.string   "public_id"
     t.integer  "shipping_period"
     t.integer  "billing_period"
     t.string   "coffee_type"
@@ -100,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
     t.string   "utm_term"
     t.string   "utm_content"
     t.string   "utm_campaign"
+    t.integer  "is_gift"
+    t.text     "notes"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "user_id"
@@ -113,7 +117,7 @@ ActiveRecord::Schema.define(:version => 20130724215456) do
     t.string   "phone"
     t.string   "user_role"
     t.datetime "last_used"
-    t.integer  "status"
+    t.integer  "is_active"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "encrypted_password",     :default => "", :null => false
