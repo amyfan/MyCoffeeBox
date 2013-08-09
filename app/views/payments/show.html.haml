@@ -18,8 +18,15 @@
     %b Currency:
     = @payment.currency
 
-  = render_cell :shipment, :display, :payment => @payment
-  = link_to 'New Shipment', new_shipment_path(:payment_id => @payment.id), :class => "prominent"
+  = render_cell :payment_method, :display, :payment_method => @payment.payment_method
+  - if can? :manage, User
+    = link_to 'New Payment Method', new_payment_method_path(:payment_id => @payment.id), :class => "prominent"
+
+  %p &nbsp;
+
+  = render_cell :shipment, :display, :shipments => @payment.shipments
+  - if can? :manage, User
+    = link_to 'New Shipment', new_shipment_path(:payment_id => @payment.id), :class => "prominent"
 
   %p &nbsp;
 

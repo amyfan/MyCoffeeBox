@@ -3,5 +3,5 @@ class Subscription < ActiveRecord::Base
   belongs_to :user, :inverse_of => :subscriptions
   belongs_to :product_item
   belongs_to :shipping_info
-  has_many :payments, :inverse_of => :subscription
+  has_many :payments, :inverse_of => :subscription, :order => 'created_at DESC'
 end

@@ -1,18 +1,10 @@
 #paymentmethod
-  %h3 Listing Payment Methods
+  %h3 Payment Method
 
   %table
     %tr
       %th Payment type
-      %th Last4
-      %th
 
-    - @payment_methods.each do |payment_method|
+    - if @payment_method != nil
       %tr
-        %td= link_to payment_method.payment_type, payment_method
-        %td= link_to_if payment_method.last4, payment_method.last4, payment_method
-        %td= link_to 'Delete', payment_method, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %br
-
-  = link_to 'New Payment Method', new_payment_method_path
+        %td= link_to_if @payment_method.payment_type, @payment_method.payment_type, @payment_method

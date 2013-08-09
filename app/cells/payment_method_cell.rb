@@ -1,10 +1,8 @@
 class PaymentMethodCell < Cell::Rails
 
   def display(args)
-    user = args[:user]
-    @payment_methods  = user.payment_methods
-
-    render :display
+    @payment_method  = args[:payment_method]
+    render
   end
 
 end

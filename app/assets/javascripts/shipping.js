@@ -217,7 +217,7 @@ function validateShippingForm() {
   // copy subscription info to our back end
   $.post("/subscriptions/create_copy", {
     "product_info" : product_info_json,
-    "shipping_info" :	shipping_info_json, 
+    "shipping_info" :	shipping_info_json,
     "subscription" : {
   	  "coffee_type" : coffeetype,
   	  "referral_email" : referral,

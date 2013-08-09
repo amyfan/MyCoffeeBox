@@ -1,8 +1,7 @@
 class ShipmentCell < Cell::Rails
 
   def display(args)
-    payment = args[:payment]
-    @shipments  = payment.shipments
+    @shipments  = args[:shipments]
 
     render :display
   end

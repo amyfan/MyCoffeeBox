@@ -1,6 +1,7 @@
 var success_url_callback;
 var failure_url_callback;
 var locale;
+var locale_pade;
 var page_name;
 
 $(function() {
@@ -8,9 +9,11 @@ $(function() {
 
   if (window.location.pathname.indexOf("/en") > -1) {
     locale = "/en";
+    locale_pade = "en";
     page_name = "EN Payment Option";
   } else {
     locale = "/es";
+    locale_pade = "es";
     page_name = "ES Payment Option";
   }
 
@@ -116,10 +119,12 @@ function nextPademobile() {
   var order_name = readCookie('pademobile_order_name');
 	var price = readCookie('price');
 	var firma = readCookie('firma');
-  var url_string = "https://www.pademobile.com/comprar/?descripcion=";
-  url_string += order_name;
-  url_string += "&id_usuario=6804&pais=MX&url=http%3A%2F%2Fwww.mycoffeebox.com%2Fes%2Forder_success&importe=";
-  url_string += price;
+	var timeInMs = Date.now(); // used to ID the transaction
+  var url_string = "https://www.pademobile.com/comprar/?descripcion=" + order_name;
+  url_string += "&id_usuario=6804&pais=MX&url=http%3A%2F%2Fwww.mycoffeebox.com%2F" + locale_pade;
+  url_string += "%2F%3Fid%3D" + timeInMs;
+  url_string += "%26type%3Dpademobile";
+  url_string += "&importe=" + price;
   url_string += "&firma=" + firma;
   window.location.href = url_string;
 }

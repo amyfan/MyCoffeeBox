@@ -27,6 +27,9 @@ class PaymentMethodsController < ApplicationController
   # GET /payment_methods/new.json
   def new
     @payment_method = PaymentMethod.new
+    payment = Payment.find(params[:payment_id])
+    @payment_method.payments << payment
+    @payment_method.save
 
     respond_to do |format|
       format.html # new.html.erb

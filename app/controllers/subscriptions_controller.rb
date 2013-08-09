@@ -110,6 +110,27 @@ class SubscriptionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # POST /subscriptions/tag_latest_subscription
+  # POST /subscriptions/tag_latest_subscription.json
+  def tag_latest_subscription
+    subscription = Subscription.where(:user => current_user).order('created_at desc').first
+    subscription.public_id = params[:id]
+    subscription.save
+  end
+
+  # POST /subscriptions/confirm_payment
+  # POST /subscriptions/confirm_payment.json
+  def confirm_payment
+    subscription = Subscription.where(:public_id => params[:id]).order('created_at desc').first
+    payment = create_payment(params[:payment_type])
+    product = subscription.product_item.product
+    payment.amount = product.price
+    payment.currency = product.currency
+    payment.save
+    subscription.payments << payment
+    subscription.save
+  end
 
   # POST /subscriptions/pause_subscription/1
   # POST /subscriptions/pause_subscription/1.json
@@ -117,6 +138,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:id])
     MyMailer.pause_subscription(@subscription).deliver
     @subscription.payment_status = 'Paused'
+    @subscription.pause_date = DateTime.current()
     @subscription.save
 
     respond_to do |format|
@@ -129,6 +151,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:id])
     MyMailer.resume_subscription(@subscription).deliver
     @subscription.payment_status = 'Pending'
+    @subscription.pause_date = nil
     @subscription.save
 
     respond_to do |format|
@@ -165,5 +188,14 @@ class SubscriptionsController < ApplicationController
     shipping_info.user = current_user
     shipping_info.save
     return shipping_info
+  end
+
+  def create_payment(payment_type)
+    payment_method = PaymentMethod.new
+    payment_method.payment_type = payment_type
+    payment_method.save
+    payment = Payment.new
+    payment.payment_method = payment_method
+    return payment
   end
 end

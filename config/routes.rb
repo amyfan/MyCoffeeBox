@@ -13,6 +13,8 @@ MyCoffeeBox::Application.routes.draw do
     resources :dashboards
     
     post 'subscriptions/create_copy(/:id)' => 'subscriptions#create_copy'
+    post 'subscriptions/tag_latest_subscription(/:id)' => 'subscriptions#tag_latest_subscription'
+    post 'subscriptions/confirm_payment(/:id)' => 'subscriptions#confirm_payment'
     post 'subscriptions/pause_subscription(/:id)' => 'subscriptions#pause_subscription'
     post 'subscriptions/resume_subscription(/:id)' => 'subscriptions#resume_subscription'
     match 'check_sign_in' => 'routings#check_sign_in'
